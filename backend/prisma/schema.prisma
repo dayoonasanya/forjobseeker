@@ -1,0 +1,158 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String   @id @default(uuid())
+  email          String   @unique
+  password       String
+  role           UserRole
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  isDeleted      Boolean  @default(false)
+
+  Company Company?
+
+  JobSeeker JobSeeker?
+}
+
+enum UserRole {
+  ADMIN
+  COMPANY
+  JOBSEEKER
+}
+
+model JobSeeker {
+  id                 String   @id @default(uuid())
+  userId             String   @unique
+  user               User     @relation(fields: [userId], references: [id])
+  firstName          String
+  lastName           String
+  phone              String?
+  jobField           JobField @relation(fields: [jobFieldId], references: [id])
+  jobFieldId         String
+  maxQualification   String
+  yearsOfExperience  String
+  profileImage       String?
+  summary            String?
+  skills             String[]
+  cv                 String?
+  twitterLink        String?
+  linkedinLink       String?
+  githubLink         String?
+  website            String?
+  applications       Application[]
+  workExperiences    WorkExperience[]
+  certifications     Certification[]
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  isDeleted          Boolean  @default(false)
+}
+
+model Company {
+  id               String   @id @default(uuid())
+  userId           String   @unique
+  user             User     @relation(fields: [userId], references: [id])
+  name             String
+  website          String?
+  country          String
+  businessEmail    String
+  licenseNumber    String   @unique
+  isVerified       Boolean  @default(false)
+  about            String?
+  logo             String?
+  jobs             Job[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  isDeleted        Boolean  @default(false)
+}
+
+model JobField {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  jobSeekers JobSeeker[]
+  jobs      Job[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  isDeleted Boolean  @default(false)
+}
+
+model Job {
+  id                String   @id @default(uuid())
+  company           Company  @relation(fields: [companyId], references: [id])
+  companyId         String
+  jobField          JobField @relation(fields: [jobFieldId], references: [id])
+  jobFieldId        String
+  title             String
+  type              JobType
+  vacancies         Int
+  deadline          DateTime
+  datePublished     DateTime @default(now())
+  yearsOfExperience String
+  description       String
+  salaryRange       String?
+  applications      Application[]
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  isDeleted         Boolean  @default(false)
+}
+
+enum JobType {
+  FULL_TIME
+  PART_TIME
+  INTERNSHIP
+}
+
+model Application {
+  id          String   @id @default(uuid())
+  job         Job      @relation(fields: [jobId], references: [id])
+  jobId       String
+  jobSeeker   JobSeeker @relation(fields: [jobSeekerId], references: [id])
+  jobSeekerId String
+  status      ApplicationStatus @default(PENDING)
+  appliedAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  isDeleted   Boolean  @default(false)
+}
+
+enum ApplicationStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
+
+model WorkExperience {
+  id          String   @id @default(uuid())
+  jobSeeker   JobSeeker @relation(fields: [jobSeekerId], references: [id])
+  jobSeekerId String
+  company     String
+  position    String
+  startDate   DateTime
+  endDate     DateTime?
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  isDeleted   Boolean  @default(false)
+}
+
+model Certification {
+  id          String   @id @default(uuid())
+  jobSeeker   JobSeeker @relation(fields: [jobSeekerId], references: [id])
+  jobSeekerId String
+  name        String
+  issuer      String
+  issueDate   DateTime
+  expiryDate  DateTime?
+  link        String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  isDeleted   Boolean  @default(false)
+}
