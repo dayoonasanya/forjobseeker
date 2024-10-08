@@ -1,6 +1,10 @@
+import { User } from './user.interface';
+import { Job } from './job.interface';
+
 export interface Company {
   id: string;
   userId: string;
+  user: User;
   name: string;
   website?: string;
   country: string;
@@ -9,6 +13,7 @@ export interface Company {
   isVerified: boolean;
   about?: string;
   logo?: string;
+  jobs: Job[];
   createdAt: Date;
   updatedAt: Date;
   isDeleted: boolean;
