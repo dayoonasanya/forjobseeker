@@ -20,8 +20,9 @@ model User {
   isDeleted      Boolean  @default(false)
 
   Company Company?
-
   JobSeeker JobSeeker?
+
+  @@index([email])
 }
 
 enum UserRole {
@@ -55,6 +56,9 @@ model JobSeeker {
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
   isDeleted          Boolean  @default(false)
+
+  @@index([jobFieldId])
+  @@index([userId])
 }
 
 model Company {
@@ -73,6 +77,8 @@ model Company {
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
   isDeleted        Boolean  @default(false)
+
+  @@index([userId])
 }
 
 model JobField {
@@ -103,6 +109,10 @@ model Job {
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
   isDeleted         Boolean  @default(false)
+
+  @@index([companyId])
+  @@index([jobFieldId])
+  @@index([title])
 }
 
 enum JobType {
@@ -121,6 +131,9 @@ model Application {
   appliedAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   isDeleted   Boolean  @default(false)
+
+  @@index([jobId])
+  @@index([jobSeekerId])
 }
 
 enum ApplicationStatus {
@@ -141,6 +154,8 @@ model WorkExperience {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   isDeleted   Boolean  @default(false)
+
+  @@index([jobSeekerId])
 }
 
 model Certification {
@@ -155,4 +170,6 @@ model Certification {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   isDeleted   Boolean  @default(false)
+
+  @@index([jobSeekerId])
 }
