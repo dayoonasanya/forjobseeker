@@ -1,0 +1,57 @@
+### Register a new JobSeeker
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "jobless@example.com",
+  "password": "password123",
+  "role": "JOBSEEKER",
+  "firstName": "John",
+  "lastName": "Doe",
+  "phone": "1234567890",
+  "jobFieldId": "ff36e464-af2e-4e9c-b821-987ef2d76f78", 
+  "maxQualification": "Bachelor's Degree",
+  "yearsOfExperience": "5"
+}
+
+### Login as JobSeeker
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "jobseeker@example.com",
+  "password": "password123"
+}
+
+### Update the JobSeeker Profile
+PATCH http://localhost:5000/api/jobseekers/6c841112-71ed-4c57-a5bf-6e55e58a2e79
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDExZmZjNy1jM2Q0LTRjMTktOTRiZS00NGFjNGU0Y2U5NDYiLCJyb2xlIjoiSk9CU0VFS0VSIiwiaWF0IjoxNzI4NDcxODY4LCJleHAiOjE3Mjg0NzU0Njh9.PPcewWORFEIh4RfsVZWivrTspTR1jwLjHjMXRtLlNds
+
+{
+  "firstName": "Jane",
+  "lastName": "Smith",
+  "phone": "0987654321",
+  "maxQualification": "Master's Degree",
+  "yearsOfExperience": "7",
+  "profileImage": "https://example.com/profile.jpg",
+  "summary": "Experienced software developer specializing in backend development.",
+  "skills": ["Node.js", "TypeScript", "Express", "Prisma"],
+  "cv": "https://example.com/resume.pdf",
+  "twitterLink": "https://twitter.com/jane_smith",
+  "linkedinLink": "https://linkedin.com/in/jane-smith",
+  "githubLink": "https://github.com/jane-smith",
+  "website": "https://janesmith.dev"
+}
+
+### Get JobSeeker Profile by ID
+GET http://localhost:5000/api/jobseekers/6c841112-71ed-4c57-a5bf-6e55e58a2e79
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDExZmZjNy1jM2Q0LTRjMTktOTRiZS00NGFjNGU0Y2U5NDYiLCJyb2xlIjoiSk9CU0VFS0VSIiwiaWF0IjoxNzI4NDcxODY4LCJleHAiOjE3Mjg0NzU0Njh9.PPcewWORFEIh4RfsVZWivrTspTR1jwLjHjMXRtLlNds
+
+### Soft Delete the JobSeeker Profile
+DELETE http://localhost:5000/api/jobseekers/6c841112-71ed-4c57-a5bf-6e55e58a2e79
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDExZmZjNy1jM2Q0LTRjMTktOTRiZS00NGFjNGU0Y2U5NDYiLCJyb2xlIjoiSk9CU0VFS0VSIiwiaWF0IjoxNzI4NDcxODY4LCJleHAiOjE3Mjg0NzU0Njh9.PPcewWORFEIh4RfsVZWivrTspTR1jwLjHjMXRtLlNds
+
+### Get JobSeeker Applications
+GET http://localhost:5000/api/jobseekers/6c841112-71ed-4c57-a5bf-6e55e58a2e79/applications
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDExZmZjNy1jM2Q0LTRjMTktOTRiZS00NGFjNGU0Y2U5NDYiLCJyb2xlIjoiSk9CU0VFS0VSIiwiaWF0IjoxNzI4NDcxODY4LCJleHAiOjE3Mjg0NzU0Njh9.PPcewWORFEIh4RfsVZWivrTspTR1jwLjHjMXRtLlNds

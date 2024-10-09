@@ -1,0 +1,53 @@
+### Register a new company user
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "companyuser@example.com",
+  "password": "password123",
+  "role": "COMPANY",
+  "companyName": "Tech Innovators",
+  "website": "https://techinnovators.com",
+  "country": "USA",
+  "businessEmail": "contact@techinnovators.com",
+  "licenseNumber": "TECH123456"
+}
+
+### Login with the company user to get a token
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "companyuser@example.com",
+  "password": "password123"
+}
+
+### Update the company profile
+PATCH http://localhost:5000/api/companies/056b9836-db72-466d-b9e0-19383e97c37f
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwZTM5NzA3Zi0wZTVmLTQwNTYtODM0ZC01NzhhNjZhNDg5NTUiLCJyb2xlIjoiQ09NUEFOWSIsImlhdCI6MTcyODQ3MDYzNCwiZXhwIjoxNzI4NDc0MjM0fQ.8CKpOAAx_zxU1u9SXtSxOq829LrBQUnJfjzpNwpPtH4
+
+{
+  "name": "Tech Innovators LLC",
+  "website": "https://newtechinnovators.com",
+  "country": "USA",
+  "businessEmail": "info@newtechinnovators.com",
+  "about": "Leading innovators in technology solutions.",
+  "logo": "https://newtechinnovators.com/logo.png"
+}
+
+### Get the company profile by ID
+GET http://localhost:5000/api/companies/056b9836-db72-466d-b9e0-19383e97c37f
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwZTM5NzA3Zi0wZTVmLTQwNTYtODM0ZC01NzhhNjZhNDg5NTUiLCJyb2xlIjoiQ09NUEFOWSIsImlhdCI6MTcyODQ3MDYzNCwiZXhwIjoxNzI4NDc0MjM0fQ.8CKpOAAx_zxU1u9SXtSxOq829LrBQUnJfjzpNwpPtH4
+
+### Soft delete the company profile
+DELETE http://localhost:5000/api/companies/056b9836-db72-466d-b9e0-19383e97c37f
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwZTM5NzA3Zi0wZTVmLTQwNTYtODM0ZC01NzhhNjZhNDg5NTUiLCJyb2xlIjoiQ09NUEFOWSIsImlhdCI6MTcyODQ3MDYzNCwiZXhwIjoxNzI4NDc0MjM0fQ.8CKpOAAx_zxU1u9SXtSxOq829LrBQUnJfjzpNwpPtH4
+
+### Verify the company (admin only)
+POST http://localhost:5000/api/companies/056b9836-db72-466d-b9e0-19383e97c37f/verify
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcyMDlmYy0zMWUyLTRlZDUtYjM5My1iMjE5YTczMWEyYjgiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3Mjg0Njk2MDQsImV4cCI6MTcyODQ3MzIwNH0.AJpO_n4rES-B-Tw4YKRk9Ee8Hg_iMX_I9y_DbWnkUeI
+
+### Get all jobs associated with the company
+GET http://localhost:5000/api/companies/056b9836-db72-466d-b9e0-19383e97c37f/jobs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwZTM5NzA3Zi0wZTVmLTQwNTYtODM0ZC01NzhhNjZhNDg5NTUiLCJyb2xlIjoiQ09NUEFOWSIsImlhdCI6MTcyODQ3MDYzNCwiZXhwIjoxNzI4NDc0MjM0fQ.8CKpOAAx_zxU1u9SXtSxOq829LrBQUnJfjzpNwpPtH4

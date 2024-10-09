@@ -1,0 +1,66 @@
+### Register a new user (JobSeeker)
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "jobseeker@example.com",
+  "password": "password123",
+  "role": "JOBSEEKER",
+  "firstName": "John",
+  "lastName": "Doe",
+  "phone": "1234567890",
+  "jobFieldId": "ff36e464-af2e-4e9c-b821-987ef2d76f78", 
+  "maxQualification": "Bachelor's Degree",
+  "yearsOfExperience": "5"
+}
+
+### Register a new user (Company)
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "company@example.com",
+  "password": "password123",
+  "role": "COMPANY",
+  "companyName": "Tech Corp",
+  "website": "https://techcorp.com",
+  "country": "USA",
+  "businessEmail": "info@techcorp.com",
+  "licenseNumber": "ABC123456"
+}
+
+### Login user
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "jobseeker@example.com",
+  "password": "password123"
+}
+
+### Reset password while logged in
+PUT http://localhost:5000/api/auth/reset-password
+Content-Type: application/json
+Authorization: Bearer <RESET_TOKEN>
+
+{
+  "oldPassword": "password123",
+  "newPassword": "newpassword456"
+}
+
+### Forgot password
+POST http://localhost:5000/api/auth/forgot-password
+Content-Type: application/json
+
+{
+  "email": "jobseeker@example.com"
+}
+
+### Reset password using token
+PUT http://localhost:5000/api/auth/reset-password-with-token
+Content-Type: application/json
+
+{
+  "token": "<RESET_TOKEN>",
+  "newPassword": "newpassword456"
+}

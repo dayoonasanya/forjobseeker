@@ -1,0 +1,50 @@
+### Register a new admin user
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "adminpassword123",
+  "role": "ADMIN",
+  "firstName": "Admin",
+  "lastName": "User"
+}
+
+### Login with the admin user to get a token
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "adminpassword123"
+}
+
+### Create a new JobField
+POST http://localhost:5000/api/jobfields/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcyMDlmYy0zMWUyLTRlZDUtYjM5My1iMjE5YTczMWEyYjgiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3Mjg0Njk2MDQsImV4cCI6MTcyODQ3MzIwNH0.AJpO_n4rES-B-Tw4YKRk9Ee8Hg_iMX_I9y_DbWnkUeI
+
+{
+  "name": "Software Engineering"
+}
+
+### Get all JobFields
+GET http://localhost:5000/api/jobfields
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcyMDlmYy0zMWUyLTRlZDUtYjM5My1iMjE5YTczMWEyYjgiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3Mjg0Njk2MDQsImV4cCI6MTcyODQ3MzIwNH0.AJpO_n4rES-B-Tw4YKRk9Ee8Hg_iMX_I9y_DbWnkUeI
+
+### Get a specific JobField by ID
+GET http://localhost:5000/api/jobfields/ff36e464-af2e-4e9c-b821-987ef2d76f78
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcyMDlmYy0zMWUyLTRlZDUtYjM5My1iMjE5YTczMWEyYjgiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3Mjg0Njk2MDQsImV4cCI6MTcyODQ3MzIwNH0.AJpO_n4rES-B-Tw4YKRk9Ee8Hg_iMX_I9y_DbWnkUeI
+
+### Update a JobField
+PUT http://localhost:5000/api/jobfields/ff36e464-af2e-4e9c-b821-987ef2d76f78
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcyMDlmYy0zMWUyLTRlZDUtYjM5My1iMjE5YTczMWEyYjgiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3Mjg0Njk2MDQsImV4cCI6MTcyODQ3MzIwNH0.AJpO_n4rES-B-Tw4YKRk9Ee8Hg_iMX_I9y_DbWnkUeI
+
+{
+  "name": "Data Science"
+}
+
+### Delete a JobField
+DELETE http://localhost:5000/api/jobfields/ff36e464-af2e-4e9c-b821-987ef2d76f78
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcyMDlmYy0zMWUyLTRlZDUtYjM5My1iMjE5YTczMWEyYjgiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3Mjg0Njk2MDQsImV4cCI6MTcyODQ3MzIwNH0.AJpO_n4rES-B-Tw4YKRk9Ee8Hg_iMX_I9y_DbWnkUeI
