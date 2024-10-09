@@ -9,7 +9,7 @@ Content-Type: application/json
   "firstName": "John",
   "lastName": "Doe",
   "phone": "1234567890",
-  "jobFieldId": "ff36e464-af2e-4e9c-b821-987ef2d76f78", 
+  "jobFieldId": "227d59de-2044-4b18-90df-af03a128d1f8", 
   "maxQualification": "Bachelor's Degree",
   "yearsOfExperience": "5"
 }
