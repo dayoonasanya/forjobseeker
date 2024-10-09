@@ -22,7 +22,7 @@ Content-Type: application/json
 ### Create a new JobField
 POST http://localhost:5000/api/jobfields/create
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcyMDlmYy0zMWUyLTRlZDUtYjM5My1iMjE5YTczMWEyYjgiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3Mjg0Njk2MDQsImV4cCI6MTcyODQ3MzIwNH0.AJpO_n4rES-B-Tw4YKRk9Ee8Hg_iMX_I9y_DbWnkUeI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjhmMTkwYy1mYzU1LTQyYjMtODVmNi05ZGMyYTc5NGE4ZjkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3Mjg0OTgyNjUsImV4cCI6MTcyODUwMTg2NX0.hy5I9HT2V7AE-8EQOWZsEK-v4fGsfYKrgl5DLrsbs88
 
 {
   "name": "Software Engineering"
