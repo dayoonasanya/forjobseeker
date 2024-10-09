@@ -32,8 +32,8 @@ export const addCertification = async (certificationData: any): Promise<Certific
         jobSeekerId: certificationData.jobSeekerId,
         name: certificationData.name,
         issuer: certificationData.issuer,
-        issueDate: certificationData.issueDate,
-        expiryDate: certificationData.expiryDate || null,
+        issueDate: new Date(certificationData.issueDate), // Ensure this is a Date object
+        expiryDate: certificationData.expiryDate ? new Date(certificationData.expiryDate) : null,
         link: certificationData.link || null,
       },
       include: {
@@ -42,7 +42,12 @@ export const addCertification = async (certificationData: any): Promise<Certific
     });
     return mapToCertification(newCertification);
   } catch (error) {
-    throw new Error('Error adding Certification');
+    console.error('Detailed error:', error);
+    if (error instanceof Error) {
+      throw new Error(`Error adding Certification: ${error.message}`);
+    } else {
+      throw new Error('Unknown error occurred while adding Certification');
+    }
   }
 };
 
@@ -77,9 +82,9 @@ export const updateCertification = async (
       data: {
         name: certificationData.name,
         issuer: certificationData.issuer,
-        issueDate: certificationData.issueDate,
-        expiryDate: certificationData.expiryDate || null,
-        link: certificationData.link || null,
+        issueDate: certificationData.issueDate ? new Date(certificationData.issueDate) : undefined,
+        expiryDate: certificationData.expiryDate ? new Date(certificationData.expiryDate) : null,
+        link: certificationData.link ?? undefined,
       },
       include: {
         jobSeeker: true,
@@ -87,7 +92,12 @@ export const updateCertification = async (
     });
     return mapToCertification(updatedCertification);
   } catch (error) {
-    throw new Error('Error updating Certification');
+    console.error('Detailed error:', error);
+    if (error instanceof Error) {
+      throw new Error(`Error updating Certification: ${error.message}`);
+    } else {
+      throw new Error('Unknown error occurred while updating Certification');
+    }
   }
 };
 

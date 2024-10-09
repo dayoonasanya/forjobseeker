@@ -39,11 +39,11 @@ export const createJob = async (jobData: any): Promise<Job | null> => {
         companyId: jobData.companyId,
         jobFieldId: jobData.jobFieldId,
         title: jobData.title,
-        type: jobData.type,
+        type: jobData.type as JobType,
         vacancies: jobData.vacancies,
-        deadline: jobData.deadline,
-        datePublished: jobData.datePublished || new Date(),
-        yearsOfExperience: jobData.yearsOfExperience,
+        deadline: new Date(jobData.deadline),
+        datePublished: jobData.datePublished ? new Date(jobData.datePublished) : new Date(),
+        yearsOfExperience: String(jobData.yearsOfExperience),
         description: jobData.description,
         salaryRange: jobData.salaryRange || null,
       },
@@ -55,7 +55,12 @@ export const createJob = async (jobData: any): Promise<Job | null> => {
     });
     return mapToJob(newJob);
   } catch (error) {
-    throw new Error('Error creating Job');
+    console.error('Detailed error:', error);
+    if (error instanceof Error) {
+      throw new Error(`Error creating Job: ${error.message}`);
+    } else {
+      throw new Error('Unknown error occurred while creating Job');
+    }
   }
 };
 
@@ -88,12 +93,12 @@ export const updateJob = async (jobId: string, jobData: Partial<Job>): Promise<J
       where: { id: jobId },
       data: {
         title: jobData.title,
-        type: jobData.type,
+        type: jobData.type as JobType,
         vacancies: jobData.vacancies,
-        deadline: jobData.deadline,
-        yearsOfExperience: jobData.yearsOfExperience,
+        deadline: jobData.deadline ? new Date(jobData.deadline) : undefined,
+        yearsOfExperience: jobData.yearsOfExperience ? String(jobData.yearsOfExperience) : undefined,
         description: jobData.description,
-        salaryRange: jobData.salaryRange || null,
+        salaryRange: jobData.salaryRange ?? undefined,
       },
       include: {
         company: true,
@@ -103,7 +108,12 @@ export const updateJob = async (jobId: string, jobData: Partial<Job>): Promise<J
     });
     return mapToJob(updatedJob);
   } catch (error) {
-    throw new Error('Error updating Job');
+    console.error('Detailed error:', error);
+    if (error instanceof Error) {
+      throw new Error(`Error updating Job: ${error.message}`);
+    } else {
+      throw new Error('Unknown error occurred while updating Job');
+    }
   }
 };
 

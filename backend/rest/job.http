@@ -1,0 +1,51 @@
+### Create a new Job
+POST http://localhost:5000/api/jobs/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwZTM5NzA3Zi0wZTVmLTQwNTYtODM0ZC01NzhhNjZhNDg5NTUiLCJyb2xlIjoiQ09NUEFOWSIsImlhdCI6MTcyODQ3NDcyMSwiZXhwIjoxNzI4NDc4MzIxfQ.mfUWKQZ8PMj1DM-WAw7tRIo7GHyCXuwLeGCspIbDbbA
+
+{
+  "companyId": "056b9836-db72-466d-b9e0-19383e97c37f",
+  "jobFieldId": "ff36e464-af2e-4e9c-b821-987ef2d76f78",
+  "title": "Software Engineer",
+  "type": "FULL_TIME",
+  "vacancies": 3,
+  "deadline": "2024-12-31",
+  "yearsOfExperience": 3,
+  "description": "We are looking for a skilled software engineer.",
+  "salaryRange": "70,000 - 90,000 USD"
+}
+
+### Get a Job by ID
+GET http://localhost:5000/api/jobs/78eebf9c-4db8-490e-81af-b435d074614e
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwZTM5NzA3Zi0wZTVmLTQwNTYtODM0ZC01NzhhNjZhNDg5NTUiLCJyb2xlIjoiQ09NUEFOWSIsImlhdCI6MTcyODQ3NDcyMSwiZXhwIjoxNzI4NDc4MzIxfQ.mfUWKQZ8PMj1DM-WAw7tRIo7GHyCXuwLeGCspIbDbbA
+
+### Update a Job
+PATCH http://localhost:5000/api/jobs/78eebf9c-4db8-490e-81af-b435d074614e
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwZTM5NzA3Zi0wZTVmLTQwNTYtODM0ZC01NzhhNjZhNDg5NTUiLCJyb2xlIjoiQ09NUEFOWSIsImlhdCI6MTcyODQ3NDcyMSwiZXhwIjoxNzI4NDc4MzIxfQ.mfUWKQZ8PMj1DM-WAw7tRIo7GHyCXuwLeGCspIbDbbA
+
+{
+  "title": "Senior Software Engineer",
+  "type": "FULL_TIME",
+  "vacancies": 2,
+  "deadline": "2024-12-31",
+  "yearsOfExperience": 5,
+  "description": "We are looking for a senior software engineer to lead the team.",
+  "salaryRange": "90,000 - 120,000 USD"
+}
+
+### Soft Delete a Job
+DELETE http://localhost:5000/api/jobs/78eebf9c-4db8-490e-81af-b435d074614e
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwZTM5NzA3Zi0wZTVmLTQwNTYtODM0ZC01NzhhNjZhNDg5NTUiLCJyb2xlIjoiQ09NUEFOWSIsImlhdCI6MTcyODQ3NDcyMSwiZXhwIjoxNzI4NDc4MzIxfQ.mfUWKQZ8PMj1DM-WAw7tRIo7GHyCXuwLeGCspIbDbbA
+
+### Get all Jobs with filtering options
+GET http://localhost:5000/api/jobs?title=engineer&jobFieldId=1&companyId=056b9836-db72-466d-b9e0-19383e97c37f
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwZTM5NzA3Zi0wZTVmLTQwNTYtODM0ZC01NzhhNjZhNDg5NTUiLCJyb2xlIjoiQ09NUEFOWSIsImlhdCI6MTcyODQ3NDcyMSwiZXhwIjoxNzI4NDc4MzIxfQ.mfUWKQZ8PMj1DM-WAw7tRIo7GHyCXuwLeGCspIbDbbA
+
+### Get Jobs by Company
+GET http://localhost:5000/api/jobs/company/056b9836-db72-466d-b9e0-19383e97c37f
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwZTM5NzA3Zi0wZTVmLTQwNTYtODM0ZC01NzhhNjZhNDg5NTUiLCJyb2xlIjoiQ09NUEFOWSIsImlhdCI6MTcyODQ3NDcyMSwiZXhwIjoxNzI4NDc4MzIxfQ.mfUWKQZ8PMj1DM-WAw7tRIo7GHyCXuwLeGCspIbDbbA
+
+### Get Jobs by Job Field
+GET http://localhost:5000/api/jobs/jobfield/ff36e464-af2e-4e9c-b821-987ef2d76f78
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwZTM5NzA3Zi0wZTVmLTQwNTYtODM0ZC01NzhhNjZhNDg5NTUiLCJyb2xlIjoiQ09NUEFOWSIsImlhdCI6MTcyODQ3NDcyMSwiZXhwIjoxNzI4NDc4MzIxfQ.mfUWKQZ8PMj1DM-WAw7tRIo7GHyCXuwLeGCspIbDbbA

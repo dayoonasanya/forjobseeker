@@ -1,0 +1,38 @@
+### Add a new Certification
+POST http://localhost:5000/api/certifications/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjZDNlZjViOS1iOTgxLTRlZmEtODdiMS1lMTc4NzdkZGMyMTIiLCJyb2xlIjoiSk9CU0VFS0VSIiwiaWF0IjoxNzI4NDcyNzEyLCJleHAiOjE3Mjg0NzYzMTJ9.2OviYnLvc9nzvHkiLVIHuCQmGtqmWiNM6xw5GnzLanc
+
+{
+  "jobSeekerId": "6c841112-71ed-4c57-a5bf-6e55e58a2e79",
+  "name": "Certified Kubernetes Administrator",
+  "issuer": "Linux Foundation",
+  "issueDate": "2022-08-15",
+  "expiryDate": "2024-08-15",
+  "link": "https://example.com/certification-link"
+}
+
+### Get a Certification by ID
+GET http://localhost:5000/api/certifications/cf5b3bd5-c7d3-4066-b431-f08678ecd54c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDExZmZjNy1jM2Q0LTRjMTktOTRiZS00NGFjNGU0Y2U5NDYiLCJyb2xlIjoiSk9CU0VFS0VSIiwiaWF0IjoxNzI4NDcyNDIyLCJleHAiOjE3Mjg0NzYwMjJ9.actMf9LEcIxyu6ijrjdZFG0OK3iKCmYQQcPWi07wg_A
+
+### Update a Certification
+PATCH http://localhost:5000/api/certifications/cf5b3bd5-c7d3-4066-b431-f08678ecd54c
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDExZmZjNy1jM2Q0LTRjMTktOTRiZS00NGFjNGU0Y2U5NDYiLCJyb2xlIjoiSk9CU0VFS0VSIiwiaWF0IjoxNzI4NDcyNDIyLCJleHAiOjE3Mjg0NzYwMjJ9.actMf9LEcIxyu6ijrjdZFG0OK3iKCmYQQcPWi07wg_A
+
+{
+  "name": "Certified Kubernetes Administrator (CKA)",
+  "issuer": "Cloud Native Computing Foundation",
+  "issueDate": "2022-08-15",
+  "expiryDate": "2025-08-15",
+  "link": "https://example.com/updated-certification-link"
+}
+
+### Soft Delete a Certification
+DELETE http://localhost:5000/api/certifications/cf5b3bd5-c7d3-4066-b431-f08678ecd54c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDExZmZjNy1jM2Q0LTRjMTktOTRiZS00NGFjNGU0Y2U5NDYiLCJyb2xlIjoiSk9CU0VFS0VSIiwiaWF0IjoxNzI4NDcyNDIyLCJleHAiOjE3Mjg0NzYwMjJ9.actMf9LEcIxyu6ijrjdZFG0OK3iKCmYQQcPWi07wg_A
+
+### Get Certifications by Job Seeker
+GET http://localhost:5000/api/certifications/jobseeker/cf5b3bd5-c7d3-4066-b431-f08678ecd54c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDExZmZjNy1jM2Q0LTRjMTktOTRiZS00NGFjNGU0Y2U5NDYiLCJyb2xlIjoiSk9CU0VFS0VSIiwiaWF0IjoxNzI4NDcyNDIyLCJleHAiOjE3Mjg0NzYwMjJ9.actMf9LEcIxyu6ijrjdZFG0OK3iKCmYQQcPWi07wg_A

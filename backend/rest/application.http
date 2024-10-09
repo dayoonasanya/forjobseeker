@@ -1,0 +1,35 @@
+### Create a new Application
+POST http://localhost:5000/api/applications/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDExZmZjNy1jM2Q0LTRjMTktOTRiZS00NGFjNGU0Y2U5NDYiLCJyb2xlIjoiSk9CU0VFS0VSIiwiaWF0IjoxNzI4NDc1NDA2LCJleHAiOjE3Mjg0NzkwMDZ9.RE4_gz1_zhhP7ia1--IjxC0LPwNDc-ss9oHTSq08jEo
+
+{
+  "jobId": "78eebf9c-4db8-490e-81af-b435d074614e",
+  "jobSeekerId": "6c841112-71ed-4c57-a5bf-6e55e58a2e79",
+  "status": "PENDING"
+}
+
+### Get an Application by ID
+GET http://localhost:5000/api/applications/18432b8c-6982-4066-b6ed-a9d8e57d6e54
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDExZmZjNy1jM2Q0LTRjMTktOTRiZS00NGFjNGU0Y2U5NDYiLCJyb2xlIjoiSk9CU0VFS0VSIiwiaWF0IjoxNzI4NDc1NDA2LCJleHAiOjE3Mjg0NzkwMDZ9.RE4_gz1_zhhP7ia1--IjxC0LPwNDc-ss9oHTSq08jEo
+
+### Update Application Status
+PATCH http://localhost:5000/api/applications/18432b8c-6982-4066-b6ed-a9d8e57d6e54/status
+Content-Type: application/json
+Authorization: Bearer <TOKEN>
+
+{
+  "status": "APPROVED"
+}
+
+### Soft Delete an Application
+DELETE http://localhost:5000/api/applications/18432b8c-6982-4066-b6ed-a9d8e57d6e54
+Authorization: Bearer <TOKEN>
+
+### Get Applications by Job
+GET http://localhost:5000/api/applications/78eebf9c-4db8-490e-81af-b435d074614e
+Authorization: Bearer <TOKEN>
+
+### Get Applications by Job Seeker
+GET http://localhost:5000/api/applications/jobseeker/6c841112-71ed-4c57-a5bf-6e55e58a2e79
+Authorization: Bearer <TOKEN>

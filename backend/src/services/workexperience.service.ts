@@ -32,8 +32,8 @@ export const addWorkExperience = async (workExperienceData: any): Promise<WorkEx
         jobSeekerId: workExperienceData.jobSeekerId,
         company: workExperienceData.company,
         position: workExperienceData.position,
-        startDate: workExperienceData.startDate,
-        endDate: workExperienceData.endDate || null,
+        startDate: new Date(workExperienceData.startDate), // Ensure this is a Date object
+        endDate: workExperienceData.endDate ? new Date(workExperienceData.endDate) : null,
         description: workExperienceData.description || null,
       },
       include: {
@@ -42,7 +42,12 @@ export const addWorkExperience = async (workExperienceData: any): Promise<WorkEx
     });
     return mapToWorkExperience(newWorkExperience);
   } catch (error) {
-    throw new Error('Error adding Work Experience');
+    console.error('Detailed error:', error);
+    if (error instanceof Error) {
+      throw new Error(`Error adding Work Experience: ${error.message}`);
+    } else {
+      throw new Error('Unknown error occurred while adding Work Experience');
+    }
   }
 };
 
@@ -77,9 +82,9 @@ export const updateWorkExperience = async (
       data: {
         company: workExperienceData.company,
         position: workExperienceData.position,
-        startDate: workExperienceData.startDate,
-        endDate: workExperienceData.endDate || null,
-        description: workExperienceData.description || null,
+        startDate: workExperienceData.startDate ? new Date(workExperienceData.startDate) : undefined,
+        endDate: workExperienceData.endDate ? new Date(workExperienceData.endDate) : null,
+        description: workExperienceData.description ?? undefined,
       },
       include: {
         jobSeeker: true,
@@ -87,7 +92,12 @@ export const updateWorkExperience = async (
     });
     return mapToWorkExperience(updatedWorkExperience);
   } catch (error) {
-    throw new Error('Error updating Work Experience');
+    console.error('Detailed error:', error);
+    if (error instanceof Error) {
+      throw new Error(`Error updating Work Experience: ${error.message}`);
+    } else {
+      throw new Error('Unknown error occurred while updating Work Experience');
+    }
   }
 };
 

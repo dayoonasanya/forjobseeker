@@ -1,0 +1,11 @@
+### Search Jobs with Filters
+GET http://localhost:5000/api/search/jobs?title=developer&jobFieldId=jobfield-id-example&country=USA&type=FULL_TIME&yearsOfExperience=2
+Authorization: Bearer <ACCESS_TOKEN>
+
+### Search Job Seekers with Filters (For Company Use)
+GET http://localhost:5000/api/search/jobseekers?jobFieldId=jobfield-id-example&yearsOfExperience=3&maxQualification=Master
+Authorization: Bearer <ACCESS_TOKEN>
+
+### Search Companies with Filters
+GET http://localhost:5000/api/search/companies?name=Tech&country=USA&isVerified=true
+Authorization: Bearer <ACCESS_TOKEN>

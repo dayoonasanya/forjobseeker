@@ -19,7 +19,7 @@ POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "jobseeker@example.com",
+  "email": "jobless@example.com",
   "password": "password123"
 }
 

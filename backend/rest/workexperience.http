@@ -1,0 +1,38 @@
+### Add a new Work Experience
+POST http://localhost:5000/api/workexperience/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjZDNlZjViOS1iOTgxLTRlZmEtODdiMS1lMTc4NzdkZGMyMTIiLCJyb2xlIjoiSk9CU0VFS0VSIiwiaWF0IjoxNzI4NDcyNzEyLCJleHAiOjE3Mjg0NzYzMTJ9.2OviYnLvc9nzvHkiLVIHuCQmGtqmWiNM6xw5GnzLanc
+
+{
+  "jobSeekerId": "6c841112-71ed-4c57-a5bf-6e55e58a2e79",
+  "company": "Tech Corp",
+  "position": "Software Engineer",
+  "startDate": "2021-01-01",
+  "endDate": "2023-06-30",
+  "description": "Developed and maintained software applications."
+}
+
+### Get a Work Experience by ID
+GET http://localhost:5000/api/workexperience/a6d22101-6f05-4d2b-a7d2-1d0ad4bc9d31
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjZDNlZjViOS1iOTgxLTRlZmEtODdiMS1lMTc4NzdkZGMyMTIiLCJyb2xlIjoiSk9CU0VFS0VSIiwiaWF0IjoxNzI4NDcyNzEyLCJleHAiOjE3Mjg0NzYzMTJ9.2OviYnLvc9nzvHkiLVIHuCQmGtqmWiNM6xw5GnzLanc
+
+### Update a Work Experience
+PUT http://localhost:5000/api/workexperience/a6d22101-6f05-4d2b-a7d2-1d0ad4bc9d31
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjZDNlZjViOS1iOTgxLTRlZmEtODdiMS1lMTc4NzdkZGMyMTIiLCJyb2xlIjoiSk9CU0VFS0VSIiwiaWF0IjoxNzI4NDcyNzEyLCJleHAiOjE3Mjg0NzYzMTJ9.2OviYnLvc9nzvHkiLVIHuCQmGtqmWiNM6xw5GnzLanc
+
+{
+  "company": "Updated Tech Corp",
+  "position": "Senior Software Engineer",
+  "startDate": "2021-01-01",
+  "endDate": "2023-06-30",
+  "description": "Led the development of software projects and mentored junior developers."
+}
+
+### Soft Delete a Work Experience
+DELETE http://localhost:5000/api/workexperience/a6d22101-6f05-4d2b-a7d2-1d0ad4bc9d31
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjZDNlZjViOS1iOTgxLTRlZmEtODdiMS1lMTc4NzdkZGMyMTIiLCJyb2xlIjoiSk9CU0VFS0VSIiwiaWF0IjoxNzI4NDcyNzEyLCJleHAiOjE3Mjg0NzYzMTJ9.2OviYnLvc9nzvHkiLVIHuCQmGtqmWiNM6xw5GnzLanc
+
+### Get all Work Experiences by Job Seeker
+GET http://localhost:5000/api/workexperience/jobseeker/6c841112-71ed-4c57-a5bf-6e55e58a2e79
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjZDNlZjViOS1iOTgxLTRlZmEtODdiMS1lMTc4NzdkZGMyMTIiLCJyb2xlIjoiSk9CU0VFS0VSIiwiaWF0IjoxNzI4NDcyNzEyLCJleHAiOjE3Mjg0NzYzMTJ9.2OviYnLvc9nzvHkiLVIHuCQmGtqmWiNM6xw5GnzLanc
