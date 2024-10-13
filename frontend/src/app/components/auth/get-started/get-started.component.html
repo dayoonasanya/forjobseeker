@@ -1,1 +1,117 @@
 <app-navbar></app-navbar>
+
+
+<!-- Loading spinner (visible while isLoading is true) -->
+<div *ngIf="isLoading" class="flex items-center justify-center min-h-screen bg-slate-100">
+  <div class="loader ease-linear rounded-full border-8 border-t-8 border-slate-200 h-12 w-12"></div>
+</div>
+
+<div *ngIf="!isLoading">
+<!-- Get Started Banner -->
+<section class="bg-cover bg-center py-28 relative animate-fade-in" style="background-image: url('assets/home/1.jpg');">
+  <div class="absolute inset-0 bg-slate-900 opacity-70"></div> <!-- Dark overlay -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 text-center text-white">
+    <h1 class="text-4xl font-bold mb-4 animate-slide-up">Get Started</h1>
+    <nav class="inline-flex items-center space-x-2 bg-white bg-opacity-20 px-4 py-2 rounded-lg animate-slide-up-delayed">
+      <a href="/" class="text-white font-bold hover:text-red-600">Home</a>
+      <span class="text-gray-300 font-bold">
+        <img src="assets/home/chevron.svg" alt="Chevron Right" class="h-6 w-6" />
+      </span>
+      <span class="text-white font-bold">Get Started</span>
+    </nav>
+  </div>
+</section>
+
+<!-- Get Started Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-3xl font-bold text-gray-900 mb-8 animate-fade-in">Are You a Jobseeker or an Employer?</h2>
+    <p class="text-gray-700 mb-12 animate-fade-in-delayed">
+      Choose the option that best describes you and we'll help you get started with your journey.
+    </p>
+
+    <div class="flex justify-center space-x-6">
+      <!-- Jobseeker Button -->
+      <button 
+        (click)="navigateTo('jobseeker')" 
+        class="bg-red-600 text-white py-2 px-6 rounded-lg font-semibold hover:bg-red-700 transition duration-300 animate-slide-up">
+        <img src="assets/home/employee.svg" alt="Jobseeker" class="h-8 w-8 inline-block mr-2" />
+        I am a Jobseeker
+      </button>
+
+      <!-- Employer Button -->
+      <button 
+        (click)="navigateTo('employer')" 
+        class="bg-slate-900 text-white py-4 px-8 rounded-lg font-semibold hover:bg-slate-800 transition duration-300 animate-slide-up-delayed">
+        <img src="assets/home/employer.svg" alt="Jobseeker" class="h-8 w-8 inline-block mr-2" />
+        I am an Employer
+      </button>
+    </div>
+  </div>
+</section>
+<!-- Why Join Us Section -->
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Why Join Us?</h2>
+      
+      <div class="grid md:grid-cols-2 gap-12">
+        <!-- For Jobseekers -->
+        <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-dashed border-slate-950 animate-fade-in">
+          <h3 class="text-xl font-semibold text-red-600 mb-4">For Jobseekers</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start space-x-2 text-gray-600">
+              <img src="assets/home/check-1.svg" alt="icon" class="h-5 w-5 mt-1">
+              <span class="text-sm">Access thousands of remote job opportunities across various industries.</span>
+            </li>
+            <li class="flex items-start space-x-2 text-gray-600">
+              <img src="assets/home/check-1.svg" alt="icon" class="h-5 w-5 mt-1">
+              <span class="text-sm">Personalized job recommendations based on your skills and preferences.</span>
+            </li>
+            <li class="flex items-start space-x-2 text-gray-600">
+              <img src="assets/home/check-1.svg" alt="icon" class="h-5 w-5 mt-1">
+              <span class="text-sm">Receive job notifications as soon as new listings are posted.</span>
+            </li>
+            <li class="flex items-start space-x-2 text-gray-600">
+              <img src="assets/home/check-1.svg" alt="icon" class="h-5 w-5 mt-1">
+              <span class="text-sm">Apply easily with a few clicks and track your applications in one place.</span>
+            </li>
+            <li class="flex items-start space-x-2 text-gray-600">
+              <img src="assets/home/check-1.svg" alt="icon" class="h-5 w-5 mt-1">
+              <span class="text-sm">Get career advice and resources to help you stand out from the crowd.</span>
+            </li>
+          </ul>
+        </div>
+  
+        <!-- For Employers -->
+        <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-dashed border-slate-950 animate-fade-in-delayed">
+          <h3 class="text-xl font-semibold text-slate-900 mb-4">For Employers</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start space-x-2 text-gray-600">
+              <img src="assets/home/check.svg" alt="icon" class="h-5 w-5 mt-1">
+              <span class="text-sm">Post remote job openings and reach a global talent pool.</span>
+            </li>
+            <li class="flex items-start space-x-2 text-gray-600">
+              <img src="assets/home/check.svg" alt="icon" class="h-5 w-5 mt-1">
+              <span class="text-sm">Streamline your recruitment process with our easy-to-use platform.</span>
+            </li>
+            <li class="flex items-start space-x-2 text-gray-600">
+              <img src="assets/home/check.svg" alt="icon" class="h-5 w-5 mt-1">
+              <span class="text-sm">Access detailed candidate profiles and resumes.</span>
+            </li>
+            <li class="flex items-start space-x-2 text-gray-600">
+              <img src="assets/home/check.svg" alt="icon" class="h-5 w-5 mt-1">
+              <span class="text-sm">Get recommendations of top candidates that match your job requirements.</span>
+            </li>
+            <li class="flex items-start space-x-2 text-gray-600">
+              <img src="assets/home/check.svg" alt="icon" class="h-5 w-5 mt-1">
+              <span class="text-sm">Save time and hire the best talent with confidence.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+</section>
+
+</div>
+
+<app-footer></app-footer>
