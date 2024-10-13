@@ -1,0 +1,110 @@
+<app-navbar></app-navbar>
+
+<!-- FAQ Banner -->
+<section class="bg-cover bg-center py-32 relative animate-fade-in" style="background-image: url('assets/home/1.jpg');">
+  <div class="absolute inset-0 bg-slate-900 opacity-70"></div> <!-- Dark overlay -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 text-center text-white">
+    <h1 class="text-4xl font-bold mb-4 animate-slide-up">FAQ</h1>
+    <nav class="inline-flex items-center space-x-2 bg-white bg-opacity-20 px-4 py-2 rounded-lg animate-slide-up-delayed">
+      <a href="/" class="text-white font-bold hover:text-red-600">Home</a>
+      <span class="text-gray-300 font-bold">
+        <img src="assets/home/chevron.svg" alt="Chevron Right" class="h-6 w-6" />
+      </span>
+      <span class="text-white font-bold">FAQ</span>
+    </nav>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-28 bg-gray-100 ">
+  <div class="max-w-4xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center text-gray-900 mb-12 animate-slide-up">Frequently Asked Questions</h2>
+
+    <p class="text-gray-400 py-8">
+        Explore some of the frequently asked questions to get you started on our platform. If you have any additional questions, feel free to reach out to our support team.
+    </p>
+    
+    <!-- FAQ Accordion -->
+    <div class="space-y-8 animate-slide-up-delayed">
+
+      <!-- Question 1 -->
+      <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <button class="w-full text-left p-4 bg-slate-900 text-white font-semibold text-lg flex justify-between items-center focus:outline-none" (click)="toggleFaq(0)">
+          <span>What is the purpose of this platform?</span>
+          <!-- Icon Toggle -->
+          <i *ngIf="!faqStates[0]" class="pi pi-plus text-white"></i>
+          <i *ngIf="faqStates[0]" class="pi pi-minus text-white"></i>
+        </button>
+        <div [class.hidden]="!faqStates[0]" class="p-4 bg-gray-50">
+          <p class="text-gray-700 leading-relaxed">
+            This platform connects job seekers with employers by offering an intuitive and efficient job search experience, streamlining the recruitment process, and facilitating meaningful connections between talent and opportunity.
+          </p>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <button class="w-full text-left p-4 bg-slate-900 text-white font-semibold text-lg flex justify-between items-center focus:outline-none" (click)="toggleFaq(1)">
+          <span>How do I apply for a job on this platform?</span>
+          <!-- Icon Toggle -->
+          <i *ngIf="!faqStates[1]" class="pi pi-plus text-white"></i>
+          <i *ngIf="faqStates[1]" class="pi pi-minus text-white"></i>
+        </button>
+        <div [class.hidden]="!faqStates[1]" class="p-4 bg-gray-50">
+          <p class="text-gray-700 leading-relaxed">
+            You can easily browse available jobs, and when you find a job that fits your qualifications, click "Apply." You will be prompted to either upload your resume or apply using your pre-filled profile information.
+          </p>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <button class="w-full text-left p-4 bg-slate-900 text-white font-semibold text-lg flex justify-between items-center focus:outline-none" (click)="toggleFaq(2)">
+          <span>Is there any cost to use this service?</span>
+          <!-- Icon Toggle -->
+          <i *ngIf="!faqStates[2]" class="pi pi-plus text-white"></i>
+          <i *ngIf="faqStates[2]" class="pi pi-minus text-white"></i>
+        </button>
+        <div [class.hidden]="!faqStates[2]" class="p-4 bg-gray-50">
+          <p class="text-gray-700 leading-relaxed">
+            No, our platform is free to use for job seekers. Employers may choose from several pricing options to post jobs or use our advanced recruiting tools.
+          </p>
+        </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <button class="w-full text-left p-4 bg-slate-900 text-white font-semibold text-lg flex justify-between items-center focus:outline-none" (click)="toggleFaq(3)">
+          <span>Can I save jobs for later?</span>
+          <!-- Icon Toggle -->
+          <i *ngIf="!faqStates[3]" class="pi pi-plus text-white"></i>
+          <i *ngIf="faqStates[3]" class="pi pi-minus text-white"></i>
+        </button>
+        <div [class.hidden]="!faqStates[3]" class="p-4 bg-gray-50">
+          <p class="text-gray-700 leading-relaxed">
+            Yes, you can bookmark or save jobs to your profile and return to them later. This allows you to keep track of interesting opportunities and apply when you are ready.
+          </p>
+        </div>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <button class="w-full text-left p-4 bg-slate-900 text-white font-semibold text-lg flex justify-between items-center focus:outline-none" (click)="toggleFaq(4)">
+          <span>How do I contact support if I need help?</span>
+          <!-- Icon Toggle -->
+          <i *ngIf="!faqStates[4]" class="pi pi-plus text-white"></i>
+          <i *ngIf="faqStates[4]" class="pi pi-minus text-white"></i>
+        </button>
+        <div [class.hidden]="!faqStates[4]" class="p-4 bg-gray-50">
+          <p class="text-gray-700 leading-relaxed">
+            Our support team is available via email or live chat. Simply navigate to our Contact page and choose your preferred method of communication.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<app-footer></app-footer>

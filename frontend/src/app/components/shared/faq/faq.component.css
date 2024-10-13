@@ -9,7 +9,7 @@
 
 @keyframes slide-up {
   from {
-    transform: translateY(20px);
+    transform: translateY(50px);
     opacity: 0;
   }
   to {
@@ -19,13 +19,13 @@
 }
 
 .animate-fade-in {
-  animation: fade-in 1s ease-in-out forwards;
+  animation: fade-in 0.8s ease-out forwards;
 }
 
 .animate-slide-up {
-  animation: slide-up 1s ease-out forwards;
+  animation: slide-up 0.8s ease-out forwards;
 }
 
 .animate-slide-up-delayed {
-  animation: slide-up 1.5s ease-out forwards;
+  animation: slide-up 0.8s ease-out 0.2s forwards;
 }

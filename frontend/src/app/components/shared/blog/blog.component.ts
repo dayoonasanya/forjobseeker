@@ -5,12 +5,17 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 
 @Component({
-  selector: 'app-about',
+  selector: 'app-blog',
   standalone: true,
   imports: [CommonModule, RouterLink, NavbarComponent, FooterComponent],
-  templateUrl: './about.component.html',
-  styleUrl: './about.component.css'
+  templateUrl: './blog.component.html',
+  styleUrl: './blog.component.css'
 })
-export class AboutComponent {
+export class BlogComponent {
+  faqStates: boolean[] = [false, false, false, false, false];
 
+  
+  toggleFaq(index: number): void {
+    this.faqStates[index] = !this.faqStates[index];
+  }
 }

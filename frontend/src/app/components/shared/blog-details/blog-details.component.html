@@ -1,0 +1,104 @@
+<app-navbar></app-navbar>
+
+<!-- Blog Banner -->
+<section class="bg-cover bg-center py-32 relative animate-fade-in" style="background-image: url('assets/home/1.jpg');">
+  <div class="absolute inset-0 bg-slate-900 opacity-70"></div> <!-- Dark overlay -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 text-center text-white">
+    <h1 class="text-4xl font-bold mb-4 animate-slide-up">Blog</h1>
+    <nav class="inline-flex items-center space-x-2 bg-white bg-opacity-20 px-4 py-2 rounded-lg animate-slide-up-delayed">
+      <a href="/" class="text-white font-bold hover:text-red-600">Home</a>
+      <span class="text-gray-300 font-bold">
+        <img src="assets/home/chevron.svg" alt="Chevron Right" class="h-6 w-6" />
+      </span>
+      <span class="text-white font-bold">Blog</span>
+    </nav>
+  </div>
+</section>
+
+
+<section *ngIf="blog" class="py-16 bg-gray-100">
+  <div class="max-w-4xl mx-auto px-6">
+    <h1 class="text-4xl font-bold text-gray-900 mb-4">{{ blog.title }}</h1>
+    <div class="flex items-center space-x-4 text-gray-500 mb-6">
+      <span class="text-red-600">{{ blog.author }}</span>
+      <span class="text-gray-400">|</span>
+      <span>{{ blog.date }}</span>
+    </div>
+    
+    <img [src]="blog.image" alt="Blog Image" class="w-full h-auto mb-6 rounded-sm shadow-lg">
+    
+    <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed" [innerHTML]="blog.content"></div>
+    
+    <a routerLink="/blogs" class="inline-block mt-8 text-red-600 font-semibold hover:underline cursor-pointer">
+        <i class="pi pi-chevron-left mr-2"></i>
+        Back to Blogs</a>
+  </div>
+</section>
+
+
+
+<!-- Blogs Section -->
+<section class="py-16 bg-gray-100">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">News, Tips & Articles</h2>
+    <p class="text-center text-gray-700 max-w-2xl mx-auto mb-12">
+      Stay up-to-date with the latest trends, tips, and insights in the job market. Whether you're a job seeker or an employer, our expert articles cover everything you need to know about recruitment, career development, and more.
+    </p>
+    
+    <div class="grid lg:grid-cols-3 gap-8">
+      <!-- Blog Post 1 -->
+      <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <img src="assets/home/blog-1.jpg" alt="Job Interview Tips" class="w-full h-56 object-cover">
+        <div class="p-4">
+          <div class="flex items-center space-x-2 mb-2">
+            <span class="text-sm text-red-600">Admin</span>
+            <span class="text-gray-500">|</span>
+            <span class="text-sm text-gray-500">7 Feb, 2024</span>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">How to Introduce Yourself in a Job Interview?</h3>
+          <p class="text-gray-700 mb-4">
+            Making a strong first impression in a job interview is crucial. Learn the best strategies for introducing yourself confidently and professionally to ensure you start your interview on the right foot...
+          </p>
+          <a routerLink="/blogs/1" class="text-red-600 font-semibold hover:underline flex items-center">Read More <i class="pi pi-chevron-right ml-1"></i></a>
+        </div>
+      </div>
+
+      <!-- Blog Post 2 -->
+      <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <img src="assets/home/blog-2.jpg" alt="Product Development Motivation" class="w-full h-56 object-cover">
+        <div class="p-4">
+          <div class="flex items-center space-x-2 mb-2">
+            <span class="text-sm text-red-600">Admin</span>
+            <span class="text-gray-500">|</span>
+            <span class="text-sm text-gray-500">8 March, 2024</span>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Looking for Highly Motivated Product to Build</h3>
+          <p class="text-gray-700 mb-4">
+            Building a product that truly stands out requires passion and drive. Discover how to channel your motivation into creating a successful product that solves real-world problems and captivates the market...
+          </p>
+          <a routerLink="/blogs/2" class="text-red-600 font-semibold hover:underline flex items-center">Read More <i class="pi pi-chevron-right ml-1"></i></a>
+        </div>
+      </div>
+
+      <!-- Blog Post 3 -->
+      <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <img src="assets/home/blog-3.jpg" alt="Software Development Career" class="w-full h-56 object-cover">
+        <div class="p-4">
+          <div class="flex items-center space-x-2 mb-2">
+            <span class="text-sm text-red-600">Admin</span>
+            <span class="text-gray-500">|</span>
+            <span class="text-sm text-gray-500">7 April, 2024</span>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">The Reason Why Software Development is the Best Job</h3>
+          <p class="text-gray-700 mb-4">
+            Software development is more than just coding; it’s a career filled with opportunities for creativity, problem-solving, and growth. Discover why it's considered one of the most rewarding careers today...
+          </p>
+          <a routerLink="/blogs/3" class="text-red-600 font-semibold hover:underline flex items-center">Read More <i class="pi pi-chevron-right ml-1"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<app-footer></app-footer>
