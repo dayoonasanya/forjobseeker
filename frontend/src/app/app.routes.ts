@@ -4,6 +4,7 @@ import { AboutComponent } from './components/shared/about/about.component';
 import { FaqComponent } from './components/shared/faq/faq.component';
 import { BlogComponent } from './components/shared/blog/blog.component';
 import { BlogDetailsComponent } from './components/shared/blog-details/blog-details.component';
+import { ContactUsComponent } from './components/shared/contact-us/contact-us.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -12,4 +13,5 @@ export const routes: Routes = [
     { path: 'faq', component: FaqComponent },
     { path: 'blogs', component: BlogComponent },
     { path: 'blogs/:id', component: BlogDetailsComponent },
+    { path: 'contact-us', component: ContactUsComponent }   
 ];

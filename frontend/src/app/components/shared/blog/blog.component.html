@@ -1,5 +1,11 @@
 <app-navbar></app-navbar>
 
+<!-- Loading spinner (visible while isLoading is true) -->
+<div *ngIf="isLoading" class="flex items-center justify-center min-h-screen bg-slate-100">
+  <div class="loader ease-linear rounded-full border-8 border-t-8 border-slate-200 h-12 w-12"></div>
+</div>
+
+<div *ngIf="!isLoading">
 <!-- Blogs Banner -->
 <section class="bg-cover bg-center py-32 relative animate-fade-in" style="background-image: url('assets/home/1.jpg');">
   <div class="absolute inset-0 bg-slate-900 opacity-70"></div> <!-- Dark overlay -->
@@ -171,5 +177,5 @@
       </div>
     </div>
   </section>
-
+</div>
 <app-footer></app-footer>

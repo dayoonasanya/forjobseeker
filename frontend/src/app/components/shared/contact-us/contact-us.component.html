@@ -1,1 +1,91 @@
-<p>contact-us works!</p>
+<app-navbar></app-navbar>
+
+<!-- Loading spinner (visible while isLoading is true) -->
+<div *ngIf="isLoading" class="flex items-center justify-center min-h-screen bg-slate-100">
+  <div class="loader ease-linear rounded-full border-8 border-t-8 border-slate-200 h-12 w-12"></div>
+</div>
+
+<div *ngIf="!isLoading">
+<!-- Contact Banner -->
+<section class="bg-cover bg-center py-32 relative animate-fade-in" style="background-image: url('assets/home/1.jpg');">
+  <div class="absolute inset-0 bg-slate-900 opacity-70"></div> <!-- Dark overlay -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 text-center text-white">
+    <h1 class="text-4xl font-bold mb-4 animate-slide-up">Contact Us</h1>
+    <nav class="inline-flex items-center space-x-2 bg-white bg-opacity-20 px-4 py-2 rounded-lg animate-slide-up-delayed">
+      <a href="/" class="text-white font-bold hover:text-red-600">Home</a>
+      <span class="text-gray-300 font-bold">
+        <img src="assets/home/chevron.svg" alt="Chevron Right" class="h-6 w-6" />
+      </span>
+      <span class="text-white font-bold">Contact Us</span>
+    </nav>
+  </div>
+</section>
+
+<!-- Contact Info Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+    
+    <!-- Contact Card 1: Phone -->
+    <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+      <div class="flex justify-center mb-4">
+        <div class="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center">
+          <i class="pi pi-phone text-red-600 text-2xl"></i>
+        </div>
+      </div>
+      <p class="text-gray-900 font-medium">+1-456-644-7457</p>
+      <p class="text-gray-900 font-medium">+1-745-967-4567</p>
+    </div>
+
+    <!-- Contact Card 2: Email -->
+    <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+      <div class="flex justify-center mb-4">
+        <div class="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center">
+          <i class="pi pi-envelope text-red-600 text-2xl"></i>
+        </div>
+      </div>
+      <p class="text-gray-900 font-medium">info&#64;forjobseekers.com</p>
+      <p class="text-gray-900 font-medium">support&#64;forjobseekers.com</p>
+    </div>
+
+    <!-- Contact Card 3: Address -->
+    <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+      <div class="flex justify-center mb-4">
+        <div class="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center">
+          <i class="pi pi-map-marker text-red-600 text-2xl"></i>
+        </div>
+      </div>
+      <p class="text-gray-900 font-medium">123, Denver, USA</p>
+      <p class="text-gray-900 font-medium">Street view 3/B, USA</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Contact Form Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-2xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Let's Talk With Us</h2>
+    
+    <!-- Contact Form -->
+    <form class="space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <input type="text" placeholder="Your Name" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600">
+        <input type="email" placeholder="Your Email" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600">
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <input type="text" placeholder="Phone Number" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600">
+        <input type="text" placeholder="Your Subject" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600">
+      </div>
+
+      <textarea rows="6" placeholder="Write Message" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600"></textarea>
+
+      <div class="text-center">
+        <button type="submit" class="bg-red-600 text-white py-3 px-8 rounded-md hover:bg-red-700 transition duration-300">Send Message</button>
+      </div>
+    </form>
+  </div>
+</section>
+</div>
+
+<app-footer></app-footer>

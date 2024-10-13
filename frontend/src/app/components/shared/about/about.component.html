@@ -1,104 +1,191 @@
 <app-navbar></app-navbar>
-<section class="bg-cover bg-center py-32 relative animate-fade-in" style="background-image: url('assets/home/1.jpg');">
-  <div class="absolute inset-0 bg-slate-900 opacity-70"></div> <!-- Dark overlay -->
 
-  <div class="relative z-10 max-w-7xl mx-auto px-6 text-center text-white">
-    <h1 class="text-4xl font-bold mb-4 animate-slide-up">About Us</h1>
-    <nav class="inline-flex items-center space-x-2 bg-white bg-opacity-20 px-4 py-2 rounded-lg animate-slide-up-delayed">
-      <a href="/" class="text-white font-bold hover:text-red-600">Home</a>
-      <span class="text-gray-300 font-bold">
-        <img src="assets/home/chevron.svg" alt="Chevron Right" class="h-6 w-6" />
-      </span>
-      <span class="text-white font-bold">About Us</span>
-    </nav>
-  </div>
-</section>
+<!-- Loading spinner (visible while isLoading is true) -->
+<div *ngIf="isLoading" class="flex items-center justify-center min-h-screen bg-slate-100">
+  <div class="loader ease-linear rounded-full border-8 border-t-8 border-slate-200 h-12 w-12"></div>
+</div>
+
+<div *ngIf="!isLoading">
+<!-- Loading spinner (visible while isLoading is true) -->
+<div *ngIf="!isLoading">
+  <section class="bg-cover bg-center py-32 relative animate-fade-in" style="background-image: url('assets/home/1.jpg');">
+    <div class="absolute inset-0 bg-slate-900 opacity-70"></div> <!-- Dark overlay -->
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 text-center text-white">
+      <h1 class="text-4xl font-bold mb-4 animate-slide-up">About Us</h1>
+      <nav class="inline-flex items-center space-x-2 bg-white bg-opacity-20 px-4 py-2 rounded-lg animate-slide-up-delayed">
+        <a href="/" class="text-white font-bold hover:text-red-600">Home</a>
+        <span class="text-gray-300 font-bold">
+          <img src="assets/home/chevron.svg" alt="Chevron Right" class="h-6 w-6" />
+        </span>
+        <span class="text-white font-bold">About Us</span>
+      </nav>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-100">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      
+      <!-- Left Side: Text Section -->
+      <div>
+        <h2 class="text-4xl font-bold text-gray-900 mb-4 animate-fade-in">Who We Are</h2>
+        <p class="text-gray-700 leading-relaxed animate-fade-in">
+          We are a passionate team of professionals dedicated to connecting job seekers with their dream opportunities. Our platform is designed to make the job search process easier and more effective, providing tailored solutions that meet the needs of both candidates and employers. 
+          <br><br>
+          Our mission is to help people find the jobs they love while enabling businesses to find top-tier talent. Through cutting-edge technology and a deep understanding of the job market, we aim to create meaningful connections that foster professional growth and development.
+        </p>
+      </div>
+
+      <!-- Right Side: Image Section with Two Square Images -->
+      <div class="relative w-full h-96">
+        <!-- First Image (Top Right) -->
+        <div class="absolute top-0 right-0 w-56 animate-slide-up transform translate-x-3 -translate-y-3">
+          <img src="https://dayoonasanya.com/static/d9382ca8325ce920d2fa179764731324/89afa/me.webp" alt="Contributor 1" 
+              class="w-full h-56 shadow-lg object-cover rounded-tr-3xl rounded-bl-3xl">
+          <div class="bg-white p-2 mt-2 rounded-bl-3xl shadow-lg flex justify-center space-x-4 border hover:border-red-600">
+            <a href="https://github.com/dayoonasanya" target="_blank" class="text-slate-950 hover:text-red-600 transition-colors duration-300">
+              <i class="pi pi-github text-xl"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/dayo0629/" target="_blank" class="text-blue-600 hover:text-red-600 transition-colors duration-300">
+              <i class="pi pi-linkedin text-xl"></i>
+            </a>
+            <a href="https://x.com/dayo0629" target="_blank" class="text-slate-950 hover:text-red-600 transition-colors duration-300">
+              <i class="pi pi-twitter text-xl"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Second Image (Bottom Left) -->
+        <div class="absolute bottom-0 left-0 w-56 animate-slide-up transform -translate-x-3 translate-y-3 ">
+          <img src="https://avatars.githubusercontent.com/u/112781610?v=4" alt="Contributor 2" 
+              class="w-full h-56 shadow-lg object-cover rounded-br-3xl rounded-tl-3xl">
+          <div class="bg-white p-2 mt-2 rounded-br-3xl shadow-lg flex justify-center space-x-4 border hover:border-red-600">
+            <a href="https://github.com/victorpreston" target="_blank" class="text-slate-950 hover:text-red-600 transition-colors duration-300">
+              <i class="pi pi-github text-xl"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/victor-preston/" target="_blank"class="text-blue-600 hover:text-red-600 transition-colors duration-300">
+              <i class="pi pi-linkedin text-xl"></i>
+            </a>
+            <a href="https://x.com/_victorpreston" target="_blank" class="text-slate-950 hover:text-red-600 transition-colors duration-300">
+              <i class="pi pi-twitter text-xl"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
 
 
-<section class="py-16 bg-gray-100">
-  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-    
-    <!-- Left Side: Text Section -->
-    <div>
-      <h2 class="text-4xl font-bold text-gray-900 mb-4 animate-fade-in">Who We Are</h2>
-      <p class="text-gray-700 leading-relaxed animate-fade-in">
-        We are a passionate team of professionals dedicated to connecting job seekers with their dream opportunities. Our platform is designed to make the job search process easier and more effective, providing tailored solutions that meet the needs of both candidates and employers. 
-        <br><br>
-        Our mission is to help people find the jobs they love while enabling businesses to find top-tier talent. Through cutting-edge technology and a deep understanding of the job market, we aim to create meaningful connections that foster professional growth and development.
+  <!-- Why Us Section -->
+  <section class="bg-white py-20">
+    <div class="max-w-7xl mx-auto px-8">
+      <h2 class="text-4xl font-bold text-center text-slate-800 mb-6">Why Choose Us Among Other Job Sites?</h2>
+      <p class="text-center text-gray-900 mb-12 max-w-2xl mx-auto">We specialize in connecting professionals with remote job opportunities tailored to their expertise, making the job search easier and more efficient.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Card 1 -->
+        <div class="bg-white p-8 rounded-lg shadow-lg border border-dashed border-red-400 text-center transition duration-300 ease-in-out hover:bg-red-50">
+          <div class="flex justify-center mb-4">
+            <div class="p-4 rounded-full border border-dashed border-red-400">
+              <img src="assets/home/ad.svg" alt="Advertise Job" class="h-12 w-12">
+            </div>
+          </div>
+          <h3 class="text-xl font-semibold mb-2 text-slate-900">Advertise Your Job</h3>
+          <p class="text-gray-900">Post remote job listings and attract top talent from all over the world to help your business grow.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white p-8 rounded-lg shadow-lg border border-dashed border-red-400 text-center transition duration-300 ease-in-out hover:bg-red-50">
+          <div class="flex justify-center mb-4">
+            <div class="p-4 rounded-full border border-dashed border-red-400">
+              <img src="assets/home/business.svg" alt="Recruiter Profiles" class="h-12 w-12">
+            </div>
+          </div>
+          <h3 class="text-xl font-semibold mb-2 text-slate-900">Recruiter Profiles</h3>
+          <p class="text-gray-900">Create a professional recruiter profile and engage with candidates who are looking for flexible job opportunities.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-white p-8 rounded-lg shadow-lg border border-dashed border-red-400 text-center transition duration-300 ease-in-out hover:bg-red-50">
+          <div class="flex justify-center mb-4">
+            <div class="p-4 rounded-full border border-dashed border-red-400">
+              <img src="assets/home/remote.svg" alt="Find Your Dream Job" class="h-12 w-12">
+            </div>
+          </div>
+          <h3 class="text-xl font-semibold mb-2 text-slate-900">Find Your Dream Job</h3>
+          <p class="text-gray-900">Discover thousands of remote job opportunities that match your skills and enjoy the flexibility of working from anywhere.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="py-16 bg-gray-100">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">What Our People Say About Us</h2>
+      <p class="text-gray-700 max-w-2xl mx-auto mb-12">
+        Our clients are at the heart of everything we do. Here’s what they have to say about their experiences working with us and how we’ve helped them achieve their goals.
       </p>
-    </div>
 
-    <!-- Right Side: Image Section with Two Square Images -->
-    <div class="relative w-full h-96">
-      <!-- First Image (Top Right) -->
-      <img src="https://dayoonasanya.com/static/d9382ca8325ce920d2fa179764731324/89afa/me.webp" alt="Contributor 1" 
-           class="absolute top-0 right-0 w-56 h-56 shadow-lg animate-slide-up transform translate-x-3 -translate-y-3 rounded-tr-3xl rounded-bl-3xl">
-
-      <!-- Second Image (Bottom Left) -->
-      <img src="https://avatars.githubusercontent.com/u/112781610?v=4" alt="Contributor 2" 
-           class="absolute bottom-0 left-0 w-56 h-56 shadow-lg animate-slide-up transform -translate-x-3 translate-y-3 rounded-br-3xl rounded-tl-3xl">
-    </div>
-
-  </div>
-</section>
-
-
-<!-- Why Us Section -->
-<section class="bg-white py-20">
-  <div class="max-w-7xl mx-auto px-8">
-    <h2 class="text-4xl font-bold text-center text-slate-800 mb-6">Why Choose Us Among Other Job Sites?</h2>
-    <p class="text-center text-gray-900 mb-12 max-w-2xl mx-auto">We specialize in connecting professionals with remote job opportunities tailored to their expertise, making the job search easier and more efficient.</p>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- Card 1 -->
-      <div class="bg-white p-8 rounded-lg shadow-lg border border-dashed border-red-400 text-center transition duration-300 ease-in-out hover:bg-red-50">
-        <div class="flex justify-center mb-4">
-          <div class="p-4 rounded-full border border-dashed border-red-400">
-            <img src="assets/home/ad.svg" alt="Advertise Job" class="h-12 w-12">
+      <div class="grid lg:grid-cols-2 gap-8">
+        <!-- Testimonial 1 -->
+        <div class="bg-white p-8 rounded-lg shadow-md border border-dashed border-red-600 hover:bg-red-50">
+          <div class="flex items-start">
+            <span class="text-red-500 text-4xl leading-none">&ldquo;</span>
+            <p class="ml-4 text-gray-700 leading-relaxed">
+              “Thanks to this platform, we were able to streamline our recruitment process and connect with highly skilled professionals. The user-friendly interface and dedicated support have made it easier for us to grow our team with confidence.”
+            </p>
+          </div>
+          <div class="mt-4 text-left">
+            <h3 class="font-semibold text-gray-900">Alisa Meair</h3>
+            <p class="text-gray-500">CEO of GlobalTech Solutions</p>
           </div>
         </div>
-        <h3 class="text-xl font-semibold mb-2 text-slate-900">Advertise Your Job</h3>
-        <p class="text-gray-900">Post remote job listings and attract top talent from all over the world to help your business grow.</p>
-      </div>
 
-      <!-- Card 2 -->
-      <div class="bg-white p-8 rounded-lg shadow-lg border border-dashed border-red-400 text-center transition duration-300 ease-in-out hover:bg-red-50">
-        <div class="flex justify-center mb-4">
-          <div class="p-4 rounded-full border border-dashed border-red-400">
-            <img src="assets/home/business.svg" alt="Recruiter Profiles" class="h-12 w-12">
+        <!-- Testimonial 2 -->
+        <div class="bg-white p-8 rounded-lg shadow-md border border-dashed border-red-600 hover:bg-red-50">
+          <div class="flex items-start">
+            <span class="text-red-500 text-4xl leading-none">&ldquo;</span>
+            <p class="ml-4 text-gray-700 leading-relaxed">
+              “As a developer looking for remote opportunities, I found this platform to be incredibly valuable. I quickly connected with companies that were a great fit, and I’m now working on exciting projects that match my skill set.”
+            </p>
+          </div>
+          <div class="mt-4 text-left">
+            <h3 class="font-semibold text-gray-900">Adam Smith</h3>
+            <p class="text-gray-500">Senior Web Developer</p>
           </div>
         </div>
-        <h3 class="text-xl font-semibold mb-2 text-slate-900">Recruiter Profiles</h3>
-        <p class="text-gray-900">Create a professional recruiter profile and engage with candidates who are looking for flexible job opportunities.</p>
       </div>
 
-      <!-- Card 3 -->
-      <div class="bg-white p-8 rounded-lg shadow-lg border border-dashed border-red-400 text-center transition duration-300 ease-in-out hover:bg-red-50">
-        <div class="flex justify-center mb-4">
-          <div class="p-4 rounded-full border border-dashed border-red-400">
-            <img src="assets/home/remote.svg" alt="Find Your Dream Job" class="h-12 w-12">
-          </div>
-        </div>
-        <h3 class="text-xl font-semibold mb-2 text-slate-900">Find Your Dream Job</h3>
-        <p class="text-gray-900">Discover thousands of remote job opportunities that match your skills and enjoy the flexibility of working from anywhere.</p>
+      <!-- Navigation Buttons -->
+      <div class="flex justify-center mt-8 space-x-4">
+        <button class="w-10 h-10 rounded-full bg-red-100 text-red-500 flex items-center justify-center hover:bg-red-200 transition ">
+          <i class="pi pi-angle-left"></i>
+        </button>
+        <button class="w-10 h-10 rounded-full bg-red-100 text-red-500 flex items-center justify-center hover:bg-red-200 transition">
+          <i class="pi pi-angle-right"></i>
+        </button>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="bg-red-600 py-12">
-  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
-    <!-- Text Section -->
-    <div>
-      <h2 class="text-3xl font-bold text-white">Get New Job Notifications</h2>
-      <p class="text-white mt-2">Subscribe & get all related jobs notification</p>
+
+  <section class="bg-red-600 py-12">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <!-- Text Section -->
+      <div>
+        <h2 class="text-3xl font-bold text-white">Get New Job Notifications</h2>
+        <p class="text-white mt-2">Subscribe & get all related jobs notification</p>
+      </div>
+      
+      <!-- Subscribe Form Section -->
+      <div class="flex items-center space-x-2">
+        <input type="email" placeholder="Enter your email" class="py-3 px-6 rounded-l-lg focus:outline-none w-full sm:w-auto">
+        <button class="bg-slate-900 text-white py-3 px-6 rounded-r-lg hover:bg-slate-800 transition duration-300">Subscribe</button>
+      </div>
     </div>
-    
-    <!-- Subscribe Form Section -->
-    <div class="flex items-center space-x-2">
-      <input type="email" placeholder="Enter your email" class="py-3 px-6 rounded-l-lg focus:outline-none w-full sm:w-auto">
-      <button class="bg-slate-900 text-white py-3 px-6 rounded-r-lg hover:bg-slate-800 transition duration-300">Subscribe</button>
-    </div>
-  </div>
-</section>
+  </section>
+</div>
+</div>
 <app-footer></app-footer>

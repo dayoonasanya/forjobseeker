@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { NavbarComponent } from "../navbar/navbar.component";
@@ -11,9 +11,10 @@ import { FooterComponent } from "../footer/footer.component";
   templateUrl: './blog-details.component.html',
   styleUrls: ['./blog-details.component.css']
 })
-export class BlogDetailsComponent {
+export class BlogDetailsComponent implements OnInit {
   blogId: number | null = null;
   blog: any = null;
+  isLoading: boolean = true;
 
   blogs = [
     {
@@ -58,11 +59,16 @@ export class BlogDetailsComponent {
     }
   ];
 
-  constructor(private route: ActivatedRoute) {
-    
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.blogId = Number(params.get('id'));
       this.blog = this.blogs.find(blog => blog.id === this.blogId);
+
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 1000);
     });
   }
 }
