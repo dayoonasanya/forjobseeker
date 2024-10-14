@@ -47,3 +47,8 @@ router.post(
 router.get('/:companyId/jobs', authenticateJWT, CompanyController.getCompanyJobs);
 
 export default router;
+
+
+// Route for getting all companies
+router.get('/', authenticateJWT, CompanyController.getAllCompanies);
+

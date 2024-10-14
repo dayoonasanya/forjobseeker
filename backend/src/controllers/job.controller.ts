@@ -106,19 +106,17 @@ export const deleteJob = async (req: Request, res: Response, next: NextFunction)
 };
 
 /**
- * Controller for getting all Jobs with filtering options
+ * Controller for getting the total count of Jobs without filters
  */
-export const getAllJobs = async (req: Request, res: Response, next: NextFunction) => {
+export const getTotalJobsCount = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const filters = req.query;
-    const jobs = await JobService.getAllJobs(filters);
-
+    const totalJobsCount = await JobService.getAllJobs();
     res.status(200).json({
-      message: 'Jobs retrieved successfully',
-      jobs,
+      message: 'Total jobs count retrieved successfully',
+      totalJobs: totalJobsCount,
     });
   } catch (error) {
-    handleControllerError(error, res, next);
+    next(error);
   }
 };
 
@@ -149,6 +147,21 @@ export const getJobsByJobField = async (req: Request, res: Response, next: NextF
 
     res.status(200).json({
       message: 'Jobs by job field retrieved successfully',
+      jobs,
+    });
+  } catch (error) {
+    handleControllerError(error, res, next);
+  }
+};
+
+/**
+ * Controller for getting all Jobs without filters
+ */
+export const getAllJobs = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const jobs = await JobService.getAllJobs();
+    res.status(200).json({
+      message: 'All jobs retrieved successfully',
       jobs,
     });
   } catch (error) {

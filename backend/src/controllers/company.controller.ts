@@ -143,3 +143,21 @@ export const getCompanyJobs = async (req: Request, res: Response, next: NextFunc
     handleControllerError(error, res, next);
   }
 };
+
+
+
+/**
+ * Controller for getting all Companies
+ */
+export const getAllCompanies = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const companies = await CompanyService.getAllCompanies();
+    
+    res.status(200).json({
+      message: 'Companies retrieved successfully',
+      companies,
+    });
+  } catch (error) {
+    handleControllerError(error, res, next);
+  }
+};

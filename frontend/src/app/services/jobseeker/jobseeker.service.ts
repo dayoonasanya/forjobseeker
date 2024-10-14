@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { JobSeeker, JobSeekerResponse } from '../../interfaces/jobseeker';
 
 @Injectable({
   providedIn: 'root'
@@ -84,6 +85,27 @@ export class JobSeekerService {
     );
   }
 
+
+
+  /**
+   * Get all Job Seekers
+   */
+  getAllJobSeekers(): Observable<JobSeeker[]> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<{ jobSeekers: JobSeeker[] }>(`${this.API_URL}`, { headers }).pipe(
+      map(response => response.jobSeekers),
+      catchError(this.handleError)
+    );
+  }
+  
+  getJobSeekersCount(): Observable<JobSeekerResponse> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<JobSeekerResponse>(`${this.API_URL}`, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
+  
   /**
    * Error handling for HTTP requests
    */

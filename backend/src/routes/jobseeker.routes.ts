@@ -31,7 +31,7 @@ router.patch(
 router.delete(
   '/:jobSeekerId',
   authenticateJWT,
-  authorizeRole([UserRole.JOBSEEKER]),
+  authorizeRole([UserRole.ADMIN, UserRole.JOBSEEKER]),
   JobSeekerController.deleteJobSeekerProfile
 );
 
@@ -42,5 +42,8 @@ router.get(
   authorizeRole([UserRole.JOBSEEKER]),
   JobSeekerController.getJobSeekerApplications
 );
+
+// Route to get all Job Seekers
+router.get('/', authenticateJWT, JobSeekerController.getAllJobSeekers);
 
 export default router;

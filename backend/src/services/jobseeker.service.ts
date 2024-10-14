@@ -174,3 +174,28 @@ export const getJobSeekerApplications = async (jobSeekerId: string) => {
     throw new Error('Error retrieving JobSeeker applications');
   }
 };
+
+
+/**
+ * Get All Job Seekers
+ */
+export const getAllJobSeekers = async (): Promise<JobSeeker[]> => {
+  try {
+    const jobSeekers = await prisma.jobSeeker.findMany({
+      where: {
+        isDeleted: false,
+      },
+      include: {
+        user: true,
+        jobField: true,
+        applications: true,
+        workExperiences: true,
+        certifications: true,
+      },
+    });
+
+    return jobSeekers.map(mapToJobSeeker);
+  } catch (error) {
+    throw new Error('Error retrieving all Job Seekers');
+  }
+};

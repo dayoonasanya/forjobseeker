@@ -27,4 +27,9 @@ export enum JobType {
     FULL_TIME = 'FULL_TIME',
     PART_TIME = 'PART_TIME',
     INTERNSHIP = 'INTERNSHIP'
-  }
+}
+
+export interface JobResponse {
+  message: string;
+  totalJobs: number;
+}

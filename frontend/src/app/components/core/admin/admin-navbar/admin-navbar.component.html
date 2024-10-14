@@ -1,0 +1,39 @@
+<nav class="bg-white shadow-sm w-full h-[70px] py-2 px-6 flex items-center justify-between">
+  <!-- Left Placeholder for possible future logo or brand title -->
+  <div></div>
+
+  <!-- Right Side: Navbar Items -->
+  <div class="flex items-center space-x-6">
+    
+    <!-- Dashboard Icon -->
+    <a [routerLink]="['/admin/dashboard']" class="bg-slate-900 w-10 h-10 flex items-center justify-center rounded hover:bg-slate-950 transition duration-300">
+      <i class="pi pi-home text-white text-xl"></i>
+    </a>
+
+    <!-- Notifications Icon with Badge -->
+    <div class="relative">
+      <a [routerLink]="['/admin']" class="bg-slate-900 w-10 h-10 flex items-center justify-center rounded hover:bg-slate-950 transition duration-300">
+        <i class="pi pi-bell text-white text-xl"></i>
+      </a>
+      <!-- Notification Badge -->
+      <span class="absolute bottom-0 right-0 bg-red-600 text-white text-xs font-semibold rounded-full w-5 h-5 flex items-center justify-center">
+        3
+      </span>
+    </div>
+
+    <!-- Profile Image with Logout on Hover -->
+    <div class="relative cursor-pointer group">
+      <img [src]="avatarUrl" alt="Profile Image" class="w-10 h-10 rounded-full border-white" />
+      <span class="h-3 w-3 rounded-full bg-green-600 border-2 border-white block absolute bottom-0 right-0"></span>
+
+      <!-- Logout Button (Visible on Hover) -->
+      <div class="absolute right-0 mt-2 bg-white shadow-lg rounded-lg p-4 w-20 hidden group-hover:block">
+        <button (click)="onLogout()" 
+                class="flex items-center justify-center w-full bg-slate-950 text-white font-semibold py-2 rounded hover:bg-slate-900 transition duration-300">
+          <i class="pi pi-sign-out mr-2"></i>
+          Logout
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>

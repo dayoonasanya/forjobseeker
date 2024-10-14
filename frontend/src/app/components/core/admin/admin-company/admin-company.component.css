@@ -1,0 +1,15 @@
+table {
+  font-size: 0.875rem;
+}
+
+th, td {
+  padding: 0.5rem;
+}
+
+button {
+  padding: 0.25rem 0.5rem;
+}
+
+.fixed {
+  z-index: 1000;
+}

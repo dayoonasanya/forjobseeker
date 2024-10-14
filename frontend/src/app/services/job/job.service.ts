@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { Job, JobResponse } from '../../interfaces/job';
 
 @Injectable({
   providedIn: 'root'
@@ -72,17 +73,28 @@ export class JobService {
     );
   }
 
-  /**
+    /**
    * Get all jobs with filtering options
    * @param filters Object containing filtering options
    */
-  getAllJobs(filters: any = {}): Observable<any[]> {
+    getAllJobs(filters: any = {}): Observable<Job[]> {
+      const headers = this.getAuthHeaders();
+      return this.http.get<{ totalJobs: Job[] }>(`${this.API_URL}`, { headers, params: filters }).pipe(
+        map(response => {
+          console.log('Full API response:', response); // Log the full response
+          return response.totalJobs || []; // Return the jobs array from the response
+        }),
+        catchError(this.handleError)
+      );
+    }
+
+  getJobsCount(): Observable<JobResponse> {
     const headers = this.getAuthHeaders();
-    return this.http.get<any[]>(`${this.API_URL}`, { headers, params: filters }).pipe(
-      map(response => response),
+    return this.http.get<JobResponse>(`${this.API_URL}`, { headers }).pipe(
       catchError(this.handleError)
     );
   }
+  
 
   /**
    * Get jobs by company

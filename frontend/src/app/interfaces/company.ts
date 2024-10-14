@@ -18,3 +18,8 @@ export interface Company {
   updatedAt: Date;
   isDeleted: boolean;
 }
+
+export interface CompanyResponse {
+  message: string;
+  companies: Company[];
+}

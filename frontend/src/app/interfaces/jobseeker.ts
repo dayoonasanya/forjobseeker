@@ -30,3 +30,9 @@ export interface JobSeeker {
   updatedAt: Date;
   isDeleted: boolean;
 }
+
+
+export interface JobSeekerResponse {
+  message: string;
+  jobSeekers: JobSeeker[];
+}

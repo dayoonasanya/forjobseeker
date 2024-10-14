@@ -1,0 +1,52 @@
+<!-- Cards Section -->
+<div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4 w-full ml-0 mb-2">
+  <div class="py-4 border border-dashed rounded-lg border-slate-400 text-center animate-count">
+    <h6 class="text-transparent bg-clip-text bg-gradient-to-tl from-purple-700 to-pink-500 mb-0">Total Companies</h6>
+    <h4 class="font-bold">
+      <span class="text-3xl count" id="totalCompanies">{{ totalCompanies }}</span>
+    </h4>
+  </div>
+  
+  <div class="py-4 border border-dashed rounded-lg border-slate-400 text-center animate-count">
+    <h6 class="text-transparent bg-clip-text bg-gradient-to-tl from-purple-700 to-pink-500 mb-0">Total Jobs</h6>
+    <h4 class="font-bold">
+      <span class="text-3xl count" id="totalJobs">{{ totalJobs }}</span>
+    </h4>
+  </div>
+  
+  <div class="py-4 border border-dashed rounded-lg border-slate-400 text-center animate-count">
+    <h6 class="text-transparent bg-clip-text bg-gradient-to-tl from-purple-700 to-pink-500 mb-0">Total Job Seekers</h6>
+    <h4 class="font-bold">
+      <span class="text-3xl count" id="totalJobseekers">{{ totalJobseekers }}</span>
+    </h4>
+  </div>
+
+  <div class="py-4 border border-dashed rounded-lg border-slate-400 text-center animate-count">
+    <h6 class="text-transparent bg-clip-text bg-gradient-to-tl from-purple-700 to-pink-500 mb-0">Users</h6>
+    <h4 class="font-bold">
+      <span class="text-3xl count" id="totalJobseekers">{{ totalUsers }}</span>
+    </h4>
+  </div>
+</div>
+
+<!-- Charts Section -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full ml-0 mt-2">
+  <!-- Bar Chart -->
+  <div class="bg-white p-6 shadow-lg rounded-lg">
+    <h3 class="text-xl font-semibold mb-4">Job Seekers by Job Field</h3>
+    <canvas id="jobseekersBarChart"></canvas>
+  </div>
+
+  <!-- Line Chart -->
+  <div class="bg-white p-6 shadow-lg rounded-lg">
+    <h3 class="text-xl font-semibold mb-4">Jobs Posted Over Time</h3>
+    <canvas id="jobsLineChart"></canvas>
+  </div>
+</div>
+
+<!-- Major Card Below Charts -->
+<div class="py-1 border border-dashed rounded-lg border-slate-400 text-center animate-count mt-1 w-full">
+  <h4 class="font-bold text-transparent bg-clip-text bg-gradient-to-tl from-purple-700 to-pink-500">
+    Admin Dashboard
+  </h4>
+</div>

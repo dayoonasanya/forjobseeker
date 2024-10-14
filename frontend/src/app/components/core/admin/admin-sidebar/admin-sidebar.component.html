@@ -1,0 +1,57 @@
+<nav class="bg-slate-950 shadow-lg h-screen fixed top-0 left-0 min-w-[220px] py-4 px-6 font-[sans-serif] flex flex-col overflow-auto">
+
+  <!-- Logo Section (Replace with the actual logo path) -->
+  <div class="flex items-center justify-center mb-6">
+    <div class="relative">
+      <div class="w-16 h-16 rounded-full border-2 border-red-600 flex items-center justify-center">
+        <div class="p-2 rounded-full bg-red-600">
+          <img src="assets/home/search.svg" alt="Logo" class="h-8 w-8 rounded-full object-cover" />
+        </div>
+      </div>
+    </div>
+    <div class="ml-3 text-center">
+      <h1 class="text-red-600 text-lg font-bold">forjobseekers</h1>
+      <p class="text-white text-sm font-medium">Admin</p>
+    </div>
+  </div>
+
+  <!-- Search Box -->
+  <div class="relative bg-gray-100 px-4 py-3 rounded-md mt-6">
+    <i class="pi pi-search w-4 mr-4 inline text-[#3949ab]"></i>
+    <input
+      [(ngModel)]="searchTerm"
+      (input)="onSearchChange(searchTerm)"
+      class="text-sm text-white outline-none bg-transparent px-1 max-w-[130px]"
+      placeholder="Search..."
+    />
+  </div>
+
+  <!-- Sidebar Links -->
+  <ul class="space-y-4 pl-3 flex-1 mt-10">
+    <li *ngFor="let link of filteredLinks">
+      <a [routerLink]="[link.route]"
+        class="text-white font-semibold text-sm flex items-center rounded-md left-0 hover:left-1 relative transition-all hover:text-red-600">
+        <i [class]="link.icon + ' w-[18px] h-[18px] mr-4'" style="font-size: 1.2rem;"></i>
+        <span>{{ link.label }}</span>
+      </a>
+    </li>
+  </ul>
+
+  <!-- Other Links (Help and Logout) -->
+  <ul class="space-y-8 pl-3 mt-8">
+    <li>
+      <a [routerLink]="['/admin-dashboard']"
+        class="text-white font-semibold text-sm flex items-center rounded-md left-0 hover:left-1 relative transition-all hover:text-red-600">
+        <i class="pi pi-question-circle w-[18px] h-[24px] mr-4" style="font-size: 1.2rem;"></i>
+        <span>Help Center</span>
+      </a>
+    </li>
+    <li>
+      <a href="javascript:void(0)" (click)="onLogout()"
+        class="text-white font-semibold text-sm flex items-center rounded-md left-0 hover:left-1 relative transition-all hover:text-red-600">
+        <i class="pi pi-sign-out w-[18px] h-[18px] mr-4" style="font-size: 1.2rem;"></i>
+        <span>Logout</span>
+      </a>
+    </li>
+  </ul>
+</nav>

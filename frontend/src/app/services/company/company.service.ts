@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { Company, CompanyResponse } from '../../interfaces/company';
 
 @Injectable({
   providedIn: 'root'
@@ -96,6 +97,26 @@ export class CompanyService {
     );
   }
 
+
+  // /**
+  //  * Get all companies
+  //  */
+  getAllCompanies(): Observable<Company[]> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<{ companies: Company[] }>(`${this.API_URL}`, { headers }).pipe(
+      map(response => response.companies),  // Extract the companies array from the response object
+      catchError(this.handleError)
+    );
+  }
+
+
+  getCompaniesCount(): Observable<CompanyResponse> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<CompanyResponse>(`${this.API_URL}`, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
   /**
    * Error handling for HTTP requests
    */

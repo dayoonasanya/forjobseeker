@@ -145,3 +145,23 @@ export const getCompanyJobs = async (companyId: string) => {
     throw new Error('Error retrieving Company jobs');
   }
 };
+
+
+/**
+ * Get all Companies
+ */
+export const getAllCompanies = async (): Promise<Company[]> => {
+  try {
+    const companies = await prisma.company.findMany({
+      where: { isDeleted: false },
+      include: {
+        user: true,
+        jobs: true,
+      },
+    });
+
+    return companies.map(mapToCompany);
+  } catch (error) {
+    throw new Error('Error retrieving all companies');
+  }
+};

@@ -1,0 +1,26 @@
+nav a {
+  transition: background-color 0.3s ease;
+}
+
+
+
+nav img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+nav .relative .absolute {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  padding: 0.125rem;
+  position: absolute;
+  transform: translateY(-50%);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex.items-center {
+  align-items: center;
+}

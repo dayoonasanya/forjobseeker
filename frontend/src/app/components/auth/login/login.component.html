@@ -3,71 +3,76 @@
   <div class="loader ease-linear rounded-full border-8 border-t-8 border-slate-200 h-12 w-12"></div>
 </div>
 
-
 <div *ngIf="!isLoading">
-<!-- Login Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-md mx-auto bg-white rounded-sm p-8 relative">
-    
-    <!-- Title and Subtext -->
-    <h2 class="text-2xl font-bold text-center text-gray-900 mb-6">Log in to Your Account</h2>
-    
-    <!-- Login Form -->
-    <form (ngSubmit)="loginUser()">
-      <div class="grid grid-cols-1 gap-4">
-        
-        <!-- Email -->
-        <div class="mb-4 relative">
-          <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-          <div class="relative flex items-center">
-            <input 
-              type="email" 
-              id="email" 
-              [(ngModel)]="email" 
-              name="email"
-              placeholder="Enter Your Email" 
-              class="w-full px-4 py-2 text-sm rounded-md border border-gray-300 focus:ring focus:ring-red-300 focus:outline-none">
-            <!-- PrimeNG email icon -->
-            <i class="pi pi-envelope absolute right-3 text-gray-500"></i>
+  <!-- Notification Component -->
+  <app-notification 
+    *ngIf="showNotification" 
+    [type]="notificationType" 
+    [message]="notificationMessage" 
+    [duration]="5000">
+  </app-notification>
+
+  <!-- Login Section -->
+  <section class="py-16 bg-white">
+    <div class="max-w-md mx-auto bg-white rounded-sm p-8 relative">
+      
+      <!-- Title and Subtext -->
+      <h2 class="text-2xl font-bold text-center text-gray-900 mb-6">Log in to Your Account</h2>
+      
+      <!-- Login Form -->
+      <form (ngSubmit)="loginUser()">
+        <div class="grid grid-cols-1 gap-4">
+          
+          <!-- Email -->
+          <div class="mb-4 relative">
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <div class="relative flex items-center">
+              <input 
+                type="email" 
+                id="email" 
+                [(ngModel)]="email" 
+                name="email"
+                placeholder="Enter Your Email" 
+                class="w-full px-4 py-2 text-sm rounded-md border border-gray-300 focus:ring focus:ring-red-300 focus:outline-none">
+              <!-- PrimeNG email icon -->
+              <i class="pi pi-envelope absolute right-3 text-gray-500"></i>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="mb-4 relative">
+            <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+            <div class="relative flex items-center">
+              <input 
+                type="password" 
+                id="password" 
+                [(ngModel)]="password" 
+                name="password"
+                placeholder="Enter Your Password" 
+                class="w-full px-4 py-2 text-sm rounded-md border border-gray-300 focus:ring focus:ring-red-300 focus:outline-none">
+              <!-- PrimeNG lock icon -->
+              <i class="pi pi-lock absolute right-3 text-gray-500"></i>
+            </div>
+          </div>
+
+          <!-- Forgot Password Link -->
+          <div class="text-right">
+            <a routerLink="/forgot-password" class="text-sm text-red-600 font-semibold hover:underline cursor-pointer">Forgot your password?</a>
           </div>
         </div>
 
-        <!-- Password -->
-        <div class="mb-4 relative">
-          <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-          <div class="relative flex items-center">
-            <input 
-              type="password" 
-              id="password" 
-              [(ngModel)]="password" 
-              name="password"
-              placeholder="Enter Your Password" 
-              class="w-full px-4 py-2 text-sm rounded-md border border-gray-300 focus:ring focus:ring-red-300 focus:outline-none">
-            <!-- PrimeNG lock icon -->
-            <i class="pi pi-lock absolute right-3 text-gray-500"></i>
-          </div>
-        </div>
+        <!-- Submit Button -->
+        <button type="submit" class="w-full bg-red-600 text-white py-2 text-sm rounded-md font-semibold hover:bg-red-700 transition duration-300">Log In</button>
+      </form>
 
-        <!-- Forgot Password Link -->
-        <div class="text-right">
-          <a routerLink="/forgot-password" class="text-sm text-red-600 font-semibold hover:underline cursor-pointer">Forgot your password?</a>
-        </div>
+      <!-- Sign Up Link -->
+      <p class="text-center text-sm text-gray-600 mt-4">
+        Don't have an account? <a routerLink="/get-started" class="text-red-600 font-semibold hover:underline cursor-pointer">Sign Up</a>
+      </p>
+
+      <div class="text-center mt-6">
+        <button routerLink="/" class="text-red-600 font-semibold hover:underline cursor-pointer">← Back to Home</button>
       </div>
-
-      <!-- Submit Button -->
-      <button type="submit" class="w-full bg-red-600 text-white py-2 text-sm rounded-md font-semibold hover:bg-red-700 transition duration-300">Log In</button>
-    </form>
-
-    <!-- Sign Up Link -->
-    <p class="text-center text-sm text-gray-600 mt-4">
-      Don't have an account? <a routerLink="/get-started" class="text-red-600 font-semibold hover:underline cursor-pointer">Sign Up</a>
-    </p>
-
-    <!-- Back to Home Button -->
-    <div class="text-center mt-6">
-      <button routerLink="/" class="text-red-600 font-semibold hover:underline cursor-pointer">← Back to Home</button>
     </div>
-  </div>
-</section>
-
+  </section>
 </div>

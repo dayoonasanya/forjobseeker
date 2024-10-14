@@ -36,7 +36,7 @@ router.delete(
 );
 
 // Route for getting all jobs with filtering options
-router.get('/', authenticateJWT, JobController.getAllJobs);
+router.get('/', authenticateJWT, JobController.getTotalJobsCount);
 
 // Route for getting jobs by company
 router.get('/company/:companyId', authenticateJWT, JobController.getJobsByCompany);

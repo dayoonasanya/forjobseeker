@@ -121,3 +121,19 @@ export const getJobSeekerApplications = async (req: Request, res: Response, next
     handleControllerError(error, res, next);
   }
 };
+
+
+/**
+ * Controller for getting all Job Seekers
+ */
+export const getAllJobSeekers = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const jobSeekers = await JobSeekerService.getAllJobSeekers();
+    res.status(200).json({
+      message: 'Job Seekers retrieved successfully',
+      jobSeekers,
+    });
+  } catch (error) {
+    handleControllerError(error, res, next);
+  }
+};

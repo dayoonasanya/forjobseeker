@@ -15,6 +15,11 @@ import { AdminComponent } from './components/core/admin/admin.component';
 import { RoleGuard } from './guards/role/role.guard';
 import { NotfoundComponent } from './components/shared/notfound/notfound.component';
 import { CompanyComponent } from './components/core/company/company.component';
+import { AdminDashboardComponent } from './components/core/admin/admin-dashboard/admin-dashboard.component';
+import { AdminJobsComponent } from './components/core/admin/admin-jobs/admin-jobs.component';
+import { AdminJobseekersComponent } from './components/core/admin/admin-jobseekers/admin-jobseekers.component';
+import { AdminJobfieldsComponent } from './components/core/admin/admin-jobfields/admin-jobfields.component';
+import { AdminCompanyComponent } from './components/core/admin/admin-company/admin-company.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -52,7 +57,12 @@ export const routes: Routes = [
         component: AdminComponent,
         canActivate: [AuthGuard],
         children: [
-          
+            { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+            { path: 'dashboard', component: AdminDashboardComponent },
+            { path: 'jobs', component: AdminJobsComponent },
+            { path: 'jobseekers', component: AdminJobseekersComponent },
+            { path: 'jobfields', component: AdminJobfieldsComponent },
+            { path: 'company', component: AdminCompanyComponent },
         ]
     },
     { path: '**', component: NotfoundComponent },

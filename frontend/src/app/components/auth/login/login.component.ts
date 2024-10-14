@@ -5,11 +5,12 @@ import { FooterComponent } from '../../shared/footer/footer.component';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../services/auth/auth.service';
+import { NotificationComponent } from '../../shared/notification/notification.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, NavbarComponent, FooterComponent, RouterLink, FormsModule],
+  imports: [CommonModule, NavbarComponent, FooterComponent, RouterLink, FormsModule, NotificationComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -17,7 +18,10 @@ export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
   isLoading: boolean = true;
-  errorMessage: string = '';
+
+  notificationType: 'success' | 'error' = 'success';
+  notificationMessage: string = '';
+  showNotification: boolean = false;
 
   constructor(private router: Router, private authService: AuthService) {}
 
@@ -27,7 +31,37 @@ export class LoginComponent implements OnInit {
     }, 1000);
   }
 
+  showSuccessNotification(message: string): void {
+    this.notificationType = 'success';
+    this.notificationMessage = message;
+    this.showNotification = true;
+    setTimeout(() => {
+      this.showNotification = false;
+    }, 5000);
+  }
+
+  showErrorNotification(message: string): void {
+    this.notificationType = 'error';
+    this.notificationMessage = message;
+    this.showNotification = true;
+    setTimeout(() => {
+      this.showNotification = false;
+    }, 5000);
+  }
+
+  validateForm(): boolean {
+    if (!this.email || !this.password) {
+      this.showErrorNotification('Email and password are required.');
+      return false;
+    }
+    return true;
+  }
+
   loginUser() {
+    if (!this.validateForm()) {
+      return;
+    }
+
     const loginData = {
       email: this.email,
       password: this.password
@@ -35,21 +69,23 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(loginData.email, loginData.password).subscribe(
       (response) => {
-        // Fetch the user's role from the local storage
         const userRole = localStorage.getItem('user-role');
         
-        if (userRole === 'ADMIN') {
-          this.router.navigate(['/admin']);
-        } else if (userRole === 'COMPANY') {
-          this.router.navigate(['/company']);
-        } else if (userRole === 'JOBSEEKER') {
-          this.router.navigate(['/jobseeker']);
-        } else {
-          this.router.navigate(['/login']);
-        }
+        this.showSuccessNotification('Redirecting to dashboard...');
+        setTimeout(() => {
+          if (userRole === 'ADMIN') {
+            this.router.navigate(['/admin']);
+          } else if (userRole === 'COMPANY') {
+            this.router.navigate(['/company']);
+          } else if (userRole === 'JOBSEEKER') {
+            this.router.navigate(['/jobseeker']);
+          } else {
+            this.router.navigate(['/login']);
+          }
+        }, 3000);
       },
       (error) => {
-        this.errorMessage = 'Invalid email or password';
+        this.showErrorNotification('Invalid email or password');
         console.error('Error during login:', error);
       }
     );

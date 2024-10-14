@@ -133,31 +133,24 @@ export const deleteJob = async (jobId: string): Promise<boolean> => {
 };
 
 /**
- * Get All Jobs with filtering options
+ * Get All Jobs without any filter
  */
-export const getAllJobs = async (filters: any = {}): Promise<Job[]> => {
+export const getAllJobs = async (): Promise<Job[]> => {
   try {
-    const { jobFieldId, companyId, title, location } = filters;
-
     const jobs = await prisma.job.findMany({
-      where: {
-        isDeleted: false,
-        jobFieldId: jobFieldId || undefined,
-        companyId: companyId || undefined,
-        title: title ? { contains: title, mode: 'insensitive' } : undefined,
-      },
+      where: { isDeleted: false },
       include: {
         company: true,
         jobField: true,
         applications: true,
       },
     });
-
     return jobs.map(mapToJob);
   } catch (error) {
     throw new Error('Error retrieving all Jobs');
   }
 };
+
 
 /**
  * Get Jobs by Company

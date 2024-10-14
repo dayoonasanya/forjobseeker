@@ -1,0 +1,43 @@
+<!-- Notification Component -->
+<app-notification *ngIf="showNotification" [type]="notificationType" [message]="notificationMessage"></app-notification>
+
+<!-- Job Field Form (For both Add and Edit) -->
+<div class="mb-4 flex flex-col items-center">
+  <h3 class="text-xl font-semibold mb-2">{{ editingJobFieldId ? 'Edit Job Field' : 'Add New Job Field' }}</h3>
+  
+  <!-- Centered and Reduced Width Input Field -->
+  <input
+    type="text"
+    [(ngModel)]="jobFieldName"
+    placeholder="Enter job field name"
+    class="border rounded p-1 w-1/3 text-sm"
+  />
+  
+  <!-- Buttons with PrimeNG Icons -->
+  <div class="flex mt-2 space-x-2">
+    <button (click)="saveJobField()" class="bg-slate-950 text-white px-2 py-1 rounded flex items-center">
+      <i class="pi pi-plus mr-2"></i> {{ editingJobFieldId ? 'Update' : 'Add' }}
+    </button>
+
+    <button *ngIf="editingJobFieldId" (click)="resetForm()" class="bg-slate-600 text-white px-3 py-1 rounded flex items-center">
+      <i class="pi pi-times mr-2"></i> Cancel
+    </button>
+  </div>
+</div>
+
+
+<!-- List of Job Fields as Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+  <div *ngFor="let field of jobFields" class="p-4 bg-white shadow rounded-lg border border-slate-300 flex justify-between items-center">
+    <div>
+      <h4 class="text-lg font-bold">{{ field.name }}</h4>
+    </div>
+    <div class="flex items-center space-x-4">
+      <!-- Edit Icon -->
+      <i class="pi pi-pencil text-slate-950 cursor-pointer" (click)="startEditJobField(field)"></i>
+
+      <!-- Delete Icon -->
+      <i class="pi pi-trash text-red-600 cursor-pointer" (click)="deleteJobField(field.id)"></i>
+    </div>
+  </div>
+</div>
