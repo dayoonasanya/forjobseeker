@@ -1,0 +1,58 @@
+<nav class="bg-slate-950 px-6 py-2 flex items-center justify-between shadow-lg fixed top-0 left-0 w-full z-[1000]">
+    <!-- Left side: Platform Logo -->
+    <div class="flex items-center">
+      <a routerLink="/" class="flex items-center">
+        <div class="relative">
+          <div class="w-12 h-12 rounded-full border-2 border-red-600 flex items-center justify-center">
+            <div class="p-2 rounded-full bg-red-600">
+              <img src="assets/home/search.svg" alt="Logo" class="h-6 w-6 rounded-full object-cover" />
+            </div>
+          </div>
+        </div>
+        <div class="ml-3">
+          <h1 class="text-red-600 text-lg font-bold">forjobseekers</h1>
+          <p class="text-white text-sm font-medium">Find your dream job</p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Center: Navigation Links -->
+    <div class="flex items-center space-x-6 text-white font-medium">
+      <a routerLink="/dashboard" class="relative px-2 py-1 hover:text-red-600 rounded-md transition duration-300 ease-in-out">Dashboard</a>
+      <a routerLink="/jobs" class="relative px-2 py-1 hover:text-red-600 rounded-md transition duration-300 ease-in-out">Jobs</a>
+      <a routerLink="/applicants" class="relative px-2 py-1 hover:text-red-600 rounded-md transition duration-300 ease-in-out">Applicants</a>
+      <a routerLink="/reports" class="relative px-2 py-1 hover:text-red-600 rounded-md transition duration-300 ease-in-out">Reports</a>
+    </div>
+
+    <!-- Right side: Company Logo and Name with Dropdown -->
+    <div class="flex items-center space-x-4 text-white font-medium relative group">
+      <span class="text-lg font-semibold">{{ companyName }}</span>
+      <img [src]="companyLogoUrl" alt="Company Logo" class="h-10 w-10 object-contain cursor-pointer">
+      
+      <!-- Dropdown menu -->
+      <div class="absolute right-0 top-full mt-2 w-64 bg-white rounded-md shadow-lg hidden group-hover:block">
+        <div class="p-4 text-slate-900">
+          <p class="font-semibold mb-2">{{ companyName }}</p>
+          <p class="text-sm mb-1">
+            <i class="pi pi-envelope mr-2"></i>{{ companyEmail }}
+          </p>
+          <a [href]="companyWebsite" target="_blank" class="text-sm mb-1 text-blue-600 hover:underline block">
+            <i class="pi pi-globe mr-2"></i>{{ companyWebsite }}
+          </a>
+          <p class="text-sm mb-4">
+            <i class="pi pi-map-marker mr-2"></i>{{ companyLocation }}
+          </p>
+          <hr class="my-2">
+          <a routerLink="/company-profile" class="block py-2 px-4 text-sm text-slate-900 hover:bg-slate-100 rounded">
+            Company Profile
+          </a>
+          <a routerLink="/settings" class="block py-2 px-4 text-sm text-slate-900 hover:bg-slate-100 rounded">
+            Settings
+          </a>
+          <button (click)="logout()" class="w-full text-left py-2 px-4 text-sm text-red-600 hover:bg-slate-100 rounded">
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>

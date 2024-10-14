@@ -1,1 +1,21 @@
-<p>company works!</p>
+<!-- Company Component Layout -->
+<div class="flex flex-col h-screen">
+  
+    <!-- Navbar Fixed at the Top -->
+    <app-company-navbar class="fixed top-0 left-0 w-full h-[70px] z-50"></app-company-navbar>
+    
+    <!-- Sidebar and Main Content -->
+    <div class="flex flex-row flex-1">
+      
+      <!-- Sidebar Fixed below the Navbar -->
+      <app-company-sidebar class="fixed top-[70px] left-0 w-[220px] h-[calc(100%-70px)]"></app-company-sidebar>
+      
+      <!-- Main Content Area -->
+      <div class="ml-[220px] mt-[70px] w-[calc(100%-220px)] p-6">
+        <router-outlet></router-outlet>
+      </div>
+      
+    </div>
+  
+  </div>
+  

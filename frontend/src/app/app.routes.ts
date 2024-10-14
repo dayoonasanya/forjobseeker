@@ -20,6 +20,9 @@ import { AdminJobsComponent } from './components/core/admin/admin-jobs/admin-job
 import { AdminJobseekersComponent } from './components/core/admin/admin-jobseekers/admin-jobseekers.component';
 import { AdminJobfieldsComponent } from './components/core/admin/admin-jobfields/admin-jobfields.component';
 import { AdminCompanyComponent } from './components/core/admin/admin-company/admin-company.component';
+import { CompanyProfileComponent } from './components/core/company/company-profile/company-profile.component';
+import { CompanyJobsComponent } from './components/core/company/company-jobs/company-jobs.component';
+import { CompanyApplicationsComponent } from './components/core/company/company-applications/company-applications.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -48,7 +51,11 @@ export const routes: Routes = [
         component: CompanyComponent, 
         canActivate: [AuthGuard], 
         children: [
-          
+          { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+          { path: 'dashboard', component: CompanyProfileComponent},
+          { path: 'jobs', component: CompanyJobsComponent },
+          { path: 'applications', component: CompanyApplicationsComponent },
+          { path: 'profile', component: CompanyProfileComponent},
         ] 
     },
 

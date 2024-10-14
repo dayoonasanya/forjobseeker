@@ -14,8 +14,8 @@ import { AuthService } from '../../../../services/auth/auth.service';
 export class AdminSidebarComponent {
   adminLinks = [
     { label: 'Dashboard', route: 'dashboard', icon: 'pi pi-home' },
-    { label: 'Jobfields', route: 'jobfields', icon: 'pi pi-tags' },
-    { label: 'Jobseekers', route: 'jobseekers', icon: 'pi pi-users' },
+    { label: 'Categories', route: 'jobfields', icon: 'pi pi-tags' },
+    { label: 'Job Seekers', route: 'jobseekers', icon: 'pi pi-users' },
     { label: 'Companies', route: 'company', icon: 'pi pi-building' },
     { label: 'Jobs', route: 'jobs', icon: 'pi pi-briefcase' },
   ];
