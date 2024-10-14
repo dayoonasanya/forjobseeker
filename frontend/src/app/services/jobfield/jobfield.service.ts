@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { JobField } from '../../interfaces/jobfield';
 
 @Injectable({
   providedIn: 'root'
@@ -47,16 +48,17 @@ export class JobFieldService {
     );
   }
 
-  /**
+    /**
    * Get all job fields
+   * Returns an observable of an array of JobField objects.
    */
-  getAllJobFields(): Observable<any[]> {
-    const headers = this.getAuthHeaders();
-    return this.http.get<any[]>(`${this.API_URL}`, { headers }).pipe(
-      map(response => response),
-      catchError(this.handleError)
-    );
-  }
+    getAllJobFields(): Observable<JobField[]> {
+      const headers = this.getAuthHeaders();
+      return this.http.get<{ jobFields: JobField[] }>(`${this.API_URL}`, { headers }).pipe(
+        map((response) => response.jobFields),
+        catchError(this.handleError)
+      );
+    }
 
   /**
    * Update a job field

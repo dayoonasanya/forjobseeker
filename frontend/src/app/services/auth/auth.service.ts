@@ -36,7 +36,11 @@ export class AuthService {
     return this.http.post<any>(`${this.API_URL}/login`, loginData).pipe(
       tap(response => {
         localStorage.setItem(this.tokenKey, response.token);
-        localStorage.setItem(this.roleKey, response.user.role);
+
+        const decodedToken = this.decodeToken(response.token);
+        
+        localStorage.setItem(this.roleKey, decodedToken.role);
+        
         this.loggedIn = true;
       }),
       catchError(this.handleError)

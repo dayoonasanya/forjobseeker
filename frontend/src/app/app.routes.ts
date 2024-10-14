@@ -9,6 +9,12 @@ import { GetStartedComponent } from './components/auth/get-started/get-started.c
 import { RegisterJobseekerComponent } from './components/auth/register-jobseeker/register-jobseeker.component';
 import { RegisterEmployerComponent } from './components/auth/register-employer/register-employer.component';
 import { LoginComponent } from './components/auth/login/login.component';
+import { JobseekerComponent } from './components/core/jobseeker/jobseeker.component';
+import { AuthGuard } from './guards/auth/auth.guard';
+import { AdminComponent } from './components/core/admin/admin.component';
+import { RoleGuard } from './guards/role/role.guard';
+import { NotfoundComponent } from './components/shared/notfound/notfound.component';
+import { CompanyComponent } from './components/core/company/company.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -19,7 +25,35 @@ export const routes: Routes = [
     { path: 'blogs/:id', component: BlogDetailsComponent },
     { path: 'contact-us', component: ContactUsComponent },
     { path: 'get-started', component: GetStartedComponent },
-    { path: 'register/jobseeker', component: RegisterJobseekerComponent },
-    { path: 'register/employer', component: RegisterEmployerComponent },
-    { path: 'login', component: LoginComponent },  
+    { path: 'register-jobseeker', component: RegisterJobseekerComponent },
+    { path: 'register-employer', component: RegisterEmployerComponent },
+    { path: 'login', component: LoginComponent },
+
+    { 
+        path: 'jobseeker', 
+        component: JobseekerComponent, 
+        canActivate: [AuthGuard],
+        children: [
+            
+        ] 
+    },
+    
+    { 
+        path: 'company', 
+        component: CompanyComponent, 
+        canActivate: [AuthGuard], 
+        children: [
+          
+        ] 
+    },
+
+    {
+        path: 'admin',
+        component: AdminComponent,
+        canActivate: [AuthGuard],
+        children: [
+          
+        ]
+    },
+    { path: '**', component: NotfoundComponent },
 ];

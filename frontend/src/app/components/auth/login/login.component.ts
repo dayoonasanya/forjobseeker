@@ -4,6 +4,7 @@ import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,8 +17,9 @@ export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
   isLoading: boolean = true;
+  errorMessage: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -31,8 +33,25 @@ export class LoginComponent implements OnInit {
       password: this.password
     };
 
-    console.log('User logged in:', loginData);
-
-    this.router.navigate(['/dashboard']);
+    this.authService.login(loginData.email, loginData.password).subscribe(
+      (response) => {
+        // Fetch the user's role from the local storage
+        const userRole = localStorage.getItem('user-role');
+        
+        if (userRole === 'ADMIN') {
+          this.router.navigate(['/admin']);
+        } else if (userRole === 'COMPANY') {
+          this.router.navigate(['/company']);
+        } else if (userRole === 'JOBSEEKER') {
+          this.router.navigate(['/jobseeker']);
+        } else {
+          this.router.navigate(['/login']);
+        }
+      },
+      (error) => {
+        this.errorMessage = 'Invalid email or password';
+        console.error('Error during login:', error);
+      }
+    );
   }
 }

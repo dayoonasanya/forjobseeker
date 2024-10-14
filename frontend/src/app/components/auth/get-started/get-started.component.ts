@@ -25,9 +25,9 @@ export class GetStartedComponent implements OnInit {
 
   navigateTo(type: 'jobseeker' | 'employer') {
     if (type === 'jobseeker') {
-      this.router.navigate(['/register/jobseeker']);
+      this.router.navigate(['/register-jobseeker']);
     } else if (type === 'employer') {
-      this.router.navigate(['/register/employer']);
+      this.router.navigate(['/register-employer']);
     }
   }
 }
