@@ -22,15 +22,15 @@ Content-Type: application/json
 ### Create a new JobField
 POST http://localhost:5000/api/jobfields/create
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjhmMTkwYy1mYzU1LTQyYjMtODVmNi05ZGMyYTc5NGE4ZjkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3Mjg0OTgyNjUsImV4cCI6MTcyODUwMTg2NX0.hy5I9HT2V7AE-8EQOWZsEK-v4fGsfYKrgl5DLrsbs88
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcyMDlmYy0zMWUyLTRlZDUtYjM5My1iMjE5YTczMWEyYjgiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3Mjg4NDQ5MDIsImV4cCI6MTcyODg0ODUwMn0.i8wiqaj5CtY3EPdjStgFvQKNVmMdKfeHuuJ4OLh02Ok
 
 {
-  "name": "Software Engineering"
+  "name": "Legal"
 }
 
 ### Get all JobFields
 GET http://localhost:5000/api/jobfields
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcyMDlmYy0zMWUyLTRlZDUtYjM5My1iMjE5YTczMWEyYjgiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3Mjg0Njk2MDQsImV4cCI6MTcyODQ3MzIwNH0.AJpO_n4rES-B-Tw4YKRk9Ee8Hg_iMX_I9y_DbWnkUeI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcyMDlmYy0zMWUyLTRlZDUtYjM5My1iMjE5YTczMWEyYjgiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3Mjg4NTUwMzgsImV4cCI6MTcyODg1ODYzOH0.Qqrs_JhG873XZch1e0fhg31tA5tZhQ_eIVSzgmOogGs
 
 ### Get a specific JobField by ID
 GET http://localhost:5000/api/jobfields/ff36e464-af2e-4e9c-b821-987ef2d76f78

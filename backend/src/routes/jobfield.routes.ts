@@ -17,10 +17,10 @@ router.post(
 );
 
 // Route for getting a job field by ID
-router.get('/:jobFieldId', authenticateJWT, JobFieldController.getJobFieldById);
+router.get('/:jobFieldId', JobFieldController.getJobFieldById);
 
 // Route for getting all job fields
-router.get('/', authenticateJWT, JobFieldController.getAllJobFields);
+router.get('/', JobFieldController.getAllJobFields);
 
 // Route for updating a job field
 router.patch(

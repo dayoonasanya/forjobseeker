@@ -3,13 +3,13 @@ POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
-  "email": "jobseeker@example.com",
-  "password": "password123",
+  "email": "user@example.com",
+  "password": "jay@2019PT",
   "role": "JOBSEEKER",
   "firstName": "John",
   "lastName": "Doe",
   "phone": "1234567890",
-  "jobFieldId": "227d59de-2044-4b18-90df-af03a128d1f8", 
+  "jobFieldId": "8c40a4e7-f843-40c7-bec8-8a3ab263d2b0", 
   "maxQualification": "Bachelor's Degree",
   "yearsOfExperience": "5"
 }
@@ -19,14 +19,14 @@ POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
-  "email": "company@example.com",
+  "email": "company21@example.com",
   "password": "password123",
   "role": "COMPANY",
   "companyName": "Tech Corp",
   "website": "https://techcorp.com",
   "country": "USA",
   "businessEmail": "info@techcorp.com",
-  "licenseNumber": "ABC123456"
+  "licenseNumber": "ABC123455"
 }
 
 ### Login user
