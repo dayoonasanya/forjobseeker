@@ -38,7 +38,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwZTM5N
 
 ### Get the company profile by ID
 GET http://localhost:5000/api/companies/056b9836-db72-466d-b9e0-19383e97c37f
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwZTM5NzA3Zi0wZTVmLTQwNTYtODM0ZC01NzhhNjZhNDg5NTUiLCJyb2xlIjoiQ09NUEFOWSIsImlhdCI6MTcyODQ3MDYzNCwiZXhwIjoxNzI4NDc0MjM0fQ.8CKpOAAx_zxU1u9SXtSxOq829LrBQUnJfjzpNwpPtH4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwZTM5NzA3Zi0wZTVmLTQwNTYtODM0ZC01NzhhNjZhNDg5NTUiLCJyb2xlIjoiQ09NUEFOWSIsImlhdCI6MTcyODkyNjk5NCwiZXhwIjoxNzI4OTMwNTk0fQ._eKvDSMxRVah67os9skdrHpNVfsSF_ZVFPXT8YC0k28
 
 ### Soft delete the company profile
 DELETE http://localhost:5000/api/companies/056b9836-db72-466d-b9e0-19383e97c37f

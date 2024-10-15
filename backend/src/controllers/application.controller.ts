@@ -139,3 +139,22 @@ export const getApplicationsByJobSeeker = async (req: Request, res: Response, ne
     handleControllerError(error, res, next);
   }
 };
+
+
+/**
+ * Controller for getting Applications by Company
+ */
+export const getApplicationsByCompany = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { companyId } = req.params;
+    const applications = await ApplicationService.getApplicationsByCompany(companyId);
+
+    res.status(200).json({
+      message: 'Applications for the company retrieved successfully',
+      applications,
+    });
+  } catch (error) {
+    handleControllerError(error, res, next);
+  }
+};
+

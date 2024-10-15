@@ -138,3 +138,26 @@ export const getApplicationsByJobSeeker = async (jobSeekerId: string): Promise<A
     throw new Error('Error retrieving Applications by Job Seeker');
   }
 };
+
+/**
+ * Get Applications by Company
+ */
+export const getApplicationsByCompany = async (companyId: string): Promise<Application[]> => {
+  try {
+    const applications = await prisma.application.findMany({
+      where: {
+        job: {
+          companyId,
+        },
+        isDeleted: false,
+      },
+      include: {
+        job: true,
+        jobSeeker: true,
+      },
+    });
+    return applications.map(mapToApplication);
+  } catch (error) {
+    throw new Error('Error retrieving Applications by Company');
+  }
+};

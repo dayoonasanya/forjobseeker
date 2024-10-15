@@ -61,19 +61,37 @@ export const register = async (userData: any): Promise<any> => {
   return user;
 };
 
-/**
- * Login function to authenticate a user
- */
+
 export const login = async (email: string, password: string): Promise<string> => {
   const user = await prisma.user.findUnique({ where: { email } });
   if (!user || !(await bcrypt.compare(password, user.password))) {
     throw new Error('Invalid email or password');
   }
 
-  // Generate JWT token for authenticated user
-  const token = generateToken(user.id, user.role);
+  let companyId = null;
+  let jobSeekerId = null;
+
+  // If the user is a company, fetch the associated companyId
+  if (user.role === UserRole.COMPANY) {
+    const company = await prisma.company.findUnique({ where: { userId: user.id } });
+    if (company) {
+      companyId = company.id;
+    }
+  }
+
+  // If the user is a jobseeker, fetch the associated jobSeekerId
+  if (user.role === UserRole.JOBSEEKER) {
+    const jobSeeker = await prisma.jobSeeker.findUnique({ where: { userId: user.id } });
+    if (jobSeeker) {
+      jobSeekerId = jobSeeker.id;
+    }
+  }
+
+  // Generate JWT token with both companyId and jobSeekerId (if applicable)
+  const token = generateToken(user.id, user.role, companyId, jobSeekerId);
   return token;
 };
+
 
 /**
  * Reset password while logged in

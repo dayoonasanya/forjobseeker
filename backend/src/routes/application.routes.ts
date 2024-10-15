@@ -24,4 +24,8 @@ router.get('/job/:jobId', authenticateJWT, ApplicationController.getApplications
 // Route for getting applications by job seeker
 router.get('/jobseeker/:jobSeekerId', authenticateJWT, ApplicationController.getApplicationsByJobSeeker);
 
+// Route for getting applications by company
+router.get('/company/:companyId', authenticateJWT, ApplicationController.getApplicationsByCompany);
+
+
 export default router;
