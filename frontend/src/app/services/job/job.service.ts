@@ -40,10 +40,13 @@ export class JobService {
    * Get a job by its ID
    * @param jobId The ID of the job to retrieve
    */
-  getJobById(jobId: string): Observable<any> {
+  getJobById(jobId: string): Observable<Job> {
     const headers = this.getAuthHeaders();
-    return this.http.get<any>(`${this.API_URL}/${jobId}`, { headers }).pipe(
-      map(response => response),
+    return this.http.get<{ message: string, job: Job }>(`${this.API_URL}/${jobId}`, { headers }).pipe(
+      map(response => {
+        console.log('Job details response:', response);
+        return response.job;
+      }),
       catchError(this.handleError)
     );
   }

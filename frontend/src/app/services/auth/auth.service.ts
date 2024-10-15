@@ -12,6 +12,7 @@ export class AuthService {
   private tokenKey = 'auth-token';
   private roleKey = 'user-role';
   private companyIdKey = 'company-id';
+  private jobSeekerIdKey = 'jobseeker-id';
   private loggedIn: boolean = false;
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -63,6 +64,7 @@ export class AuthService {
     localStorage.removeItem(this.tokenKey);
     localStorage.removeItem(this.roleKey);
     localStorage.removeItem(this.companyIdKey);
+    localStorage.removeItem(this.jobSeekerIdKey);
     this.loggedIn = false;
     this.router.navigate(['/login']);
   }

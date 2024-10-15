@@ -1,9 +1,6 @@
-<nav class="bg-slate-900 px-6 py-2 flex items-center justify-between shadow-lg fixed top-0 left-0 w-full z-[1000]">
-   <!-- Left side: Logo and tagline -->
-   <div class="flex items-center">
-    <!-- Make the whole logo section clickable -->
+ <nav class="bg-slate-900 px-6 py-2 flex items-center justify-between shadow-lg fixed top-0 left-0 w-full z-[1000]">
+  <div class="flex items-center">
     <a routerLink="/" class="flex items-center">
-      <!-- Logo with double circles -->
       <div class="relative">
         <div class="w-12 h-12 rounded-full border-2 border-red-600 flex items-center justify-center">
           <div class="p-2 rounded-full bg-red-600">
@@ -20,53 +17,90 @@
 
   <!-- Center: Navigation Links -->
   <div class="flex items-center space-x-6 text-white font-medium">
-    <a routerLink="/" class="relative px-2 py-1 hover:text-red-600 rounded-md transition duration-300 ease-in-out">Home</a>
-    <a routerLink="/browse-jobs" class="relative px-2 py-1 hover:text-red-600 rounded-md transition duration-300 ease-in-out">Browse Jobs</a>
-    
-    <!-- Dropdown: Pages -->
-    <div class="relative group flex items-center">
-      <a routerLink="/" class="relative px-2 py-1 hover:text-red-600 rounded-md transition duration-300 ease-in-out">Pages
-        <i class="pi pi-chevron-down ml-1 text-xs transform translate-y-[1px]"></i>
-      </a>
-      <div class="absolute top-full hidden group-hover:block mt-2 bg-white text-gray-900 w-56 rounded-sm shadow-lg border border-gray-200 transition-transform transform duration-300 ease-in-out z-50">
-        
-        <!-- Candidates Link with SVG -->
-        <a routerLink="/candidates" class="flex items-center justify-between px-6 py-3 text-red-600 hover:bg-gray-100 border-b border-gray-100 transition duration-300 ease-in-out">
-          <span>Candidates</span>
-          <img src="assets/home/users.svg" alt="Candidates Icon" class="h-5 w-5">
-        </a>
+    <ng-container *ngIf="!isLoggedIn">
+      <a routerLink="/" class="relative px-2 py-1 hover:text-red-600 rounded-md transition duration-300 ease-in-out">Home</a>
+      <a routerLink="/jobs" class="relative px-2 py-1 hover:text-red-600 rounded-md transition duration-300 ease-in-out">Browse Jobs</a>
 
-        <!-- Companies Link with SVG -->
-        <a routerLink="/companies" class="flex items-center justify-between px-6 py-3 text-red-600 hover:bg-gray-100 transition duration-300 ease-in-out rounded-b-lg">
-          <span>Companies</span>
-          <img src="assets/home/company.svg" alt="Companies Icon" class="h-5 w-5">
+      <!-- Pages dropdown -->
+      <div class="relative group flex items-center">
+        <a routerLink="/" class="relative px-2 py-1 hover:text-red-600 rounded-md transition duration-300 ease-in-out">Pages
+          <i class="pi pi-chevron-down ml-1 text-xs transform translate-y-[1px]"></i>
         </a>
-
-        <a routerLink="/faq" class="flex items-center justify-between px-6 py-3 text-red-600 hover:bg-gray-100 transition duration-300 ease-in-out rounded-b-lg">
-          <span>FAQ</span>
-          <img src="assets/home/faq.svg" alt="Companies Icon" class="h-5 w-5">
-        </a>
-
-        <a routerLink="/about" class="flex items-center justify-between px-6 py-3 text-red-600 hover:bg-gray-100 transition duration-300 ease-in-out rounded-b-lg">
-          <span>About</span>
-          <img src="assets/home/about.svg" alt="Companies Icon" class="h-5 w-5">
-        </a>
+        <div class="absolute top-full hidden group-hover:block mt-2 bg-white text-gray-900 w-56 rounded-sm shadow-lg border border-gray-200 transition-transform transform duration-300 ease-in-out z-50">
+          <a routerLink="/candidates" class="flex items-center justify-between px-6 py-3 text-red-600 hover:bg-gray-100 border-b border-gray-100 transition duration-300 ease-in-out">
+            <span>Candidates</span>
+            <img src="assets/home/users.svg" alt="Candidates Icon" class="h-5 w-5">
+          </a>
+          <a routerLink="/companies" class="flex items-center justify-between px-6 py-3 text-red-600 hover:bg-gray-100 transition duration-300 ease-in-out rounded-b-lg">
+            <span>Companies</span>
+            <img src="assets/home/company.svg" alt="Companies Icon" class="h-5 w-5">
+          </a>
+          <a routerLink="/faq" class="flex items-center justify-between px-6 py-3 text-red-600 hover:bg-gray-100 transition duration-300 ease-in-out rounded-b-lg">
+            <span>FAQ</span>
+            <img src="assets/home/faq.svg" alt="FAQ Icon" class="h-5 w-5">
+          </a>
+          <a routerLink="/about" class="flex items-center justify-between px-6 py-3 text-red-600 hover:bg-gray-100 transition duration-300 ease-in-out rounded-b-lg">
+            <span>About</span>
+            <img src="assets/home/about.svg" alt="About Icon" class="h-5 w-5">
+          </a>
+        </div>
       </div>
-    </div>
 
-    <!-- Dropdown: Blog -->
-    <div class="relative group flex items-center">
+      <!-- Other default links -->
       <a routerLink="/blogs" class="relative px-2 py-1 hover:text-red-600 rounded-md transition duration-300 ease-in-out">Blogs</a>
-    </div>
+      <a routerLink="/contact-us" class="relative px-2 py-1 hover:text-red-600 rounded-md transition duration-300 ease-in-out">Contact
+        <i class="pi pi-phone"></i>
+      </a>
+    </ng-container>
 
-    <a routerLink="/contact-us" class="relative px-2 py-1 hover:text-red-600 rounded-md transition duration-300 ease-in-out">Contact
-      <i class="pi pi-phone"></i>
-    </a>
+    <!-- Show specific links when jobseeker is logged in -->
+    <ng-container *ngIf="isLoggedIn && userRole === 'JOBSEEKER'">
+      <a routerLink="/jobs" class="relative px-2 py-1 hover:text-red-600 rounded-md transition duration-300 ease-in-out mr-0">
+        Browse Jobs</a>
+      <a routerLink="/companies" class="relative px-2 py-1 hover:text-red-600 rounded-md transition duration-300 ease-in-out">Companies</a>
+    </ng-container>
   </div>
 
-  <!-- Right side: Login and Post A Job buttons -->
+  <!-- Right side: Profile image or initials with dropdown -->
   <div class="flex items-center space-x-4 text-white font-medium">
-    <a routerLink="/login" class="relative px-4 py-2 hover:bg-red-600 rounded-md transition duration-300 ease-in-out">Log in</a>
-    <a routerLink="/get-started" class="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 transition duration-300 ease-in-out">Get Started</a>
+    <ng-container *ngIf="!isLoggedIn">
+      <a routerLink="/login" class="relative px-4 py-2 hover:bg-red-600 rounded-md transition duration-300 ease-in-out">Log in</a>
+      <a routerLink="/get-started" class="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 transition duration-300 ease-in-out">Get Started</a>
+    </ng-container>
+
+    <ng-container *ngIf="isLoggedIn && userRole === 'JOBSEEKER'">
+      <!-- Dashboard button -->
+      <a routerLink="/jobseeker" class="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 transition duration-300 ease-in-out">Dashboard</a>
+
+      <!-- Profile image or initials with toggleable dropdown -->
+      <div class="relative flex items-center">
+        <!-- Display profile image or initials -->
+        <div class="flex items-center space-x-2 cursor-pointer">
+          <div *ngIf="!jobseekerProfileImage" class="h-10 w-10 rounded-full bg-slate-500 flex items-center justify-center text-lg font-semibold text-white">
+            {{ jobseekerInitials }}
+          </div>
+          <img *ngIf="jobseekerProfileImage" [src]="jobseekerProfileImage" alt="Profile" class="h-10 w-10 rounded-full object-cover">
+        </div>
+
+        <!-- Toggle button for dropdown -->
+        <button (click)="toggleDropdown()" class="ml-2 text-white">
+          <i class="pi pi-chevron-down"></i>
+        </button>
+
+        <!-- Dropdown menu -->
+        <div *ngIf="isDropdownVisible" class="absolute right-0 top-full mt-2 w-64 bg-white rounded-md shadow-lg z-50">
+          <div class="p-4 text-slate-900">
+            <p class="font-semibold">{{ jobseekerName }}</p>
+            <p class="text-sm text-slate-700">{{ jobseekerPhone }}</p>
+            <hr class="my-2">
+            <a routerLink="/jobseeker/profile" class="block py-2 px-4 text-sm hover:bg-slate-100">Profile</a>
+            <a routerLink="/jobseeker/settings" class="block py-2 px-4 text-sm hover:bg-slate-100">Settings</a>
+            <a routerLink="/jobseeker/applications" class="block py-2 px-4 text-sm hover:bg-slate-100">Applications</a>
+            <button (click)="onLogout()" class="w-full text-left py-2 px-4 text-sm text-red-600 hover:bg-slate-100">Logout</button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
   </div>
 </nav>
+

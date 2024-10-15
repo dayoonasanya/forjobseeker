@@ -9,7 +9,6 @@ import { GetStartedComponent } from './components/auth/get-started/get-started.c
 import { RegisterJobseekerComponent } from './components/auth/register-jobseeker/register-jobseeker.component';
 import { RegisterEmployerComponent } from './components/auth/register-employer/register-employer.component';
 import { LoginComponent } from './components/auth/login/login.component';
-import { JobseekerComponent } from './components/core/jobseeker/jobseeker.component';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { AdminComponent } from './components/core/admin/admin.component';
 import { RoleGuard } from './guards/role/role.guard';
@@ -24,6 +23,11 @@ import { CompanyProfileComponent } from './components/core/company/company-profi
 import { CompanyJobsComponent } from './components/core/company/company-jobs/company-jobs.component';
 import { CompanyApplicationsComponent } from './components/core/company/company-applications/company-applications.component';
 import { CompanySettingsComponent } from './components/core/company/company-settings/company-settings.component';
+import { ProfileComponent } from './components/core/jobseeker/profile/profile.component';
+import { ApplicationsComponent } from './components/core/jobseeker/applications/applications.component';
+import { SettingsComponent } from './components/core/jobseeker/settings/settings.component';
+import { JobsComponent } from './components/shared/jobs/jobs.component';
+import { JobDetailsComponent } from './components/shared/job-details/job-details.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -37,20 +41,26 @@ export const routes: Routes = [
     { path: 'register-jobseeker', component: RegisterJobseekerComponent },
     { path: 'register-employer', component: RegisterEmployerComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'jobs', component: JobsComponent},
+    { path: 'jobs/:id', component: JobDetailsComponent },
 
     { 
         path: 'jobseeker', 
-        component: JobseekerComponent, 
-        canActivate: [AuthGuard],
+        component: ProfileComponent, 
+        canActivate: [AuthGuard, RoleGuard],
+        data: { expectedRole: 'JOBSEEKER' }, 
         children: [
-            
+            { path: 'profile', component: ProfileComponent},
+            { path: 'applications', component: ApplicationsComponent},
+            { path: 'settings', component: SettingsComponent},
         ] 
     },
     
     { 
         path: 'company', 
         component: CompanyComponent, 
-        canActivate: [AuthGuard], 
+        canActivate: [AuthGuard, RoleGuard],
+        data: { expectedRole: 'COMPANY' }, 
         children: [
           { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
           { path: 'dashboard', component: CompanyProfileComponent},
@@ -64,7 +74,8 @@ export const routes: Routes = [
     {
         path: 'admin',
         component: AdminComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard, RoleGuard],
+        data: { expectedRole: 'ADMIN' }, 
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'dashboard', component: AdminDashboardComponent },

@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+
+<div class="container mx-auto px-4 py-8 mt-20">
+  <!-- Header Row -->
+  <div class="flex justify-between items-center mb-8">
+    <h2 class="text-2xl font-semibold text-gray-800 ml-28">Job Listings</h2>
+  </div>
+
+  <!-- Loading state -->
+  <div *ngIf="isLoading" class="text-center">
+    <p>Loading jobs...</p>
+  </div>
+
+  <!-- Error message -->
+  <div *ngIf="errorMessage" class="text-red-500 text-center">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <!-- Job Listings -->
+  <div *ngIf="!isLoading && !errorMessage" class="space-y-8">
+    <div *ngFor="let job of jobs" class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg flex justify-between items-center hover:shadow-2xl transition duration-300">
+      
+      <!-- Job Content Section -->
+      <div class="flex items-center space-x-4">
+        <!-- Job Icon (Company Logo) -->
+        <div class="p-3 bg-red-100 rounded-full">
+          <img [src]="job.company?.logo || 'assets/home/default-logo.svg'" alt="{{ job.company?.name }}" class="h-12 w-12 object-cover rounded-full">
+        </div>
+
+        <!-- Job Details -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-800">{{ job.title }}</h3>
+          <div class="flex items-center space-x-4 text-gray-600 text-sm mt-2">
+            <span><i class="pi pi-briefcase"></i> {{ job.jobField?.name || 'Unknown Field' }}</span>
+            <span *ngIf="job.salaryRange">{{ job.salaryRange }}</span>
+            <span><i class="pi pi-map-marker"></i> {{ job.company?.country || 'Unknown Location' }}</span>
+            <span><i class="pi pi-clock"></i> {{ job.deadline | date:'shortDate' }}</span>
+          </div>
+          <!-- Job Type -->
+          <div class="mt-2">
+            <span class="inline-block bg-slate-900 text-white py-1 px-3 rounded-md text-sm font-semibold border border-dashed border-white">
+              {{ getJobTypeLabel(job.type) }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Browse Job Button -->
+      <a [routerLink]="'/jobs/' + job.id" class="bg-red-600 text-white py-2 px-6 rounded-md hover:bg-red-700 transition duration-300 ease-in-out">Browse Job</a>
+    </div>
+  </div>
+</div>

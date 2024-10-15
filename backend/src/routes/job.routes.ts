@@ -17,7 +17,7 @@ router.post(
 );
 
 // Route for getting a job by ID
-router.get('/:jobId', authenticateJWT, JobController.getJobById);
+router.get('/:jobId', JobController.getJobById);
 
 // Route for updating a job
 router.patch(
@@ -36,7 +36,7 @@ router.delete(
 );
 
 // Route for getting all jobs with filtering options
-router.get('/', authenticateJWT, JobController.getTotalJobsCount);
+router.get('/', JobController.getTotalJobsCount);
 
 // Route for getting jobs by company
 router.get('/company/:companyId', authenticateJWT, JobController.getJobsByCompany);
