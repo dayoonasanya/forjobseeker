@@ -24,16 +24,16 @@
       <div class="flex items-center space-x-4">
         <!-- Job Icon (Company Logo) -->
         <div class="p-3 bg-red-100 rounded-full">
-          <img [src]="job.company?.logo || 'assets/home/default-logo.svg'" alt="{{ job.company?.name }}" class="h-12 w-12 object-cover rounded-full">
+          <img [src]="job.company.logo || 'assets/home/default-logo.svg'" alt="{{ job.company.name }}" class="h-12 w-12 object-cover rounded-full">
         </div>
 
         <!-- Job Details -->
         <div>
           <h3 class="text-xl font-semibold text-gray-800">{{ job.title }}</h3>
           <div class="flex items-center space-x-4 text-gray-600 text-sm mt-2">
-            <span><i class="pi pi-briefcase"></i> {{ job.jobField?.name || 'Unknown Field' }}</span>
+            <span><i class="pi pi-briefcase"></i> {{ job.jobField.name || 'Unknown Field' }}</span>
             <span *ngIf="job.salaryRange">{{ job.salaryRange }}</span>
-            <span><i class="pi pi-map-marker"></i> {{ job.company?.country || 'Unknown Location' }}</span>
+            <span><i class="pi pi-map-marker"></i> {{ job.company.country || 'Unknown Location' }}</span>
             <span><i class="pi pi-clock"></i> {{ job.deadline | date:'shortDate' }}</span>
           </div>
           <!-- Job Type -->
