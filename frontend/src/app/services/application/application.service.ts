@@ -97,6 +97,22 @@ export class ApplicationService {
     );
   }
 
+
+  /**
+ * Get applications by company ID (new method)
+ * @param companyId The ID of the company to fetch applications for
+ */
+getApplicationsByCompany(companyId: string): Observable<any[]> {
+  const headers = this.getAuthHeaders();
+  return this.http.get<any>(`${this.API_URL}/company/${companyId}`, { headers }).pipe(
+    map(response => {
+      console.log('API response for applications by company:', response.applications);
+      return response.applications;
+    }),
+    catchError(this.handleError)
+  );
+}
+
   /**
    * Error handling for HTTP requests
    */

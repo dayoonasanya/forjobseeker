@@ -1,1 +1,115 @@
-<p>company-profile works!</p>
+<div class="py-1 border border-dashed rounded-lg border-slate-400 text-center animate-count mt-1 w-full">
+  <h4 class="font-bold text-transparent bg-clip-text bg-gradient-to-tl from-purple-700 to-pink-500">
+    Welcome To Your Company Dashboard
+  </h4>
+</div>
+
+<div *ngIf="isLoading" class="flex justify-center items-center h-screen">
+  <div class="loader ease-linear rounded-full border-8 border-t-8 border-slate-200 h-12 w-12"></div>
+</div>
+
+<div *ngIf="!isLoading && company" class="p-8 bg-white rounded-lg shadow-sm max-w-4xl mx-auto">
+  <div class="flex justify-between items-center">
+    <div class="flex items-center">
+      <img *ngIf="company.logo" [src]="company.logo" alt="Company Logo" class="h-24 w-24 object-contain mr-6 rounded-lg shadow">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-800">{{ company.name }}</h1>
+        <!-- Date Joined -->
+        <p class="text-gray-500 flex items-center">
+          <i class="pi pi-calendar mr-2 text-slate-500"></i>
+          Joined: {{ company.createdAt | date }}
+        </p>
+
+        <!-- Company Location -->
+        <p class="text-gray-500 flex items-center">
+          <i class="pi pi-map-marker mr-2 text-red-500 font-bold"></i>
+          Location: {{ company.country }}
+        </p>
+
+        <!-- Verified Status -->
+        <p *ngIf="company.isVerified" class="text-green-600 font-bold flex items-center">
+          <i class="pi pi-verified mr-2 text-green-500"></i>
+          Verified Company
+        </p>
+        <p *ngIf="!company.isVerified" class="text-red-600 font-bold">Not Verified</p>
+      </div>
+    </div>
+
+    <!-- Company Info (Website, Email, License) -->
+    <div class="text-gray-700">
+      <!-- Website Link -->
+      <a *ngIf="company.website" [href]="company.website" target="_blank" class="text-blue-600 hover:underline flex items-center">
+        <i class="pi pi-external-link mr-2"></i>
+        {{ company.website }}
+      </a>
+
+      <!-- Business Email -->
+      <p class="mt-2 flex items-center">
+        <i class="pi pi-envelope mr-2 text-slate-500"></i>
+        {{ company.businessEmail }}
+      </p>
+
+      <!-- License Number inside Button -->
+      <p class="mt-2">
+        <span class="inline-flex items-center bg-slate-900 text-white px-3 py-1 rounded-full">
+          <i class="pi pi-id-card mr-2 text-slate-200"></i>
+          License: {{ company.licenseNumber }}
+        </span>
+      </p>
+    </div>
+  </div>
+
+  <!-- About Company and Job Count -->
+  <div class="flex mt-8 justify-between">
+    <div class="w-2/3">
+      <h2 class="text-2xl font-semibold text-gray-700">About Company</h2>
+      <p *ngIf="company.about" class="mt-2 text-gray-600">{{ company.about }}</p>
+      <p *ngIf="!company.about" class="mt-2 text-gray-400">No information provided.</p>
+    </div>
+
+    
+    <div class="w-1/3 py-4 border border-dashed rounded-lg border-slate-600 text-center animate-count font-bold">
+        <h6 class="text-transparent bg-clip-text bg-gradient-to-tl from-purple-700 to-pink-500 mb-0">Jobs Posted</h6>
+        <h4 class="font-bold">
+          <span class="text-3xl count" id="totalJobseekers">{{ company.jobs.length }}</span>
+        </h4>
+    </div>
+  </div>
+
+  <!-- Available Jobs Section -->
+  <div class="mt-8">
+    <h2 class="text-2xl font-semibold text-gray-700">Available Jobs</h2>
+    <ul *ngIf="company.jobs.length > 0" class="mt-4 space-y-4">
+      <li *ngFor="let job of company.jobs; let i = index" class="relative p-4 bg-gray-100 rounded-lg shadow">
+        <!-- Job Numbering -->
+        <div class="absolute top-2 left-2 bg-slate-950 text-white rounded-full h-8 w-8 flex items-center justify-center">
+          <span class="font-bold">{{ i + 1 }}</span>
+        </div>
+
+        <!-- Job Title and Info -->
+        <div class="ml-12">
+          <h3 class="text-lg font-semibold text-gray-800">{{ job.title }}</h3>
+          <p class="text-sm text-gray-500">Posted: {{ job.createdAt | date }}</p>
+
+          <!-- Vacancies Info -->
+          <div class="absolute top-2 right-2 bg-green-100 text-green-700 px-2 py-1 rounded-full text-sm flex items-center">
+            <i class="pi pi-briefcase mr-2"></i> Vacancies: {{ job.vacancies }}
+          </div>
+
+          <!-- View Details Button -->
+        <button (click)="showJobDetails(job)" class="text-blue-600 hover:underline text-sm mt-2 inline-block">
+            View Details
+          </button>
+        </div>
+      </li>
+    </ul>
+    <p *ngIf="company.jobs.length === 0" class="mt-2 text-gray-400">No jobs posted yet.</p>
+  </div>
+</div>
+
+<div *ngIf="!isLoading && !company" class="text-center text-red-500">
+  {{ errorMessage }}
+</div>
+
+<!-- Job Details Overlay Component -->
+<app-company-job-details [job]="selectedJob" [isVisible]="isJobDetailsVisible"></app-company-job-details>

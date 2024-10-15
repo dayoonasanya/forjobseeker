@@ -23,6 +23,7 @@ import { AdminCompanyComponent } from './components/core/admin/admin-company/adm
 import { CompanyProfileComponent } from './components/core/company/company-profile/company-profile.component';
 import { CompanyJobsComponent } from './components/core/company/company-jobs/company-jobs.component';
 import { CompanyApplicationsComponent } from './components/core/company/company-applications/company-applications.component';
+import { CompanySettingsComponent } from './components/core/company/company-settings/company-settings.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -56,6 +57,7 @@ export const routes: Routes = [
           { path: 'jobs', component: CompanyJobsComponent },
           { path: 'applications', component: CompanyApplicationsComponent },
           { path: 'profile', component: CompanyProfileComponent},
+          { path: 'settings', component: CompanySettingsComponent},
         ] 
     },
 

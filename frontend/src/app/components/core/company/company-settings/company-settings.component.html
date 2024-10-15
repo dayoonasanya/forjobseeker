@@ -1,0 +1,67 @@
+<div class="p-8 bg-white rounded-lg shadow-lg max-w-4xl mx-auto">
+  <!-- Title and Icon -->
+  <div class="flex items-center mb-6">
+    <h2 class="text-2xl font-semibold text-gray-800">Company Settings</h2>
+    <img src="assets/company/settings.svg" alt="Settings Icon" class="ml-4 h-8 w-8" />
+  </div>
+
+  <!-- Loader -->
+  <div *ngIf="isLoading" class="flex justify-center items-center">
+    <div class="loader ease-linear rounded-full border-8 border-t-8 border-slate-200 h-12 w-12"></div>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="!isLoading && errorMessage" class="text-center text-red-500">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Company Profile Form -->
+  <form [formGroup]="companyForm" (ngSubmit)="onSubmit()" class="space-y-6" *ngIf="!isLoading && !errorMessage">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="relative">
+        <label class="block text-sm font-medium text-gray-600 mb-2">Company Name</label>
+        <input type="text" formControlName="name" class="form-input mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200 transition shadow-sm" />
+      </div>
+      <div class="relative">
+        <label class="block text-sm font-medium text-gray-600 mb-2">Website</label>
+        <input type="url" formControlName="website" class="form-input mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200 transition shadow-sm" />
+      </div>
+      <div class="relative">
+        <label class="block text-sm font-medium text-gray-600 mb-2">Country</label>
+        <input type="text" formControlName="country" class="form-input mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200 transition shadow-sm" />
+      </div>
+      <div class="relative">
+        <label class="block text-sm font-medium text-gray-600 mb-2">Business Email</label>
+        <input type="email" formControlName="businessEmail" class="form-input mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200 transition shadow-sm" />
+      </div>
+      <div class="relative">
+        <label class="block text-sm font-medium text-gray-600 mb-2">License Number</label>
+        <input type="text" formControlName="licenseNumber" class="form-input mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200 transition shadow-sm" />
+      </div>
+      <div class="relative">
+        <label class="block text-sm font-medium text-gray-600 mb-2">About Company</label>
+        <textarea formControlName="about" rows="4" class="form-input mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200 transition shadow-sm"></textarea>
+      </div>
+    </div>
+
+    <!-- Logo Upload -->
+    <div>
+      <label class="block text-sm font-medium text-gray-600 mb-2">Company Logo</label>
+      <div class="flex items-center space-x-4">
+        <div *ngIf="logoPreview" class="relative group">
+          <img [src]="logoPreview" alt="Logo Preview" class="h-16 w-16 rounded-full object-cover shadow-lg transition transform hover:scale-105 duration-200" />
+        </div>
+        <input type="file" (change)="onLogoChange($event)" class="block w-full text-sm text-slate-500
+        file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold
+        file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition" />
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="flex justify-end">
+      <button type="submit" class="bg-slate-900 text-white px-6 py-2 rounded-lg shadow-lg hover:bg-slate-950 transition transform hover:scale-105 duration-200" [disabled]="companyForm.invalid">
+        Update Profile
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,68 @@
+<div *ngIf="isVisible" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center" (click)="closeForm()">
+  <div class="bg-white shadow-lg rounded-lg w-11/12 max-w-2xl" (click)="$event.stopPropagation()">
+    <div class="p-2 bg-slate-900 text-white flex justify-between items-center rounded-t-lg">
+      <h2 class="text-base font-semibold">{{ job ? 'Edit Job' : 'Create New Job' }}</h2>
+      <button (click)="closeForm()" class="text-white hover:text-red-400">
+        <i class="pi pi-times text-lg"></i>
+      </button>
+    </div>
+
+    <form [formGroup]="jobForm" (ngSubmit)="onSubmit()" class="p-3 space-y-2">
+      <div class="grid grid-cols-2 gap-x-3 gap-y-2">
+        <div>
+          <label class="block text-xs font-medium">Job Title</label>
+          <input type="text" formControlName="title" class="form-input mt-0.5 block w-full text-xs border border-gray-300 rounded p-1" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium">Job Type</label>
+          <select formControlName="type" class="form-select mt-0.5 block w-full text-xs border border-gray-300 rounded p-1">
+            <option value="FULL_TIME">Full-Time</option>
+            <option value="PART_TIME">Part-Time</option>
+            <option value="INTERNSHIP">Internship</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium">Job Field</label>
+          <select formControlName="jobFieldId" class="form-select mt-0.5 block w-full text-xs border border-gray-300 rounded p-1">
+            <option value="">Select a job field</option>
+            <option *ngFor="let field of jobFields" [value]="field.id">{{field.name}}</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium">Vacancies</label>
+          <input type="number" formControlName="vacancies" class="form-input mt-0.5 block w-full text-xs border border-gray-300 rounded p-1" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium">Experience Required</label>
+          <input type="text" formControlName="yearsOfExperience" class="form-input mt-0.5 block w-full text-xs border border-gray-300 rounded p-1" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium">Salary Range</label>
+          <input type="text" formControlName="salaryRange" class="form-input mt-0.5 block w-full text-xs border border-gray-300 rounded p-1" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium">Application Deadline</label>
+          <input type="date" formControlName="deadline" class="form-input mt-0.5 block w-full text-xs border border-gray-300 rounded p-1" />
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium">Job Description</label>
+        <textarea formControlName="description" class="form-input mt-0.5 block w-full h-16 text-xs border border-gray-300 rounded p-1"></textarea>
+      </div>
+
+      <div class="flex justify-end space-x-2 mt-3">
+        <button type="button" class="bg-gray-400 text-white px-2 py-1 rounded text-xs" (click)="closeForm()">Cancel</button>
+        <button type="submit" class="bg-slate-900 text-white px-2 py-1 rounded text-xs" [disabled]="jobForm.invalid">
+          {{ job ? 'Update Job' : 'Create Job' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

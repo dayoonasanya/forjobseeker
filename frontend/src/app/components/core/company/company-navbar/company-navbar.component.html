@@ -1,35 +1,70 @@
 <nav class="bg-slate-950 px-6 py-2 flex items-center justify-between shadow-lg fixed top-0 left-0 w-full z-[1000]">
-    <!-- Left side: Platform Logo -->
-    <div class="flex items-center">
-      <a routerLink="/" class="flex items-center">
-        <div class="relative">
-          <div class="w-12 h-12 rounded-full border-2 border-red-600 flex items-center justify-center">
-            <div class="p-2 rounded-full bg-red-600">
-              <img src="assets/home/search.svg" alt="Logo" class="h-6 w-6 rounded-full object-cover" />
-            </div>
+  <!-- Left side: Platform Logo -->
+  <div class="flex items-center">
+    <a routerLink="/" class="flex items-center">
+      <div class="relative">
+        <div class="w-12 h-12 rounded-full border-2 border-red-600 flex items-center justify-center">
+          <div class="p-2 rounded-full bg-red-600">
+            <img src="assets/home/search.svg" alt="Logo" class="h-6 w-6 rounded-full object-cover" />
           </div>
         </div>
-        <div class="ml-3">
-          <h1 class="text-red-600 text-lg font-bold">forjobseekers</h1>
-          <p class="text-white text-sm font-medium">Find your dream job</p>
-        </div>
-      </a>
-    </div>
+      </div>
+      <div class="ml-3">
+        <h1 class="text-red-600 text-lg font-bold">forjobseekers</h1>
+        <span class="text-lg font-semibold ml-2 text-white">{{ companyName }}</span>
+      </div>
+    </a>
+  </div>
 
-    <!-- Center: Navigation Links -->
-    <div class="flex items-center space-x-6 text-white font-medium">
-      <a routerLink="/dashboard" class="relative px-2 py-1 hover:text-red-600 rounded-md transition duration-300 ease-in-out">Dashboard</a>
-      <a routerLink="/jobs" class="relative px-2 py-1 hover:text-red-600 rounded-md transition duration-300 ease-in-out">Jobs</a>
-      <a routerLink="/applicants" class="relative px-2 py-1 hover:text-red-600 rounded-md transition duration-300 ease-in-out">Applicants</a>
-      <a routerLink="/reports" class="relative px-2 py-1 hover:text-red-600 rounded-md transition duration-300 ease-in-out">Reports</a>
-    </div>
+  <!-- Center: Navigation Links -->
+  <div class="flex items-center space-x-4 text-white font-medium">
+    <!-- Dashboard Link with Image -->
+    <a routerLink="/company/dashboard" routerLinkActive="text-red-600" class="relative px-2 py-1 hover:text-red-600 rounded-md transition duration-300 ease-in-out flex items-center">
+      <img src="assets/company/dashboard.svg" alt="Dashboard Icon" class="h-5 w-5 mr-2">
+      Dashboard
+    </a>
+    
+    <!-- Jobs Link with Image -->
+    <a routerLink="/company/jobs" routerLinkActive="text-red-600" class="relative px-2 py-1 hover:text-red-600 rounded-md transition duration-300 ease-in-out flex items-center">
+      <img src="assets/company/jobs.svg" alt="Jobs Icon" class="h-5 w-5 mr-2">
+      Jobs
+    </a>
 
-    <!-- Right side: Company Logo and Name with Dropdown -->
-    <div class="flex items-center space-x-4 text-white font-medium relative group">
-      <span class="text-lg font-semibold">{{ companyName }}</span>
-      <img [src]="companyLogoUrl" alt="Company Logo" class="h-10 w-10 object-contain cursor-pointer">
-      
-      <!-- Dropdown menu -->
+    <!-- Applicants Link with Image -->
+    <a routerLink="/company/applications" routerLinkActive="text-red-600" class="relative px-2 py-1 hover:text-red-600 rounded-md transition duration-300 ease-in-out flex items-center">
+      <img src="assets/company/applicants.svg" alt="Applicants Icon" class="h-5 w-5 mr-2">
+      Applicants
+    </a>
+
+    <!-- Settings Link with Image -->
+    <a routerLink="/company/profile" routerLinkActive="text-red-600" class="relative px-2 py-1 hover:text-red-600 rounded-md transition duration-300 ease-in-out flex items-center">
+      <img src="assets/company/settings.svg" alt="Settings Icon" class="h-5 w-5 mr-2">
+      Settings
+    </a>
+  </div>
+
+
+  <!-- Right side: Action buttons, Notifications, and Company Info -->
+  <div class="flex items-center space-x-6 text-white font-medium">
+    <!-- Post a Job Button -->
+    <button (click)="onPostJob()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out">
+      Post a Job
+    </button>
+
+    <!-- Company Info Dropdown -->
+    <div class="relative group">
+      <!-- Company Logo and Verification Badge -->
+      <div class="flex items-center space-x-2 cursor-pointer relative">
+        <!-- Company Logo -->
+        <img [src]="companyLogoUrl" alt="Company Logo" class="h-10 w-10 object-contain rounded-full">
+        
+        <!-- Verification Icon -->
+        <span class="absolute bottom-0 left-[-4] h-4 w-4 bg-green-500 border-2 border-white rounded-full flex items-center justify-center">
+          <i class="pi pi-verified text-white text-xs"></i>
+        </span>
+      </div>
+
+      <!-- Dropdown Menu -->
       <div class="absolute right-0 top-full mt-2 w-64 bg-white rounded-md shadow-lg hidden group-hover:block">
         <div class="p-4 text-slate-900">
           <p class="font-semibold mb-2">{{ companyName }}</p>
@@ -43,16 +78,23 @@
             <i class="pi pi-map-marker mr-2"></i>{{ companyLocation }}
           </p>
           <hr class="my-2">
-          <a routerLink="/company-profile" class="block py-2 px-4 text-sm text-slate-900 hover:bg-slate-100 rounded">
-            Company Profile
-          </a>
-          <a routerLink="/settings" class="block py-2 px-4 text-sm text-slate-900 hover:bg-slate-100 rounded">
+          <!-- <a routerLink="/company/public-profile" class="block py-2 px-4 text-sm text-slate-900 hover:bg-slate-100 rounded">
+            View Public Profile
+          </a> -->
+          <a routerLink="/company/settings" class="block py-2 px-4 text-sm text-slate-900 hover:bg-slate-100 rounded">
             Settings
           </a>
-          <button (click)="logout()" class="w-full text-left py-2 px-4 text-sm text-red-600 hover:bg-slate-100 rounded">
+          <a routerLink="/company/dashboard" class="block py-2 px-4 text-sm text-slate-900 hover:bg-slate-100 rounded">
+            Help & Support
+          </a>
+          <button (click)="onLogout()" class="w-full text-left py-2 px-4 text-sm text-red-600 hover:bg-slate-100 rounded">
             Logout
           </button>
         </div>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
+
+
+<app-company-job-form [job]="selectedJob" [isVisible]="isJobFormVisible" (formClose)="closeJobForm($event)"></app-company-job-form>

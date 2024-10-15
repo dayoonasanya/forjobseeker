@@ -1,1 +1,69 @@
-<p>company-jobs works!</p>
+<div class="p-8 bg-white rounded-lg shadow-sm max-w-4xl mx-auto">
+  
+    <!-- Button to Post a New Job -->
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-semibold text-gray-800">Company Jobs</h2>
+      <button (click)="onPostJob()" class="bg-slate-900 hover:bg-slate-950 text-white font-bold py-2 px-4 rounded">
+        <i class="pi pi-plus mr-1"></i>
+        Post a Job
+      </button>
+    </div>
+  
+    <!-- Display Loader while Fetching Jobs -->
+    <div *ngIf="isLoading" class="flex justify-center items-center">
+      <div class="loader ease-linear rounded-full border-8 border-t-8 border-slate-200 h-12 w-12"></div>
+    </div>
+  
+    <!-- Display Error Message -->
+    <div *ngIf="!isLoading && errorMessage" class="text-center text-red-500">
+      {{ errorMessage }}
+    </div>
+  
+    <!-- Job Cards -->
+    <ul *ngIf="!isLoading && jobs.length > 0" class="space-y-4">
+      <li *ngFor="let job of jobs; let i = index" class="relative p-4 bg-gray-100 rounded-lg shadow flex justify-between items-center">
+        
+        <!-- Job Number -->
+        <div class="absolute top-2 left-2 bg-slate-950 text-white rounded-full h-8 w-8 flex items-center justify-center">
+          <span class="font-bold">{{ i + 1 }}</span>
+        </div>
+  
+        <!-- Job Information -->
+        <div class="ml-12 space-y-1">
+          <h3 class="text-lg font-semibold text-gray-800">{{ job.title }}</h3>
+          <p class="text-sm text-gray-500">
+            <i class="pi pi-briefcase mr-1 text-blue-600"></i>
+            Vacancies: {{ job.vacancies }}
+          </p>
+          <p class="text-sm text-gray-500">
+            <i class="pi pi-clock mr-1 text-green-600"></i>
+            Type: <span class="inline-flex items-center bg-blue-100 text-blue-700 px-2 py-1 rounded-full">{{ mapJobType(job.type) }}</span>
+          </p>
+        </div>
+  
+        <!-- Action Icons (Edit and Delete) -->
+        <div class="space-x-4">
+          <button (click)="onEditJob(job)" class="text-yellow-500 hover:text-yellow-700">
+            <i class="pi pi-pencil text-xl"></i>
+          </button>
+          <button (click)="onDeleteJob(job.id)" class="text-red-600 hover:text-red-800">
+            <i class="pi pi-trash text-xl"></i>
+          </button>
+          <button (click)="showJobDetails(job)" class="text-blue-500 hover:text-blue-700">
+            <i class="pi pi-eye text-xl"></i>
+          </button>
+        </div>
+  
+      </li>
+    </ul>
+  
+    <!-- No Jobs Posted -->
+    <p *ngIf="!isLoading && jobs.length === 0" class="text-center text-gray-500">
+      No jobs posted yet.
+    </p>
+  </div>
+
+  <app-company-job-details [job]="selectedJob" [isVisible]="isJobDetailsVisible"></app-company-job-details>
+
+<app-company-job-form [job]="selectedJob" [isVisible]="isJobFormVisible" (formClose)="closeJobForm($event)"></app-company-job-form>
+  

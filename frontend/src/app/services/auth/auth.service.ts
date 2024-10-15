@@ -11,6 +11,7 @@ export class AuthService {
   private readonly API_URL = 'http://localhost:5000/api/auth';
   private tokenKey = 'auth-token';
   private roleKey = 'user-role';
+  private companyIdKey = 'company-id';
   private loggedIn: boolean = false;
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -36,16 +37,24 @@ export class AuthService {
     return this.http.post<any>(`${this.API_URL}/login`, loginData).pipe(
       tap(response => {
         localStorage.setItem(this.tokenKey, response.token);
-
+  
         const decodedToken = this.decodeToken(response.token);
         
         localStorage.setItem(this.roleKey, decodedToken.role);
+  
+        if (decodedToken.companyId) {
+          localStorage.setItem('company-id', decodedToken.companyId);
+        }
+  
+        if (decodedToken.jobSeekerId) {
+          localStorage.setItem('jobseeker-id', decodedToken.jobSeekerId);
+        }
         
         this.loggedIn = true;
       }),
       catchError(this.handleError)
     );
-  }
+  }  
 
   /**
    * Logout the user
@@ -53,6 +62,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem(this.tokenKey);
     localStorage.removeItem(this.roleKey);
+    localStorage.removeItem(this.companyIdKey);
     this.loggedIn = false;
     this.router.navigate(['/login']);
   }
@@ -103,7 +113,7 @@ export class AuthService {
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     return JSON.parse(atob(base64));
-  }
+  }  
 
   /**
    * Get the user ID from the JWT token
@@ -116,6 +126,10 @@ export class AuthService {
       return decodedToken?.userId || null;
     }
     return null;
+  }
+
+  getCompanyId(): string | null {
+    return localStorage.getItem(this.companyIdKey);
   }
 
   /**
@@ -144,3 +158,5 @@ export class AuthService {
     return throwError(() => new Error(errorMessage));
   }
 }
+
+

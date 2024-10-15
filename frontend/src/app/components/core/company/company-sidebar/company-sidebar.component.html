@@ -1,28 +1,39 @@
-<nav class="bg-white h-full shadow-lg py-4 px-6">
+<nav class="bg-white h-full shadow-lg py-4 px-4 flex flex-col">
+  <!-- Search Box -->
+  <div class="relative bg-gray-100 px-4 py-3 rounded-md mt-6">
+    <i class="pi pi-search w-6 mr-4 inline text-[#3949ab]"></i>
+    <input
+      [(ngModel)]="searchTerm"
+      (input)="onSearchChange(searchTerm)"
+      class="text-sm text-gray-900 outline-none bg-transparent px-1 w-full"
+      placeholder="Search..."
+    />
+  </div>
+
   <!-- Sidebar Links -->
-  <ul class="space-y-6">
+  <ul class="space-y-6 mt-6 flex-1">
+    <li *ngFor="let link of filteredLinks">
+      <a [routerLink]="[link.route]" class="text-slate-950 font-semibold flex items-center  hover:text-red-600 transition duration-300">
+        <img [src]="link.icon" alt="{{ link.label }} Icon" class="h-6 w-6 mr-3">
+        <span>{{ link.label }}</span>
+      </a>
+    </li>
+  </ul>
+
+  <!-- Other Links (Help and Logout) -->
+  <ul class="space-y-8 pl-3 mt-8">
     <li>
-      <a [routerLink]="['/company/dashboard']" class="text-slate-900 font-semibold flex items-center">
-        <i class="pi pi-home mr-3"></i>
-        <span>Dashboard</span>
+      <a [routerLink]="['/company/dashboard']"
+        class="text-slate-950 font-semibold text-sm flex items-center rounded-md left-0 hover:left-1 relative transition-all hover:text-red-600">
+        <i class="pi pi-question-circle w-[18px] h-[24px] mr-4" style="font-size: 1.2rem;"></i>
+        <span>Help Center</span>
       </a>
     </li>
     <li>
-      <a [routerLink]="['/company/jobs']" class="text-slate-900 font-semibold flex items-center">
-        <i class="pi pi-briefcase mr-3"></i>
-        <span>Jobs</span>
-      </a>
-    </li>
-    <li>
-      <a [routerLink]="['/company/applications']" class="text-slate-900 font-semibold flex items-center">
-        <i class="pi pi-users mr-3"></i>
-        <span>Applicants</span>
-      </a>
-    </li>
-    <li>
-      <a [routerLink]="['/company/profile']" class="text-slate-900 font-semibold flex items-center">
-        <i class="pi pi-user mr-3"></i>
-        <span>Profile</span>
+      <a href="javascript:void(0)" (click)="onLogout()"
+        class="text-slate-950 font-semibold text-sm flex items-center rounded-md left-0 hover:left-1 relative transition-all hover:text-red-600">
+        <i class="pi pi-sign-out w-[18px] h-[18px] mr-4" style="font-size: 1.2rem;"></i>
+        <span>Logout</span>
       </a>
     </li>
   </ul>

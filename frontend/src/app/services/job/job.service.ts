@@ -102,8 +102,11 @@ export class JobService {
    */
   getJobsByCompany(companyId: string): Observable<any[]> {
     const headers = this.getAuthHeaders();
-    return this.http.get<any[]>(`${this.API_URL}/company/${companyId}`, { headers }).pipe(
-      map(response => response),
+    return this.http.get<any>(`${this.API_URL}/company/${companyId}`, { headers }).pipe(
+      map(response => {
+        console.log('Jobs fetched for company:', response.jobs);
+        return response.jobs;
+      }),
       catchError(this.handleError)
     );
   }
