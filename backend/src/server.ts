@@ -17,13 +17,11 @@ import workExperienceRoutes from './routes/workexperience.routes';
 
 const app = express();
 
-// Middleware Setup
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(morgan('combined', { stream: { write: (message) => logger.info(message.trim()) } }));
 
-// CORS Configuration
 const corsOptions = {
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
@@ -32,7 +30,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-// API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/applications', applicationRoutes);
 app.use('/api/certifications', certificationRoutes);
@@ -43,22 +40,18 @@ app.use('/api/jobseekers', jobSeekerRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/workexperience', workExperienceRoutes);
 
-// Health Check Route
 app.get('/health', (req: Request, res: Response) => {
   res.status(200).json({ status: 'Server is up and running' });
 });
 
-// Handle 404 Errors
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.status(404).json({ message: 'Route not found' });
 });
 
-// Start the Server
 const server: Server = app.listen(env.port, () => {
   logger.info(`Server started on port ${env.port}`);
 });
 
-// Graceful Shutdown
 const gracefulShutdown = () => {
   logger.info('Received shutdown signal. Shutting down gracefully...');
   server.close(() => {
@@ -66,7 +59,6 @@ const gracefulShutdown = () => {
     process.exit(0);
   });
 
-  // Forceful shutdown if the server does not close within 10 seconds
   setTimeout(() => {
     logger.error('Forcefully shutting down...');
     process.exit(1);

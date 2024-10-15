@@ -8,7 +8,7 @@ import { Job, JobResponse } from '../../interfaces/job';
   providedIn: 'root'
 })
 export class JobService {
-  private readonly API_URL = 'http://localhost:5000/api/jobs';
+  private readonly API_URL = 'https://forjobseeker-rv9r.onrender.com/api/jobs';
   private tokenKey = 'auth-token';
 
   constructor(private http: HttpClient) {}

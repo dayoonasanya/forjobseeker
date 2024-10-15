@@ -7,7 +7,7 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class WorkExperienceService {
-  private readonly API_URL = 'http://localhost:5000/api/workexperience';
+  private readonly API_URL = 'https://forjobseeker-rv9r.onrender.com/workexperience';
   private tokenKey = 'auth-token';
 
   constructor(private http: HttpClient) {}
