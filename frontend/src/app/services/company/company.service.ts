@@ -8,7 +8,7 @@ import { Company, CompanyResponse } from '../../interfaces/company';
   providedIn: 'root'
 })
 export class CompanyService {
-  private readonly API_URL = 'http://localhost:5000/api/companies';
+  private readonly API_URL = 'https://forjobseeker-rv9r.onrender.com/api/companies';
   private tokenKey = 'auth-token';
 
   constructor(private http: HttpClient) {}

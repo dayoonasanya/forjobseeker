@@ -8,7 +8,7 @@ import { catchError, map, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly API_URL = 'http://localhost:5000/api/auth';
+  private readonly API_URL = 'https://forjobseeker-rv9r.onrender.com/api/auth';
   private tokenKey = 'auth-token';
   private roleKey = 'user-role';
   private companyIdKey = 'company-id';

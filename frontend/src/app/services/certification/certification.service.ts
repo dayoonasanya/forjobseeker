@@ -7,7 +7,7 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CertificationService {
-  private readonly API_URL = 'http://localhost:5000/api/certifications';
+  private readonly API_URL = 'https://forjobseeker-rv9r.onrender.com/api/certifications';
   private tokenKey = 'auth-token';
 
   constructor(private http: HttpClient) {}

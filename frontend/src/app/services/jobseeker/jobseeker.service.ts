@@ -8,7 +8,7 @@ import { JobSeeker, JobSeekerResponse } from '../../interfaces/jobseeker';
   providedIn: 'root'
 })
 export class JobSeekerService {
-  private readonly API_URL = 'http://localhost:5000/api/jobseekers';
+  private readonly API_URL = 'https://forjobseeker-rv9r.onrender.com/api/jobseekers';
   private tokenKey = 'auth-token';
 
   constructor(private http: HttpClient) {}

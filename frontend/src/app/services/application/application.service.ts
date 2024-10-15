@@ -8,7 +8,7 @@ import { Application } from '../../interfaces/application';
   providedIn: 'root'
 })
 export class ApplicationService {
-  private readonly API_URL = 'http://localhost:5000/api/applications';
+  private readonly API_URL = 'https://forjobseeker-rv9r.onrender.com/api/applications';
   private tokenKey = 'auth-token';
 
   constructor(private http: HttpClient) {}

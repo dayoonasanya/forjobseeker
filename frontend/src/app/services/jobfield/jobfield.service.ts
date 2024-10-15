@@ -8,7 +8,7 @@ import { JobField } from '../../interfaces/jobfield';
   providedIn: 'root'
 })
 export class JobFieldService {
-  private readonly API_URL = 'http://localhost:5000/api/jobfields';
+  private readonly API_URL = 'https://forjobseeker-rv9r.onrender.com/jobfields';
   private tokenKey = 'auth-token';
 
   constructor(private http: HttpClient) {}
