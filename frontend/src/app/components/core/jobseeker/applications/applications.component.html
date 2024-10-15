@@ -1,1 +1,51 @@
 <app-navbar></app-navbar>
+
+<div class="container mx-auto px-4 py-8 mt-20 max-w-7xl">
+  <!-- Loading state -->
+  <div *ngIf="isLoading" class="text-center">
+    <p class="text-xl">Loading your applications...</p>
+  </div>
+
+  <!-- Error message -->
+  <div *ngIf="errorMessage" class="text-red-500 text-center">
+    <p class="text-xl">{{ errorMessage }}</p>
+  </div>
+
+  <!-- Applications List -->
+  <div *ngIf="applications.length > 0" class="grid grid-cols-1 gap-6 justify-center">
+    <div *ngFor="let application of applications; let i = index" class="bg-white shadow-lg border-dashed border-2 border-gray-300 rounded-lg p-6 w-[70%] mx-auto">
+      <!-- Numbering the card -->
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-lg font-semibold text-gray-800 mb-2">#{{ i + 1 }}: {{ application.job?.title || 'Job Title Not Available' }}</h3>
+      </div>
+
+      <!-- Company and Status -->
+      <p class="text-sm text-gray-600 mb-2">Company: {{ application.job?.company?.name || 'Company Not Available' }}</p>
+      
+      <p class="text-sm text-gray-600 mb-2">Status: 
+        <span 
+          [ngClass]="{
+            'text-yellow-500': application.status === 'PENDING',
+            'text-green-500': application.status === 'ACCEPTED',
+            'text-red-500': application.status === 'REJECTED'
+          }">
+          {{ application.status }}
+        </span>
+      </p>
+
+      <!-- Date Applied -->
+      <p class="text-sm text-gray-600 mb-2">Date Applied: {{ application.appliedAt | date }}</p>
+
+      <!-- Job Seeker Name -->
+      <p class="text-sm text-gray-600 mb-2">Job Seeker: {{ application.jobSeeker?.firstName }} {{ application.jobSeeker?.lastName }}</p>
+
+      <!-- View Job Details Link -->
+      <a routerLink="/jobs/{{ application.job?.id }}" class="text-blue-500 hover:underline mt-2 inline-block">View Job Details</a>
+    </div>
+  </div>
+
+  <!-- No Applications Found -->
+  <div *ngIf="!isLoading && applications.length === 0" class="text-center">
+    <p class="text-xl">You have not applied for any jobs yet.</p>
+  </div>
+</div>

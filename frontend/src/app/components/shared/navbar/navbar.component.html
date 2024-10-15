@@ -70,7 +70,7 @@
 
     <ng-container *ngIf="isLoggedIn && userRole === 'JOBSEEKER'">
       <!-- Dashboard button -->
-      <a routerLink="/jobseeker" class="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 transition duration-300 ease-in-out">Dashboard</a>
+      <a routerLink="/jobseeker/profile" class="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 transition duration-300 ease-in-out">Dashboard</a>
 
       <!-- Profile image or initials with toggleable dropdown -->
       <div class="relative flex items-center">
@@ -93,8 +93,8 @@
             <p class="font-semibold">{{ jobseekerName }}</p>
             <p class="text-sm text-slate-700">{{ jobseekerPhone }}</p>
             <hr class="my-2">
-            <a routerLink="/jobseeker/profile" class="block py-2 px-4 text-sm hover:bg-slate-100">Profile</a>
-            <a routerLink="/jobseeker/settings" class="block py-2 px-4 text-sm hover:bg-slate-100">Settings</a>
+           <a routerLink="/jobseeker/settings" class="block py-2 px-4 text-sm hover:bg-slate-100">Profile</a> <!-- Link to Profile -->
+            <a routerLink="/jobseeker/profile" class="block py-2 px-4 text-sm hover:bg-slate-100">Settings</a> <!-- Link to Settings -->
             <a routerLink="/jobseeker/applications" class="block py-2 px-4 text-sm hover:bg-slate-100">Applications</a>
             <button (click)="onLogout()" class="w-full text-left py-2 px-4 text-sm text-red-600 hover:bg-slate-100">Logout</button>
           </div>

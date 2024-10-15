@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { Application } from '../../interfaces/application';
 
 @Injectable({
   providedIn: 'root'
@@ -89,10 +90,10 @@ export class ApplicationService {
    * Get applications by job seeker ID
    * @param jobSeekerId The ID of the job seeker to fetch applications for
    */
-  getApplicationsByJobSeeker(jobSeekerId: string): Observable<any[]> {
+  getApplicationsByJobSeeker(jobSeekerId: string): Observable<{ message: string; applications: Application[] }> {
     const headers = this.getAuthHeaders();
-    return this.http.get<any[]>(`${this.API_URL}/jobseeker/${jobSeekerId}`, { headers }).pipe(
-      map(response => response),
+    return this.http.get<{ message: string; applications: Application[] }>(`${this.API_URL}/jobseeker/${jobSeekerId}`, { headers }).pipe(
+      map(response => response),  // Ensure that the response is typed correctly
       catchError(this.handleError)
     );
   }

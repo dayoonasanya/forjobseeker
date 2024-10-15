@@ -1,1 +1,69 @@
 <app-navbar></app-navbar>
+
+<div class="container mx-auto px-4 py-8 mt-20">
+  <!-- Loading state -->
+  <div *ngIf="isLoading" class="text-center">
+    <p class="text-xl">Loading jobseeker details...</p>
+  </div>
+
+  <!-- Error message -->
+  <div *ngIf="errorMessage" class="text-red-500 text-center">
+    <p class="text-xl">{{ errorMessage }}</p>
+  </div>
+
+  <!-- Jobseeker Details -->
+  <div *ngIf="jobSeeker" class="max-w-4xl mx-auto bg-white   p-6">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-6">Jobseeker Profile</h2>
+
+    <!-- Profile Image -->
+    <div class="flex items-center mb-4">
+      <img *ngIf="jobSeeker.profileImage" [src]="jobSeeker.profileImage" alt="Profile Image" class="h-24 w-24 rounded-full shadow-md" />
+      <p class="ml-4 text-xl font-bold text-gray-700">{{ jobSeeker.firstName }} {{ jobSeeker.lastName }}</p>
+    </div>
+
+    <!-- Basic Info -->
+    <div class="grid grid-cols-2 gap-4 mb-6">
+      <div>
+        <label class="block text-gray-600">Phone:</label>
+        <p class="text-gray-800">{{ jobSeeker.phone }}</p>
+      </div>
+      <div>
+        <label class="block text-gray-600">Max Qualification:</label>
+        <p class="text-gray-800">{{ jobSeeker.maxQualification }}</p>
+      </div>
+      <div>
+        <label class="block text-gray-600">Years of Experience:</label>
+        <p class="text-gray-800">{{ jobSeeker.yearsOfExperience }}</p>
+      </div>
+    </div>
+
+    <!-- Social Links -->
+    <div class="mb-6">
+      <h3 class="text-lg font-semibold text-gray-700 mb-2">Social Links:</h3>
+      <ul class="list-disc list-inside text-gray-800">
+        <li *ngIf="jobSeeker.twitterLink"><a [href]="jobSeeker.twitterLink" class="text-blue-500">Twitter</a></li>
+        <li *ngIf="jobSeeker.linkedinLink"><a [href]="jobSeeker.linkedinLink" class="text-blue-500">LinkedIn</a></li>
+        <li *ngIf="jobSeeker.githubLink"><a [href]="jobSeeker.githubLink" class="text-blue-500">GitHub</a></li>
+        <li *ngIf="jobSeeker.website"><a [href]="jobSeeker.website" class="text-blue-500">Website</a></li>
+      </ul>
+    </div>
+
+    <!-- Skills -->
+    <div class="mb-6">
+      <h3 class="text-lg font-semibold text-gray-700 mb-2">Skills:</h3>
+      <p class="text-gray-800">{{ jobSeeker.skills?.join(', ') }}</p>
+    </div>
+
+    <!-- CV Link -->
+    <div class="mb-6">
+      <h3 class="text-lg font-semibold text-gray-700 mb-2">CV:</h3>
+      <a *ngIf="jobSeeker.cv" [href]="jobSeeker.cv" class="text-blue-500">View CV</a>
+    </div>
+
+    <!-- Summary -->
+    <div class="mb-6">
+      <h3 class="text-lg font-semibold text-gray-700 mb-2">Profile Summary:</h3>
+      <p class="text-gray-800">{{ jobSeeker.summary || 'No summary provided' }}</p>
+    </div>
+  </div>
+</div>

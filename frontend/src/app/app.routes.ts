@@ -46,13 +46,13 @@ export const routes: Routes = [
 
     { 
         path: 'jobseeker', 
-        component: ProfileComponent, 
         canActivate: [AuthGuard, RoleGuard],
         data: { expectedRole: 'JOBSEEKER' }, 
         children: [
-            { path: 'profile', component: ProfileComponent},
-            { path: 'applications', component: ApplicationsComponent},
-            { path: 'settings', component: SettingsComponent},
+            { path: '', redirectTo: 'settings', pathMatch: 'full' },
+            { path: 'profile', component: ProfileComponent },
+            { path: 'applications', component: ApplicationsComponent },
+            { path: 'settings', component: SettingsComponent },
         ] 
     },
     

@@ -1,1 +1,110 @@
 <app-navbar></app-navbar>
+
+<div class="container mx-auto px-4 py-8 mt-20">
+  <!-- Loading state -->
+  <div *ngIf="isLoading" class="text-center">
+    <p class="text-xl">Loading jobseeker details...</p>
+  </div>
+
+  <!-- Error message -->
+  <div *ngIf="errorMessage" class="text-red-500 text-center">
+    <p class="text-xl">{{ errorMessage }}</p>
+  </div>
+
+  <!-- Success message -->
+  <div *ngIf="successMessage" class="text-green-500 text-center">
+    <p class="text-xl">{{ successMessage }}</p>
+  </div>
+
+  <!-- Jobseeker Profile Form -->
+  <form [formGroup]="jobSeekerForm" (ngSubmit)="onSubmit()" class="max-w-4xl mx-auto bg-white  p-6" *ngIf="!isLoading && !errorMessage">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-6">Jobseeker Profile</h2>
+
+    <!-- First Name -->
+    <div class="mb-4">
+      <label for="firstName" class="block text-gray-700 font-bold mb-2">First Name:</label>
+      <input type="text" formControlName="firstName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700" />
+    </div>
+
+    <!-- Last Name -->
+    <div class="mb-4">
+      <label for="lastName" class="block text-gray-700 font-bold mb-2">Last Name:</label>
+      <input type="text" formControlName="lastName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700" />
+    </div>
+
+    <!-- Phone -->
+    <div class="mb-4">
+      <label for="phone" class="block text-gray-700 font-bold mb-2">Phone:</label>
+      <input type="text" formControlName="phone" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700" />
+    </div>
+
+    <!-- Maximum Qualification -->
+    <div class="mb-4">
+      <label for="maxQualification" class="block text-gray-700 font-bold mb-2">Maximum Qualification:</label>
+      <input type="text" formControlName="maxQualification" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700" />
+    </div>
+
+    <!-- Years of Experience -->
+    <div class="mb-4">
+      <label for="yearsOfExperience" class="block text-gray-700 font-bold mb-2">Years of Experience:</label>
+      <input type="text" formControlName="yearsOfExperience" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700" />
+    </div>
+
+    <!-- Summary -->
+    <div class="mb-4">
+      <label for="summary" class="block text-gray-700 font-bold mb-2">Profile Summary:</label>
+      <textarea formControlName="summary" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"></textarea>
+    </div>
+
+    <!-- Skills -->
+    <div class="mb-4">
+      <label for="skills" class="block text-gray-700 font-bold mb-2">Skills (comma-separated):</label>
+      <input type="text" formControlName="skills" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700" />
+    </div>
+
+    <!-- CV -->
+    <!-- CV Upload -->
+    <div class="mb-4">
+        <label for="cv" class="block text-gray-700 font-bold mb-2">Upload CV:</label>
+        <input type="file" (change)="onCvChange($event)" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700" />
+    </div>
+
+    <!-- GitHub Profile -->
+    <div class="mb-4">
+      <label for="githubLink" class="block text-gray-700 font-bold mb-2">GitHub Profile:</label>
+      <input type="text" formControlName="githubLink" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700" />
+    </div>
+
+    <!-- LinkedIn Profile -->
+    <div class="mb-4">
+      <label for="linkedinLink" class="block text-gray-700 font-bold mb-2">LinkedIn Profile:</label>
+      <input type="text" formControlName="linkedinLink" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700" />
+    </div>
+
+    <!-- Twitter Profile -->
+    <div class="mb-4">
+      <label for="twitterLink" class="block text-gray-700 font-bold mb-2">Twitter Profile:</label>
+      <input type="text" formControlName="twitterLink" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700" />
+    </div>
+
+    <!-- Website -->
+    <div class="mb-4">
+      <label for="website" class="block text-gray-700 font-bold mb-2">Website:</label>
+      <input type="text" formControlName="website" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700" />
+    </div>
+
+    <!-- Profile Image -->
+    <div class="mb-4">
+      <label for="profileImage" class="block text-gray-700 font-bold mb-2">Profile Image:</label>
+      <input type="file" (change)="onProfileImageChange($event)" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700" />
+      <img *ngIf="profileImagePreview" [src]="profileImagePreview" alt="Profile Image Preview" class="h-24 w-24 rounded-full mt-2" />
+    </div>
+
+    <!-- Submit Button -->
+    <div class="flex justify-between">
+      <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" [disabled]="jobSeekerForm.invalid">
+        Update Profile
+      </button>
+    </div>
+  </form>
+</div>
