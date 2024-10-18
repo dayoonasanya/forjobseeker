@@ -1,5 +1,3 @@
-// src/services/auth.service.ts
-
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import prisma from '../config/database.config';
@@ -14,16 +12,13 @@ import { UserRole } from '../enums/enums';
 export const register = async (userData: any): Promise<any> => {
   const { email, password, role, ...profileData } = userData;
 
-  // Check if the email is already in use
   const existingUser = await prisma.user.findUnique({ where: { email } });
   if (existingUser) {
     throw new Error('Email is already in use');
   }
 
-  // Hash the password
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  // Create the user with the basic information
   const user = await prisma.user.create({
     data: {
       email,
@@ -32,7 +27,6 @@ export const register = async (userData: any): Promise<any> => {
     },
   });
 
-  // Create additional profile information based on the role
   if (role === UserRole.JOBSEEKER) {
     await prisma.jobSeeker.create({
       data: {
@@ -71,7 +65,6 @@ export const login = async (email: string, password: string): Promise<string> =>
   let companyId = null;
   let jobSeekerId = null;
 
-  // If the user is a company, fetch the associated companyId
   if (user.role === UserRole.COMPANY) {
     const company = await prisma.company.findUnique({ where: { userId: user.id } });
     if (company) {
@@ -79,7 +72,6 @@ export const login = async (email: string, password: string): Promise<string> =>
     }
   }
 
-  // If the user is a jobseeker, fetch the associated jobSeekerId
   if (user.role === UserRole.JOBSEEKER) {
     const jobSeeker = await prisma.jobSeeker.findUnique({ where: { userId: user.id } });
     if (jobSeeker) {
@@ -87,7 +79,6 @@ export const login = async (email: string, password: string): Promise<string> =>
     }
   }
 
-  // Generate JWT token with both companyId and jobSeekerId (if applicable)
   const token = generateToken(user.id, user.role, companyId, jobSeekerId);
   return token;
 };
@@ -123,7 +114,6 @@ export const forgotPassword = async (email: string): Promise<void> => {
     throw new Error('User with this email does not exist');
   }
 
-  // Here, implement your logic to send an email to the user with a reset password link or code
   logger.info(`Password reset email sent to ${email}`);
 };
 

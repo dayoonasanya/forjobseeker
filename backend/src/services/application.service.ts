@@ -1,11 +1,9 @@
-// src/services/application.service.ts
-
 import prisma from '../config/database.config';
 import { Application } from '../interfaces/application.interface';
 import { ApplicationStatus } from '../enums/enums';
 
 /**
- * Helper function to map Prisma Application to custom Application interface
+ * Helper function
  */
 const mapToApplication = (prismaApplication: any): Application => {
   return {
@@ -24,7 +22,8 @@ const mapToApplication = (prismaApplication: any): Application => {
 /**
  * Create Application
  */
-export const createApplication = async (applicationData: any): Promise<Application | null> => {
+export const 
+createApplication = async (applicationData: any): Promise<Application | null> => {
   try {
     const newApplication = await prisma.application.create({
       data: {

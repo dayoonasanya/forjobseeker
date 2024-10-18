@@ -1,10 +1,8 @@
-// src/services/company.service.ts
-
 import prisma from '../config/database.config';
 import { Company } from '../interfaces/company.interface';
 
 /**
- * Helper function to map Prisma Company to custom Company interface
+ * Helper function
  */
 const mapToCompany = (prismaCompany: any): Company => {
   return {

@@ -1,11 +1,9 @@
-// src/services/job.service.ts
-
 import prisma from '../config/database.config';
 import { Job } from '../interfaces/job.interface';
 import { JobType } from '../enums/enums';
 
 /**
- * Helper function to map Prisma Job to custom Job interface
+ * Helper function
  */
 const mapToJob = (prismaJob: any): Job => {
   return {

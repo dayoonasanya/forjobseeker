@@ -1,5 +1,3 @@
-// src/routes/company.routes.ts
-
 import { Router } from 'express';
 import * as CompanyController from '../controllers/company.controller';
 import { authenticateJWT } from '../middlewares/auth.middleware';
@@ -8,7 +6,7 @@ import { UserRole } from '../enums/enums';
 
 const router = Router();
 
-// Route for creating a company profile
+
 router.post(
   '/create',
   authenticateJWT,
@@ -16,10 +14,14 @@ router.post(
   CompanyController.createCompanyProfile
 );
 
-// Route for getting a company by ID
-router.get('/:companyId', authenticateJWT, CompanyController.getCompanyById);
 
-// Route for updating a company profile
+router.get(
+  '/:companyId', 
+  authenticateJWT, 
+  CompanyController.getCompanyById
+);
+
+
 router.patch(
   '/:companyId',
   authenticateJWT,
@@ -27,7 +29,7 @@ router.patch(
   CompanyController.updateCompanyProfile
 );
 
-// Route for soft deleting a company profile
+
 router.delete(
   '/:companyId',
   authenticateJWT,
@@ -35,7 +37,7 @@ router.delete(
   CompanyController.deleteCompanyProfile
 );
 
-// Route for verifying a company
+
 router.post(
   '/:companyId/verify',
   authenticateJWT,
@@ -43,12 +45,19 @@ router.post(
   CompanyController.verifyCompany
 );
 
-// Route for getting jobs by company
-router.get('/:companyId/jobs', authenticateJWT, CompanyController.getCompanyJobs);
+
+router.get(
+  '/:companyId/jobs',
+  authenticateJWT,
+  CompanyController.getCompanyJobs
+);
 
 export default router;
 
 
-// Route for getting all companies
-router.get('/', authenticateJWT, CompanyController.getAllCompanies);
+router.get(
+  '/', 
+  authenticateJWT, 
+  CompanyController.getAllCompanies
+);
 

@@ -1,5 +1,3 @@
-// src/routes/workexperience.routes.ts
-
 import { Router } from 'express';
 import * as WorkExperienceController from '../controllers/workexperience.controller';
 import { authenticateJWT } from '../middlewares/auth.middleware';
@@ -8,7 +6,6 @@ import { UserRole } from '../enums/enums';
 
 const router = Router();
 
-// Route to add a new Work Experience
 router.post(
   '/',
   authenticateJWT,
@@ -16,14 +13,12 @@ router.post(
   WorkExperienceController.addWorkExperience
 );
 
-// Route to get a Work Experience by ID
 router.get(
   '/:workExperienceId',
   authenticateJWT,
   WorkExperienceController.getWorkExperienceById
 );
 
-// Route to update a Work Experience
 router.put(
   '/:workExperienceId',
   authenticateJWT,
@@ -31,7 +26,6 @@ router.put(
   WorkExperienceController.updateWorkExperience
 );
 
-// Route to soft delete a Work Experience
 router.delete(
   '/:workExperienceId',
   authenticateJWT,
@@ -39,7 +33,6 @@ router.delete(
   WorkExperienceController.deleteWorkExperience
 );
 
-// Route to get all Work Experiences by Job Seeker
 router.get(
   '/jobseeker/:jobSeekerId',
   authenticateJWT,

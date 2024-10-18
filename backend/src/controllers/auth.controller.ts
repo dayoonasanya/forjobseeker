@@ -1,11 +1,8 @@
-// src/controllers/auth.controller.ts
-
 import { Request, Response, NextFunction } from 'express';
 import * as AuthService from '../services/auth.service';
 import { AppError } from '../middlewares/error.middleware';
 import { AuthRequest } from '../middlewares';
 
-// Helper function to handle errors and return a proper JSON response
 const handleControllerError = (error: any, res: Response, next: NextFunction) => {
   if (error instanceof AppError) {
     return res.status(error.statusCode).json({
@@ -61,7 +58,6 @@ export const resetPassword = async (req: AuthRequest, res: Response, next: NextF
     try {
       const userId = req.user?.userId;
   
-      // Check if userId is defined, throw error if not
       if (!userId) {
         return res.status(400).json({
           message: 'User ID is missing or invalid. Please log in and try again.',

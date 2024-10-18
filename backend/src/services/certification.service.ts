@@ -1,10 +1,8 @@
-// src/services/certification.service.ts
-
 import prisma from '../config/database.config';
 import { Certification } from '../interfaces/certification.interface';
 
 /**
- * Helper function to map Prisma Certification to custom Certification interface
+ * Helper function to map
  */
 const mapToCertification = (prismaCertification: any): Certification => {
   return {
@@ -32,7 +30,7 @@ export const addCertification = async (certificationData: any): Promise<Certific
         jobSeekerId: certificationData.jobSeekerId,
         name: certificationData.name,
         issuer: certificationData.issuer,
-        issueDate: new Date(certificationData.issueDate), // Ensure this is a Date object
+        issueDate: new Date(certificationData.issueDate),
         expiryDate: certificationData.expiryDate ? new Date(certificationData.expiryDate) : null,
         link: certificationData.link || null,
       },

@@ -1,10 +1,8 @@
-// src/services/jobfield.service.ts
-
 import prisma from '../config/database.config';
 import { JobField } from '../interfaces/jobfield.interface';
 
 /**
- * Helper function to map Prisma JobField to custom JobField interface
+ * Helper function
  */
 const mapToJobField = (prismaJobField: any): JobField => {
   return {
