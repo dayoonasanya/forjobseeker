@@ -1,10 +1,9 @@
-// src/services/workexperience.service.ts
 
 import prisma from '../config/database.config';
 import { WorkExperience } from '../interfaces/workexperience.interface';
 
 /**
- * Helper function to map Prisma WorkExperience to custom WorkExperience interface
+ * Helper function
  */
 const mapToWorkExperience = (prismaWorkExperience: any): WorkExperience => {
   return {
@@ -32,7 +31,7 @@ export const addWorkExperience = async (workExperienceData: any): Promise<WorkEx
         jobSeekerId: workExperienceData.jobSeekerId,
         company: workExperienceData.company,
         position: workExperienceData.position,
-        startDate: new Date(workExperienceData.startDate), // Ensure this is a Date object
+        startDate: new Date(workExperienceData.startDate),
         endDate: workExperienceData.endDate ? new Date(workExperienceData.endDate) : null,
         description: workExperienceData.description || null,
       },

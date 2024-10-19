@@ -1,9 +1,9 @@
 ### Register a new user (JobSeeker)
-POST https://forjobseeker-rv9r.onrender.com/api/auth/register
+POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
-  "email": "user@example.com",
+  "email": "user5@example.com",
   "password": "jay@2019PT",
   "role": "JOBSEEKER",
   "firstName": "John",
@@ -15,7 +15,7 @@ Content-Type: application/json
 }
 
 ### Register a new user (Company)
-POST https://forjobseeker-rv9r.onrender.com/api/auth/register
+POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
@@ -30,7 +30,7 @@ Content-Type: application/json
 }
 
 ### Login user
-POST https://forjobseeker-rv9r.onrender.com/api/auth/login
+POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {

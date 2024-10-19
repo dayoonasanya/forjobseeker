@@ -1,11 +1,10 @@
-// src/services/application.service.ts
-
 import prisma from '../config/database.config';
 import { Application } from '../interfaces/application.interface';
 import { ApplicationStatus } from '../enums/enums';
+import { sendApplicationConfirmationEmail } from '../emails/utils/application';
 
 /**
- * Helper function to map Prisma Application to custom Application interface
+ * Helper function
  */
 const mapToApplication = (prismaApplication: any): Application => {
   return {
@@ -38,6 +37,9 @@ export const createApplication = async (applicationData: any): Promise<Applicati
         jobSeeker: true,
       },
     });
+
+    await sendApplicationConfirmationEmail(newApplication);
+
     return mapToApplication(newApplication);
   } catch (error) {
     throw new Error('Error creating Application');

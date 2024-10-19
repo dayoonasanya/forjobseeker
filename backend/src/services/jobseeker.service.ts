@@ -4,7 +4,7 @@ import { UserRole } from '../enums/enums';
 
 
 /**
- * Helper function to map Prisma JobSeeker to custom JobSeeker interface
+ * Helper function
  */
 const mapToJobSeeker = (prismaJobSeeker: any): JobSeeker => {
   return {
@@ -14,7 +14,7 @@ const mapToJobSeeker = (prismaJobSeeker: any): JobSeeker => {
       id: prismaJobSeeker.user.id,
       email: prismaJobSeeker.user.email,
       password: prismaJobSeeker.user.password,
-      role: prismaJobSeeker.user.role as UserRole, // Explicit conversion
+      role: prismaJobSeeker.user.role as UserRole,
       createdAt: prismaJobSeeker.user.createdAt,
       updatedAt: prismaJobSeeker.user.updatedAt,
       isDeleted: prismaJobSeeker.user.isDeleted,

@@ -1,10 +1,7 @@
-// src/controllers/certification.controller.ts
-
 import { Request, Response, NextFunction } from 'express';
 import * as CertificationService from '../services/certification.service';
 import { AppError } from '../middlewares/error.middleware';
 
-// Helper function to handle errors and return a proper JSON response
 const handleControllerError = (error: any, res: Response, next: NextFunction) => {
   if (error instanceof AppError) {
     return res.status(error.statusCode).json({

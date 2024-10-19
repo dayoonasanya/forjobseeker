@@ -1,5 +1,3 @@
-// src/routes/job.routes.ts
-
 import { Router } from 'express';
 import * as JobController from '../controllers/job.controller';
 import { authenticateJWT } from '../middlewares/auth.middleware';
@@ -8,7 +6,7 @@ import { UserRole } from '../enums/enums';
 
 const router = Router();
 
-// Route for creating a job
+
 router.post(
   '/create',
   authenticateJWT,
@@ -16,10 +14,10 @@ router.post(
   JobController.createJob
 );
 
-// Route for getting a job by ID
+
 router.get('/:jobId', JobController.getJobById);
 
-// Route for updating a job
+
 router.patch(
   '/:jobId',
   authenticateJWT,
@@ -27,7 +25,7 @@ router.patch(
   JobController.updateJob
 );
 
-// Route for soft deleting a job
+
 router.delete(
   '/:jobId',
   authenticateJWT,
@@ -35,13 +33,24 @@ router.delete(
   JobController.deleteJob
 );
 
-// Route for getting all jobs with filtering options
-router.get('/', JobController.getTotalJobsCount);
 
-// Route for getting jobs by company
-router.get('/company/:companyId', authenticateJWT, JobController.getJobsByCompany);
+router.get(
+  '/', 
+  JobController.getTotalJobsCount
+);
 
-// Route for getting jobs by job field
-router.get('/jobfield/:jobFieldId', authenticateJWT, JobController.getJobsByJobField);
+
+router.get(
+  '/company/:companyId', 
+  authenticateJWT, 
+  JobController.getJobsByCompany
+);
+
+
+router.get(
+  '/jobfield/:jobFieldId', 
+  authenticateJWT, 
+  JobController.getJobsByJobField
+);
 
 export default router;

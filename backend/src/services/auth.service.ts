@@ -1,29 +1,37 @@
-// src/services/auth.service.ts
-
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import jwt, { sign, verify } from 'jsonwebtoken';
 import prisma from '../config/database.config';
 import { generateToken } from '../config/jwt.config';
 import { env } from '../config/env.config';
 import logger from '../config/logger.config';
 import { UserRole } from '../enums/enums';
+import { sendWelcomeEmail } from '../emails/utils/welcome';
+import { AppError } from '../middlewares';
+import { sendResetPasswordEmail } from '../emails/utils/reset-password';
 
 /**
- * Register a new user (JobSeeker or Company)
+ * Register a new user
  */
 export const register = async (userData: any): Promise<any> => {
-  const { email, password, role, ...profileData } = userData;
+  const { 
+    email, 
+    password, 
+    role, 
+    ...profileData 
+  } = userData;
 
-  // Check if the email is already in use
-  const existingUser = await prisma.user.findUnique({ where: { email } });
+  const existingUser = await prisma.user.findUnique(
+    { 
+      where: { email } 
+    });
   if (existingUser) {
-    throw new Error('Email is already in use');
+    throw new Error(
+      'Email is already in use'
+    );
   }
 
-  // Hash the password
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  // Create the user with the basic information
   const user = await prisma.user.create({
     data: {
       email,
@@ -32,7 +40,6 @@ export const register = async (userData: any): Promise<any> => {
     },
   });
 
-  // Create additional profile information based on the role
   if (role === UserRole.JOBSEEKER) {
     await prisma.jobSeeker.create({
       data: {
@@ -58,11 +65,29 @@ export const register = async (userData: any): Promise<any> => {
     });
   }
 
+  const mappedUser = {
+    ...user,
+    role: user.role as unknown as UserRole,
+  };
+
+  try {
+    await sendWelcomeEmail(
+      mappedUser
+    );
+  } catch (error) {
+    logger.error(
+      'Error sending welcome email after registration:', error
+    );
+  }
+
   return user;
 };
 
 
-export const login = async (email: string, password: string): Promise<string> => {
+export const login = async (
+  email: string, 
+  password: string
+): Promise<string> => {
   const user = await prisma.user.findUnique({ where: { email } });
   if (!user || !(await bcrypt.compare(password, user.password))) {
     throw new Error('Invalid email or password');
@@ -71,7 +96,6 @@ export const login = async (email: string, password: string): Promise<string> =>
   let companyId = null;
   let jobSeekerId = null;
 
-  // If the user is a company, fetch the associated companyId
   if (user.role === UserRole.COMPANY) {
     const company = await prisma.company.findUnique({ where: { userId: user.id } });
     if (company) {
@@ -79,7 +103,6 @@ export const login = async (email: string, password: string): Promise<string> =>
     }
   }
 
-  // If the user is a jobseeker, fetch the associated jobSeekerId
   if (user.role === UserRole.JOBSEEKER) {
     const jobSeeker = await prisma.jobSeeker.findUnique({ where: { userId: user.id } });
     if (jobSeeker) {
@@ -87,7 +110,6 @@ export const login = async (email: string, password: string): Promise<string> =>
     }
   }
 
-  // Generate JWT token with both companyId and jobSeekerId (if applicable)
   const token = generateToken(user.id, user.role, companyId, jobSeekerId);
   return token;
 };
@@ -114,32 +136,57 @@ export const resetPassword = async (
   });
 };
 
+
+
 /**
- * Forgot password function to initiate password reset process
+ * Forgot password (generates reset link)
  */
-export const forgotPassword = async (email: string): Promise<void> => {
+export const generatePasswordResetLink = async (
+  email: string
+): Promise<void> => {
   const user = await prisma.user.findUnique({ where: { email } });
   if (!user) {
-    throw new Error('User with this email does not exist');
+    throw new AppError('User not found', 404);
   }
 
-  // Here, implement your logic to send an email to the user with a reset password link or code
-  logger.info(`Password reset email sent to ${email}`);
+  const resetToken = sign(
+    { email: user.email },
+    env.jwtSecret,
+    { expiresIn: '1h' }
+  );
+
+  
+  await sendResetPasswordEmail(email, resetToken);
+};
+
+
+/**
+ * Verifies the password reset token
+ */
+export const verifyResetToken = (
+  token: string
+): string => {
+  try {
+    const decoded = verify(token, env.jwtSecret) as { email: string };
+    return decoded.email;
+  } catch (error) {
+    throw new AppError('Invalid or expired token', 400);
+  }
 };
 
 /**
- * Reset password using token or code
+ * Reset password using a valid token
  */
-export const resetPasswordWithToken = async (token: string, newPassword: string): Promise<void> => {
-  try {
-    const decoded: any = jwt.verify(token, env.jwtSecret);
-    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+export const resetPasswordWithToken = async (
+  token: string, 
+  newPassword: string
+): Promise<void> => {
+  const email = verifyResetToken(token);
 
-    await prisma.user.update({
-      where: { id: decoded.userId },
-      data: { password: hashedNewPassword },
-    });
-  } catch (error) {
-    throw new Error('Invalid or expired token');
-  }
+  const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+  await prisma.user.update({
+    where: { email },
+    data: { password: hashedNewPassword },
+  });
 };

@@ -1,10 +1,7 @@
-// src/controllers/jobseeker.controller.ts
-
 import { Request, Response, NextFunction } from 'express';
 import * as JobSeekerService from '../services/jobseeker.service';
 import { AppError } from '../middlewares/error.middleware';
 
-// Helper function to handle errors and return a proper JSON response
 const handleControllerError = (error: any, res: Response, next: NextFunction) => {
   if (error instanceof AppError) {
     return res.status(error.statusCode).json({

@@ -1,12 +1,10 @@
-// src/services/search.service.ts
-
 import prisma from '../config/database.config';
 import { Job } from '../interfaces/job.interface';
 import { JobSeeker } from '../interfaces/jobseeker.interface';
 import { Company } from '../interfaces/company.interface';
 
 /**
- * Helper function to map Prisma Job to custom Job interface
+ * Helper function
  */
 const mapToJob = (prismaJob: any): Job => {
   return {
@@ -35,7 +33,7 @@ const mapToJob = (prismaJob: any): Job => {
 };
 
 /**
- * Helper function to map Prisma JobSeeker to custom JobSeeker interface
+ * Helper function
  */
 const mapToJobSeeker = (prismaJobSeeker: any): JobSeeker => {
   return {
@@ -67,7 +65,7 @@ const mapToJobSeeker = (prismaJobSeeker: any): JobSeeker => {
 };
 
 /**
- * Helper function to map Prisma Company to custom Company interface
+ * Helper functio
  */
 const mapToCompany = (prismaCompany: any): Company => {
   return {
