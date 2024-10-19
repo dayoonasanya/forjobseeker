@@ -1,6 +1,7 @@
 import prisma from '../config/database.config';
 import { Application } from '../interfaces/application.interface';
 import { ApplicationStatus } from '../enums/enums';
+import { sendApplicationConfirmationEmail } from '../emails/utils/application';
 
 /**
  * Helper function
@@ -22,8 +23,7 @@ const mapToApplication = (prismaApplication: any): Application => {
 /**
  * Create Application
  */
-export const 
-createApplication = async (applicationData: any): Promise<Application | null> => {
+export const createApplication = async (applicationData: any): Promise<Application | null> => {
   try {
     const newApplication = await prisma.application.create({
       data: {
@@ -37,6 +37,9 @@ createApplication = async (applicationData: any): Promise<Application | null> =>
         jobSeeker: true,
       },
     });
+
+    await sendApplicationConfirmationEmail(newApplication);
+
     return mapToApplication(newApplication);
   } catch (error) {
     throw new Error('Error creating Application');

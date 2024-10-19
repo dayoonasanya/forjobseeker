@@ -21,6 +21,9 @@ export const sendWelcomeEmail = async (user: User) => {
     await sendMail(emailOptions);
   } catch (error) {
     const err = error as Error;
-    logger.error('Failed to send welcome email:', err.message || err);
+    logger.error(
+      'Failed to send welcome email:', 
+      err.message || err
+    );
   }
 };

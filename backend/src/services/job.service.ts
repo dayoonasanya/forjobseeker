@@ -85,7 +85,10 @@ export const getJobById = async (jobId: string): Promise<Job | null> => {
 /**
  * Update Job
  */
-export const updateJob = async (jobId: string, jobData: Partial<Job>): Promise<Job | null> => {
+export const updateJob = async (
+  jobId: string, 
+  jobData: Partial<Job>
+): Promise<Job | null> => {
   try {
     const updatedJob = await prisma.job.update({
       where: { id: jobId },

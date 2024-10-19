@@ -1,4 +1,5 @@
 import prisma from '../config/database.config';
+import { sendCompanyVerifiedEmail } from '../emails/utils/verified';
 import { Company } from '../interfaces/company.interface';
 
 /**
@@ -27,7 +28,9 @@ const mapToCompany = (prismaCompany: any): Company => {
 /**
  * Create Company Profile
  */
-export const createCompanyProfile = async (companyData: any): Promise<Company | null> => {
+export const createCompanyProfile = async (
+  companyData: any
+): Promise<Company | null> => {
   try {
     const newCompany = await prisma.company.create({
       data: {
@@ -54,7 +57,9 @@ export const createCompanyProfile = async (companyData: any): Promise<Company | 
 /**
  * Get Company by ID
  */
-export const getCompanyById = async (companyId: string): Promise<Company | null> => {
+export const getCompanyById = async (
+  companyId: string
+): Promise<Company | null> => {
   try {
     const company = await prisma.company.findUnique({
       where: { id: companyId },
@@ -103,7 +108,9 @@ export const updateCompanyProfile = async (
 /**
  * Soft delete Company Profile
  */
-export const deleteCompanyProfile = async (companyId: string): Promise<boolean> => {
+export const deleteCompanyProfile = async (
+  companyId: string
+): Promise<boolean> => {
   try {
     await prisma.company.update({
       where: { id: companyId },
@@ -115,15 +122,23 @@ export const deleteCompanyProfile = async (companyId: string): Promise<boolean> 
   }
 };
 
+
 /**
  * Verify Company
  */
-export const verifyCompany = async (companyId: string): Promise<boolean> => {
+export const verifyCompany = async (
+  companyId: string
+): Promise<boolean> => {
   try {
-    await prisma.company.update({
+    const updatedCompany = await prisma.company.update({
       where: { id: companyId },
       data: { isVerified: true },
+      include: { user: true },
     });
+
+    
+    await sendCompanyVerifiedEmail(updatedCompany);
+
     return true;
   } catch (error) {
     throw new Error('Error verifying Company');
