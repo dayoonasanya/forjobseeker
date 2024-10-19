@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Job Portal Backend API\r ======================",
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev --respawn --transpile-only src/server.ts",

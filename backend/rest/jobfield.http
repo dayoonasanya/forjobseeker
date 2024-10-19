@@ -3,11 +3,11 @@ POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
-  "email": "admin@example.com",
-  "password": "adminpassword123",
+  "email": "dayo@dayoonasanya.com",
+  "password": "CsB980898#",
   "role": "ADMIN",
-  "firstName": "Admin",
-  "lastName": "User"
+  "firstName": "Adedayo",
+  "lastName": "Onasanya"
 }
 
 ### Login with the admin user to get a token
