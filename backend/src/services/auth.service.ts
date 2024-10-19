@@ -5,16 +5,27 @@ import { generateToken } from '../config/jwt.config';
 import { env } from '../config/env.config';
 import logger from '../config/logger.config';
 import { UserRole } from '../enums/enums';
+import { sendWelcomeEmail } from '../emails/utils/welcome';
 
 /**
  * Register a new user (JobSeeker or Company)
  */
 export const register = async (userData: any): Promise<any> => {
-  const { email, password, role, ...profileData } = userData;
+  const { 
+    email, 
+    password, 
+    role, 
+    ...profileData 
+  } = userData;
 
-  const existingUser = await prisma.user.findUnique({ where: { email } });
+  const existingUser = await prisma.user.findUnique(
+    { 
+      where: { email } 
+    });
   if (existingUser) {
-    throw new Error('Email is already in use');
+    throw new Error(
+      'Email is already in use'
+    );
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -50,6 +61,21 @@ export const register = async (userData: any): Promise<any> => {
         licenseNumber: profileData.licenseNumber,
       },
     });
+  }
+
+  const mappedUser = {
+    ...user,
+    role: user.role as unknown as UserRole,
+  };
+
+  try {
+    await sendWelcomeEmail(
+      mappedUser
+    );
+  } catch (error) {
+    logger.error(
+      'Error sending welcome email after registration:', error
+    );
   }
 
   return user;
