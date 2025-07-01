@@ -1,5 +1,5 @@
 <footer class="bg-slate-900 py-12 relative text-white">
-  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-5 gap-8">
 
     <!-- Logo & Description -->
     <div>
@@ -81,17 +81,32 @@
       </ul>
     </div>
 
-    <!-- Contact Info (No Address) -->
+    <!-- Legal -->
+    <div>
+      <h2 class="text-lg font-semibold border-b-2 border-red-600 mb-4">Legal</h2>
+      <ul class="space-y-2 text-sm">
+        <li class="flex items-center">
+          <img src="assets/home/chevron.svg" alt="chevron" class="mr-2 h-4 w-4">
+          <a routerLink="/privacy-policy" class="text-gray-400 hover:text-red-600">Privacy Policy</a>
+        </li>
+        <li class="flex items-center">
+          <img src="assets/home/chevron.svg" alt="chevron" class="mr-2 h-4 w-4">
+          <a routerLink="/terms-and-conditions" class="text-gray-400 hover:text-red-600">Terms of Service</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Contact Info -->
     <div>
       <h2 class="text-lg font-semibold border-b-2 border-red-600 mb-4">Contact</h2>
       <ul class="space-y-2 text-sm">
         <li class="flex items-center">
           <i class="pi pi-phone text-red-600 ml-2"></i>
-          <span class="text-gray-400 ml-2">+1 (410) 709-8735</span>
+          <a href="tel:+14107098735" class="text-gray-400 ml-2 hover:text-red-600">+1 (410) 709-8735</a>
         </li>
         <li class="flex items-center">
           <i class="pi pi-envelope text-red-600 ml-2"></i>
-          <span class="text-gray-400 ml-2">info&#64;forjobseekers.com</span>
+          <a href="mailto:info&#64;forjobseekers.com" class="text-gray-400 ml-2 hover:text-red-600">info&#64;forjobseekers.com</a>
         </li>
       </ul>
     </div>

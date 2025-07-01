@@ -1,4 +1,7 @@
 import { Routes } from '@angular/router';
+import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
+import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-and-conditions.component';
+
 import { HomeComponent } from './components/shared/home/home.component';
 import { AboutComponent } from './components/shared/about/about.component';
 import { FaqComponent } from './components/shared/faq/faq.component';
@@ -30,60 +33,70 @@ import { JobsComponent } from './components/shared/jobs/jobs.component';
 import { JobDetailsComponent } from './components/shared/job-details/job-details.component';
 
 export const routes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'home', component: HomeComponent },
-    { path: 'about', component: AboutComponent },
-    { path: 'faq', component: FaqComponent },
-    { path: 'blogs', component: BlogComponent },
-    { path: 'blogs/:id', component: BlogDetailsComponent },
-    { path: 'contact-us', component: ContactUsComponent },
-    { path: 'get-started', component: GetStartedComponent },
-    { path: 'register-jobseeker', component: RegisterJobseekerComponent },
-    { path: 'register-employer', component: RegisterEmployerComponent },
-    { path: 'login', component: LoginComponent },
-    { path: 'jobs', component: JobsComponent},
-    { path: 'jobs/:id', component: JobDetailsComponent },
+  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'faq', component: FaqComponent },
+  { path: 'blogs', component: BlogComponent },
+  { path: 'blogs/:id', component: BlogDetailsComponent },
+  { path: 'contact-us', component: ContactUsComponent },
+  { path: 'get-started', component: GetStartedComponent },
+  { path: 'register-jobseeker', component: RegisterJobseekerComponent },
+  { path: 'register-employer', component: RegisterEmployerComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'jobs', component: JobsComponent },
+  { path: 'jobs/:id', component: JobDetailsComponent },
 
-    { 
-        path: 'jobseeker', 
-        canActivate: [AuthGuard, RoleGuard],
-        data: { expectedRole: 'JOBSEEKER' }, 
-        children: [
-            { path: '', redirectTo: 'settings', pathMatch: 'full' },
-            { path: 'profile', component: ProfileComponent },
-            { path: 'applications', component: ApplicationsComponent },
-            { path: 'settings', component: SettingsComponent },
-        ] 
-    },
-    
-    { 
-        path: 'company', 
-        component: CompanyComponent, 
-        canActivate: [AuthGuard, RoleGuard],
-        data: { expectedRole: 'COMPANY' }, 
-        children: [
-          { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-          { path: 'dashboard', component: CompanyProfileComponent},
-          { path: 'jobs', component: CompanyJobsComponent },
-          { path: 'applications', component: CompanyApplicationsComponent },
-          { path: 'profile', component: CompanyProfileComponent},
-          { path: 'settings', component: CompanySettingsComponent},
-        ] 
-    },
+  // ✅ Jobseeker dashboard routes
+  {
+    path: 'jobseeker',
+    canActivate: [AuthGuard, RoleGuard],
+    data: { expectedRole: 'JOBSEEKER' },
+    children: [
+      { path: '', redirectTo: 'settings', pathMatch: 'full' },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'applications', component: ApplicationsComponent },
+      { path: 'settings', component: SettingsComponent },
+    ],
+  },
 
-    {
-        path: 'admin',
-        component: AdminComponent,
-        canActivate: [AuthGuard, RoleGuard],
-        data: { expectedRole: 'ADMIN' }, 
-        children: [
-            { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-            { path: 'dashboard', component: AdminDashboardComponent },
-            { path: 'jobs', component: AdminJobsComponent },
-            { path: 'jobseekers', component: AdminJobseekersComponent },
-            { path: 'jobfields', component: AdminJobfieldsComponent },
-            { path: 'company', component: AdminCompanyComponent },
-        ]
-    },
-    { path: '**', component: NotfoundComponent },
+  // ✅ Company dashboard routes
+  {
+    path: 'company',
+    component: CompanyComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: { expectedRole: 'COMPANY' },
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', component: CompanyProfileComponent },
+      { path: 'jobs', component: CompanyJobsComponent },
+      { path: 'applications', component: CompanyApplicationsComponent },
+      { path: 'profile', component: CompanyProfileComponent },
+      { path: 'settings', component: CompanySettingsComponent },
+    ],
+  },
+
+  // ✅ Admin dashboard routes
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: { expectedRole: 'ADMIN' },
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', component: AdminDashboardComponent },
+      { path: 'jobs', component: AdminJobsComponent },
+      { path: 'jobseekers', component: AdminJobseekersComponent },
+      { path: 'jobfields', component: AdminJobfieldsComponent },
+      { path: 'company', component: AdminCompanyComponent },
+    ],
+  },
+
+  // ✅ Legal pages (new)
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
+  { path: 'terms-and-conditions', component: TermsAndConditionsComponent },
+
+  // ✅ Catch-all for 404
+  { path: '**', component: NotfoundComponent },
 ];
+
